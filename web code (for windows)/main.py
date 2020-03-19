@@ -1,0 +1,1 @@
+from blogapp import app
