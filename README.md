@@ -19,7 +19,7 @@ Zheng Zhi|17206148
 
 
 
-### Git:
+### Git command:
 
 Clone the repository:
 
