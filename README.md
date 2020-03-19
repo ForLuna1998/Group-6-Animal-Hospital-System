@@ -6,7 +6,7 @@ This is an online system for a animal hospital called Healing  paws Veterinary H
 
 
 
-### Team:
+### Team member:
 
 Group Member|UCD number
 --|:--:
