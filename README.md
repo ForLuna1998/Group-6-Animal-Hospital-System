@@ -2,7 +2,7 @@
 
 ## Introduction:
 
-This is an online system for a animal hospital called Healing  paws Veterinary Hospital.
+This is an online system for a veterinary hospital called Healing Paws Veterinary Hospital.
 
 
 
