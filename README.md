@@ -8,7 +8,7 @@ This is an online system for a animal hospital called Healing  paws Veterinary H
 
 ### Team member:
 
-Group Member|UCD number
+Name|UCD number
 --|:--:
 Yu Jiayue|17206173
 Jiang Zexin|17205974
