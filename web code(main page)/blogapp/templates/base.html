@@ -1,0 +1,81 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Healing Paws System</title>
+        {% else %}
+        <title>No link</title>
+        {% endif %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="" />
+
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/css/form-elements.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/form-elements.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+        <link href="http://fonts.googleapis.com/css?family=Oswald:300,400,500,600" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
+
+        <script src="{{ url_for('static', filename='assets/js/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.backstretch.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/retina-1.1.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/scripts.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/js/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/js/jquery.backstretch.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/js/retina-1.1.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/js/scripts.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/myjs.js') }}"></script>
+    </head>
+    
+    <body>
+        <div class="header-outs" id="home">
+        <div class="header-w3layouts">
+        <nav>
+          <div id="logo">
+            <h1><a href="{{ url_for('index') }}">Healing Paws Veterinary Hospital&copy;</a></h1>
+          </div>
+
+          <label for="drop" class="toggle">Menu</label>
+          <input type="checkbox" id="drop">
+          <ul class="menu mt-2">
+            <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                <a href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li>
+                <a href="{{ url_for('login') }}">Login</a>
+            </li>
+            <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+              <!-- First Tier Drop Down -->
+              <label for="drop-2" class="toggle toogle-2">Employee login <span class="fa fa-angle-down" aria-hidden="true"></span>
+              </label>
+              <a href="{{ url_for('signup') }}">For Employees</a>
+            </li>
+            <li>
+                <a href="{{ url_for('index') }}">Languages</a>
+            </li>
+          </ul>
+        </nav>
+        </div>
+    </div>
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
