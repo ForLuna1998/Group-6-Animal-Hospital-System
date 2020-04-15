@@ -1,0 +1,131 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+              <div class="card sidebar-menu mb-4">
+                <div class="card-header">
+                  <h3 class="h4 card-title">CATELOGUE</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column category-menu">
+                    <li><a href="category.html" class="nav-link">Standard Appointment</a>
+                      <ul class="list-unstyled">
+                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
+                        <li><a href="{{ url_for('status_a') }}" class="nav-link">Appointment Status</a></li>
+                        <li><a href="{{ url_for('record_a') }}" class="nav-link">Appointment record</a></Sli>
+                      </ul>
+                    </li>
+                    <li><a href="category.html" class="nav-link">Emergency</a>
+                  <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
+                      <ul class="list-unstyled">
+                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
+                        <li><a href="{{ url_for('status_en') }}" class="nav-link">Appointment Status</a></li>
+                        <li><a href="{{ url_for('record_e') }}" class="nav-link">Appointment record</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="category.html" class="nav-link">Surgical Operation  <span cElass="badge badge-secondary">1</span></a>
+                      <ul class="list-unstyled">
+                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">Operation Status</a></li>
+                        <li><a href="category.html" class="nav-link">Operation record</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card sidebar-menu mb-4">
+                <div class="card-header">
+                  <h3 class="h4 card-title">PETS <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> 1
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> 2
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox">3
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> 4
+                        </label>
+                      </div>
+                    </div>
+                   
+                  </form>
+                </div>
+              </div>
+             
+              <!-- *** MENUS AND FILTERS END ***-->
+              <div class="banner"><a href="#"><img src="img/banner.jpg"  class="img-fluid"></a></div>
+            </div>
+            <div class="col-lg-9">
+              <div class="box">
+                <h1>Pet Paw</h1>
+                <p>In our Healing Paws Veterinary Hospital, there are two appointment types: emergency and standard.</p>
+			      </div>
+		
+           
+                  <div id="customer-order" class="col-lg-9">
+                    <div class="box" style="margin-right: -220px;margin-left: -14px;">
+                      <h1>Standard Appointment 3333</h1>
+                      <p class="lead">Standard appointment are booked on <strong>14/04/2020</strong> and is currently <strong>waiting</strong>.</p>
+                      <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                      <hr>
+                      <div class="table-responsive mb-4">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th colspan="2">Pets</th>
+                              <th>Old</th>
+                              <th>Date</th>
+                              <th>Time</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>mike</td>
+                              <td><a href="#">mike account</a></td>
+                              <td>2</td>
+                              <td>14/04/2020</td>
+                              <td>morning</td>
+                              
+                            </tr>
+                            <tr>
+                                <td>mike2</td>
+                                <td><a href="#">mike2 account</a></td>
+                              <td>1</td>
+                              <td>14/04/2020</td>
+                              <td>afternoon</td>
+                              
+                            </tr>
+                          </tbody>
+                         
+                        </table>
+                      </div>
+                      <!-- /.table-responsive-->
+                      <div class="row addresses">
+                        <div class="col-lg-6">
+                          <h2></h2>
+                        </div>
+                        <div class="col-lg-6">
+                          <h2>Hospital address</h2>
+                          <p>John Brown<br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>Beijing</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+{% endblock %}

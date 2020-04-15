@@ -9,22 +9,22 @@
                   <ul class="nav nav-pills flex-column category-menu">
                     <li><a href="category.html" class="nav-link">Standard Appointment</a>
                       <ul class="list-unstyled">
-                        <li><a href="reservation-s.html" class="nav-link">Make an appointment</a></li>
-                        <li><a href="status-a.html" class="nav-link">Appointment Status</a></li>
-                        <li><a href="record-a.html" class="nav-link">Appointment record</a></Sli>
+                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
+                        <li><a href="{{ url_for('status_a') }}" class="nav-link">Appointment Status</a></li>
+                        <li><a href="{{ url_for('record_a') }}" class="nav-link">Appointment record</a></Sli>
                       </ul>
                     </li>
                     <li><a href="category.html" class="nav-link">Emergency</a>
                   <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
                       <ul class="list-unstyled">
-                        <li><a href="reservation-e.html" class="nav-link">Make an appointment</a></li>
-                        <li><a href="status-en.html" class="nav-link">Appointment Status</a></li>
-                        <li><a href="record-e.html" class="nav-link">Appointment record</a></li>
+                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
+                        <li><a href="{{ url_for('status_en') }}" class="nav-link">Appointment Status</a></li>
+                        <li><a href="{{ url_for('record_e') }}" class="nav-link">Appointment record</a></li>
                       </ul>
                     </li>
                     <li><a href="#" class="nav-link">Surgical Operation  <span cElass="badge badge-secondary">1</span></a>
                       <ul class="list-unstyled">
-                        <li><a href="status-sur.html" class="nav-link">Operation Status</a></li>
+                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">Operation Status</a></li>
                         <li><a href="category.html" class="nav-link">Operation record</a></li>
                       </ul>
                     </li>
@@ -65,7 +65,7 @@
               </div>
              
               <!-- *** MENUS AND FILTERS END ***-->
-              <div class="banner"><a href="#"><img src="img/banner.jpg"  class="img-fluid"></a></div>
+              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
             </div>
             <div class="col-lg-9">
               <div class="box">
@@ -78,10 +78,10 @@
                   <div class="product">
                     <div class="flip-container">
                       <div class="flipper">
-                        <div class="front"><a href="detail.html"><img src="img/doctor1.jpg" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="detail.html"><img src="img/doctor1.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="front"><a href="detail.html"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="detail.html"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a></div>
                       </div>
-                    </div><a href="detail.html" class="invisible"><img src="img/doctor1.jpg" alt="" class="img-fluid"></a>
+                    </div><a href="detail.html" class="invisible"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
                       <h3><a href="detail.html">Standard Appointment</a></h3>
                      
@@ -96,10 +96,10 @@
                   <div class="product">
                     <div class="flip-container">
                       <div class="flipper">
-                        <div class="front"><a href="detail.html"><img src="img/doctor2.jpg" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="detail.html"><img src="img/doctor2.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="front"><a href="detail.html"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="detail.html"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a></div>
                       </div>
-                    </div><a href="detail.html" class="invisible"><img src="img/doctor2.jpg" alt="" class="img-fluid"></a>
+                    </div><a href="detail.html" class="invisible"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
                       <h3><a href="detail.html">Emergency Appointment</a></h3>
                     
@@ -107,7 +107,7 @@
                     </div>
                     <!-- /.text-->
                     <div class="ribbon sale">
-                      <div class="theribbon">&thinsp;URGENT</div>
+                      <div class="theribbon"> &nbsp; &thinsp;URGENT</div>
                       <div class="ribbon-background"></div>
                     </div>
                     <!-- /.ribbon-->
@@ -123,10 +123,10 @@
                   <div class="product">
                     <div class="flip-container">
                       <div class="flipper">
-                        <div class="front"><a href="detail.html"><img src="img/doctor3.jpg" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="detail.html"><img src="img/doctor3.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="front"><a href="detail.html"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="detail.html"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a></div>
                       </div>
-                    </div><a href="detail.html" class="invisible"><img src="img/doctor3.jpg" alt="" class="img-fluid"></a>
+                    </div><a href="detail.html" class="invisible"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
                       <h3><a href="detail.html">Surgical Operation</a></h3>
                      
@@ -140,10 +140,10 @@
                   <div class="product">
                     <div class="flip-container">
                       <div class="flipper">
-                        <div class="front"><a href="detail.html"><img src="img/doctor3.jpg" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="detail.html"><img src="img/doctor3.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="front"><a href="detail.html"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="detail.html"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a></div>
                       </div>
-                    </div><a href="detail.html" class="invisible"><img src="img/doctor3.jpg" alt="" class="img-fluid"></a>
+                    </div><a href="detail.html" class="invisible"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
                       <h3><a href="detail.html">Postoperative care</a></h3>
                      
@@ -157,10 +157,10 @@
                   <div class="product">
                     <div class="flip-container">
                       <div class="flipper">
-                        <div class="front"><a href="detail.html"><img src="img/doctor2.jpg" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="detail.html"><img src="img/doctor2.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="front"><a href="detail.html"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="detail.html"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a></div>
                       </div>
-                    </div><a href="detail.html" class="invisible"><img src="img/doctor2.jpg" alt="" class="img-fluid"></a>
+                    </div><a href="detail.html" class="invisible"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
                       <h3><a href="detail.html">check-ups</a></h3>
                     
@@ -179,10 +179,10 @@
                   <div class="product">
                     <div class="flip-container">
                       <div class="flipper">
-                        <div class="front"><a href="detail.html"><img src="img/doctor1.jpg" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="detail.html"><img src="img/doctor1.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="front"><a href="detail.html"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="detail.html"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a></div>
                       </div>
-                    </div><a href="detail.html" class="invisible"><img src="img/doctor1.jpg" alt="" class="img-fluid"></a>
+                    </div><a href="detail.html" class="invisible"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
                       <h3><a href="detail.html">Bathe Pets</a></h3>
                     

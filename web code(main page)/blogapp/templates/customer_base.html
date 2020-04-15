@@ -5,32 +5,20 @@
         {% else %}
         <title>No link</title>
         {% endif %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="keywords" content="" />
-
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>pet care</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="all,follow">
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="modern appointment form a Flat Responsive Widget,Login form widgets, Sign up Web     forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
-        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-        function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/font-awesome/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/css/form-elements.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/css/style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets/font-awesome/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/form-elements.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css-a/jquery-ui.css') }}">
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets3/css-a/jquery-ui.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700') }}">
@@ -40,23 +28,10 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
         <link rel="shortcut icon" href="favicon.png">
 
-        <link href="http://fonts.googleapis.com/css?family=Oswald:300,400,500,600" rel="stylesheet">
-        <link href="http://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
         <link href="css-a/style.css" rel="stylesheet" type="text/css" media="all"/><!--stylesheet-css-->
         <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet"><!--online-fonts-->
         <link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet"><!--online-fonts-->
 
-        <script src="{{ url_for('static', filename='assets/js/jquery-1.11.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets/js/jquery.backstretch.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets/js/retina-1.1.0.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets/js/scripts.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets2/js/jquery-1.11.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets2/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets2/js/jquery.backstretch.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets2/js/retina-1.1.0.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='assets2/js/scripts.js') }}"></script>
-        <script src="{{ url_for('static', filename='scripts/myjs.js') }}"></script>
         <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ url_for('static', filename='vendor/jquery.cookie/jquery.cookie.js') }}"></script>
@@ -79,9 +54,8 @@
             </a></div>
             <div class="col-lg-6 text-center text-lg-right">
               <ul class="menu list-inline mb-0">
-                <li class="list-inline-item"><a href="index.html">Home</a></li>
-                <li class="list-inline-item"><a href="register.html">Login</a></li>
-                <li class="list-inline-item"><a href="contact.html">Register</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('customer_index') }}">Home</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('index') }}">Logout</a></li>
                 <li class="list-inline-item"><a href="">Language</a></li>
               </ul>
             </div>
@@ -93,10 +67,20 @@
         
       </div>
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="index.html" class="navbar-brand home"><img src="img/logo.png" alt="Obaju logo" class="d-none d-md-inline-block"><img src="img/logo-small.png" alt="Obaju logo" class="d-inline-block d-md-none"><span class="sr-only">Obaju - go to homepage</span></a>
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="navbar-brand home">
+                <img src="static/img/logo.png" alt="Obaju logo" class="d-none d-md-inline-block">
+                <img src="static/img/logo-small.png" alt="Obaju logo" class="d-inline-block d-md-none">
+                <span class="sr-only">Obaju - go to homepage</span></a>
           <div class="navbar-buttons">
-            <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
-            <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button><a href="basket.html" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
+            <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-align-justify"></i></button>
+            <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler">
+                <span class="sr-only">Toggle search</span>
+                <i class="fa fa-search"></i></button>
+                <a href="basket.html" class="btn btn-outline-secondary navbar-toggler">
+                    <i class="fa fa-shopping-cart"></i></a>
           </div>
           <div id="navigation" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
@@ -108,18 +92,18 @@
                       <div class="col-md-6 col-lg-3">
                         <h5>personal account</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="customer-account.html" class="nav-link">name</a></li>
-                          <li class="nav-item"><a href="customer-account.html" class="nav-link">telephone</a></li>
-                          <li class="nav-item"><a href="customer-account.html" class="nav-link">address</a></li>
+                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">name</a></li>
+                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">telephone</a></li>
+                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">address</a></li>
                         </ul>
                       </div>
                       <div class="col-md-6 col-lg-3">
                         <h5>pet accounts</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="pet-account.html" class="nav-link">name</a></li>
-                          <li class="nav-item"><a href="pet-account.html" class="nav-link">old</a></li>
-                          <li class="nav-item"><a href="pet-account.html" class="nav-link">hobby</a></li>
-                          <li class="nav-item"><a href="pet-account.html" class="nav-link">food</a></li>
+                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">name</a></li>
+                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">old</a></li>
+                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">hobby</a></li>
+                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">food</a></li>
                         </ul>
                       
                   </li>
