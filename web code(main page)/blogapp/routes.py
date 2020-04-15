@@ -23,11 +23,10 @@ def login():
 		if (check_password_hash(user_in_db.password_hash, form.password.data)):
 			flash('Login success!')
 			session["USERNAME"] = user_in_db.username
-			return redirect(url_for('login'))
-			#should go to the logged-in page
+			return redirect(url_for('customer_index'))
 		flash('Incorrect Password')
 		return redirect(url_for('login'))
-	return render_template('login.html', title='Sign In', form=form)
+	return render_template('login.html', title='Sign in', form=form)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -70,3 +69,9 @@ def check_email():
 	else:
 		return jsonify({'text': 'Sorry! Email is already taken',
 						'returvalue': 1})
+
+@app.route('/customer_index')
+def customer_index():
+	user = {'username': 'User'}
+	return render_template('customer_index.html', title='Home', user=user)
+
