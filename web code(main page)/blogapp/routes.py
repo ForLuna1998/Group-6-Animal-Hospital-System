@@ -75,3 +75,49 @@ def customer_index():
 	user = {'username': 'User'}
 	return render_template('customer_index.html', title='Home', user=user)
 
+@app.route('/customer_account')
+def customer_account():
+	user = {'username': 'User'}
+	return render_template('customer_account.html', title='account', user=user)
+
+@app.route('/pet_account')
+def pet_account():
+	user = {'username': 'User'}
+	return render_template('pet_account.html', title='account', user=user)
+
+@app.route('/record_a')
+def record_a():
+	user = {'username': 'User'}
+	return render_template('record_a.html', title='record', user=user)
+
+@app.route('/record_e')
+def record_e():
+	user = {'username': 'User'}
+	return render_template('record_e.html', title='record', user=user)
+
+@app.route('/reservation_e')
+def reservation_e():
+	user = {'username': 'User'}
+	return render_template('reservation_e', title='reservation', user=user)
+
+@app.route('/reservation_s')
+def reservation_s():
+	user = {'username': 'User'}
+	return render_template('reservation_s.html', title='reservation', user=user)
+
+@app.route('/status_a')
+def status_a():
+	user = {'username': 'User'}
+	return render_template('status_a.html', title='status', user=user)
+
+@app.route('/status_en')
+def status_en():
+	user = {'username': 'User'}
+	return render_template('status_en.html', title='status', user=user)
+
+@app.route('/status_sur')
+def status_sur():
+	user = {'username': 'User'}
+	return render_template('status_sur.html', title='status', user=user)
+
+
