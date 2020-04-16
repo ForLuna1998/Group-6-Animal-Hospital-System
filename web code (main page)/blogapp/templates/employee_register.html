@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script src="{{ url_for('static', filename='scripts/myjs.js') }}"></script>
+
+        <div class="top-content">
+            <div class="inner-bg" style="padding-top: 5em; padding-left: 4em;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5 form-box">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3>Sign up now</h3>
+                                    <p>Fill in the form to get an account:</p>
+                                </div>
+                                <div class="form-top-right">
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                                <div class="form-top-divider"></div>
+                            </div>
+                            <div class="form-bottom">
+                                <form action="" method="post" class="registration-form" novalidate>
+                                    {{ form.hidden_tag() }}
+                                    <div class="form-group">
+                                        <p id="username">
+                                        {{ form.username(size=35) }}
+                                        
+                                        <span id="checkuser"></span>
+                                        </p>
+                                        {% for error in form.username.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        {{ form.key(size=35) }}
+                                        
+                                        {% for error in form.key.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.password(size=35) }}
+                                        
+                                        {% for error in form.password.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.password2(size=35) }}
+                                        
+                                        {% for error in form.password2.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-check">
+                                        {{ form.accept_rules() }} 
+                                        {{ form.accept_rules.label }}
+                                        <a href="{{ url_for('index') }}"><b>SITE RULES</b></a> <br>
+                                        {% for error in form.accept_rules.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </div>
+                                    {{ form.submit() }}
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 text" style="padding-top: 10em;">
+                            <h1>Employee Registration Form</h1>
+                            <div class="description">
+                                
+                                        <br>
+                                        Already have an account? Log in here
+                                   
+                                </div>
+                                <a class="btn-link-1" href="{{url_for('login')}}">Log in</a>
+                            <div class="top-big-link">
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </div>
+
+{% endblock %}

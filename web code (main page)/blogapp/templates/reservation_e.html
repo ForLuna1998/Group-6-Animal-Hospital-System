@@ -1,0 +1,85 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+
+              <div class="card sidebar-menu">
+                <div class="card-header">
+                  <h3 class="h4 card-title">Emergency Reservation</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column"><a href="{{ url_for('reservation_e') }}" class="nav-link active"><i class="fa fa-list"></i>Emergency Reservation</a><a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> Back</a></ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+            </div>
+            <div class="col-lg-9">
+              <div class="box">
+                <h1>Emergency Reservation</h1>
+              
+                <form>
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="firstname">Select your pet here.</label>
+                        <select id="state" class="form-control">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <a href="{{ url_for('pet_add') }}" class="nav-link active"><i class="fa fa-list"></i> Add new pet</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                 
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="city">Arrive time</label>
+                        <select id="state" class="form-control">
+                            <option value="0.5">0-0.5 hour</option>
+                            <option value="1">0.5-1 hour</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="time">city </label>
+                        <select id="state" class="form-control">
+                            <option value="BJ">Beijing</option>
+                            <option value="SH">Shanghai</option>
+                            <option value="CD">Chengdu</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="street">More Details</label>
+                        <input id="street" type="text" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                
+                    <div class="col-md-12 text-center">
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
