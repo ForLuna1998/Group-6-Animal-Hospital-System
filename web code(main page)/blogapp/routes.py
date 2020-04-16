@@ -120,4 +120,9 @@ def status_sur():
 	user = {'username': 'User'}
 	return render_template('status_sur.html', title='status', user=user)
 
+@app.route('/pet_add')
+def pet_add():
+	user = {'username': 'User'}
+	return render_template('pet_add.html', title='pet', user=user)
+
 
