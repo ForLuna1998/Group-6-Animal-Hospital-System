@@ -98,7 +98,7 @@ def record_e():
 @app.route('/reservation_e')
 def reservation_e():
 	user = {'username': 'User'}
-	return render_template('reservation_e', title='reservation', user=user)
+	return render_template('reservation_e.html', title='reservation', user=user)
 
 @app.route('/reservation_s')
 def reservation_s():
