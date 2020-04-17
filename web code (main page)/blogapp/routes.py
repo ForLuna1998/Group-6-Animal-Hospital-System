@@ -142,10 +142,10 @@ def status_a():
 	user = {'username': 'User'}
 	return render_template('status_a.html', title='status', user=user)
 
-@app.route('/status_en')
-def status_en():
+@app.route('/status_e')
+def status_e():
 	user = {'username': 'User'}
-	return render_template('status_en.html', title='status', user=user)
+	return render_template('status_e.html', title='status', user=user)
 
 @app.route('/status_sur')
 def status_sur():

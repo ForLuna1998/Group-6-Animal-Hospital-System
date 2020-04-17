@@ -67,7 +67,7 @@
         
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a href="{{ url_for('index') }}" class="navbar-brand home">
+            <a href="{{ url_for('customer_index') }}" class="navbar-brand home">
                 <img src="static/img/logo.png" alt="Obaju logo" class="d-none d-md-inline-block">
                 <img src="static/img/logo-small.png" alt="Obaju logo" class="d-inline-block d-md-none">
                 <span class="sr-only">Obaju - go to homepage</span></a>
@@ -83,7 +83,7 @@
           </div>
           <div id="navigation" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item"><a href="#" class="nav-link active">RESERVATION</a></li>
+              <li class="nav-item"><a href="#" class="nav-link active">appointment</a></li>
               <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">ACCOUNT<b class="caret"></b></a>
                 <ul class="dropdown-menu megamenu">
                   <li>
@@ -91,18 +91,18 @@
                       <div class="col-md-6 col-lg-3">
                         <h5>personal account</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">name</a></li>
-                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">telephone</a></li>
-                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">address</a></li>
+                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">my Profile</a></li>
+                          <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">telephone</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">address</a></li> -->
                         </ul>
                       </div>
                       <div class="col-md-6 col-lg-3">
                         <h5>pet accounts</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">name</a></li>
-                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">old</a></li>
-                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">hobby</a></li>
-                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">food</a></li>
+                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">my Pet</a></li>
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">old</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">hobby</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">food</a></li> -->
                         </ul>
                       
                   </li>
@@ -137,7 +137,7 @@
               <!-- /.nav-collapse-->
               <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
               
-              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>message</span></a>
+              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>Consultation</span></a>
                   
               
               
@@ -219,7 +219,7 @@
             <ul class="list-unstyled">
               <li><a href="reservation-s.html">reservation</a></li>
               <li><a href="record-e.html">record</a></li>
-              <li><a href="status-en.html">status</a></li>
+              <li><a href="status-e.html">status</a></li>
       
             </ul>
           </div>

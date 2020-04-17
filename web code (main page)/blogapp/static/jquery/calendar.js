@@ -89,6 +89,18 @@
 						true // make the event "stick"
 					);
 				}
+				else if(title=='surgery') {
+					calendar.fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay,
+							className: 'chill'			
+						},
+						true // make the event "stick"
+					);
+				}
 				calendar.fullCalendar('unselect');
 			},
 			droppable: true, // this allows things to be dropped onto the calendar !!!
