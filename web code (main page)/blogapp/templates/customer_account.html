@@ -24,7 +24,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="password_old">Old password</label>
-                        <input id="password_old" type="password" class="form-control">
+                        {{ form.password(size=32) }}
                       </div>
                     </div>
                   </div>
@@ -32,13 +32,13 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="password_1">New password</label>
-                        <input id="password_1" type="password" class="form-control">
+                        {{ form.password2(size=32) }}
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="password_2">Retype new password</label>
-                        <input id="password_2" type="password" class="form-control">
+                        {{ form.password3(size=32) }}
                       </div>
                     </div>
                   </div>
@@ -53,13 +53,13 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="firstname">Firstname</label>
-                        <input id="firstname" type="text" class="form-control">
+                        {{ form.firstname(size=32) }}
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="lastname">Lastname</label>
-                        <input id="lastname" type="text" class="form-control">
+                        {{ form.lastname(size=32) }}
                       </div>
                     </div>
                   </div>
@@ -68,13 +68,13 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="company">Email</label>
-                        <input id="company" type="text" class="form-control">
+                        {{ form.email(size=32) }}
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="street">Telephone</label>
-                        <input id="street" type="text" class="form-control">
+                        {{ form.telephone(size=32) }}
                       </div>
                     </div>
                   </div>

@@ -18,11 +18,11 @@
                   <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
                       <ul class="list-unstyled">
                         <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
-                        <li><a href="{{ url_for('status_e') }}" class="nav-link">Appointment Status</a></li>
+                        <li><a href="{{ url_for('status_en') }}" class="nav-link">Appointment Status</a></li>
                         <li><a href="{{ url_for('record_e') }}" class="nav-link">Appointment record</a></li>
                       </ul>
                     </li>
-                    <li><a href="category.html" class="nav-link">Surgical Operation </a>
+                    <li><a href="category.html" class="nav-link">Surgical Operation  <span cElass="badge badge-secondary">1</span></a>
                       <ul class="list-unstyled">
                         <li><a href="{{ url_for('status_sur') }}" class="nav-link">Operation Status</a></li>
                         <li><a href="category.html" class="nav-link">Operation record</a></li>
@@ -68,61 +68,72 @@
               <div class="banner"><a href="#"><img src="img/banner.jpg"  class="img-fluid"></a></div>
             </div>
             <div class="col-lg-9">
-              
+              <div class="box">
+                <h1>Pet Paw</h1>
+                <p>In our Healing Paws Veterinary Hospital, there are two appointment types: emergency and standard.</p>
+			      </div>
 		
            
-                  <div id="customer-order" class="col-lg-9">
-                    <div class="box" style="margin-right: -220px;margin-left: -14px;">
-                      <h1>Standard Appointment List</h1>
-                      
-                      <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
-                      <hr>
-                      <div class="table-responsive mb-4">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th colspan="2">Pets</th>
-                              <th>Old</th>
-                              <th>Date</th>
-                              <th>Time</th>
-                              
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>mike</td>
-                              <td><a href="#">mike account</a></td>
-                              <td>2</td>
-                              <td>14/04/2020</td>
-                              <td>morning</td>
-                              
-                            </tr>
-                            <tr>
-                                <td>mike2</td>
-                                <td><a href="#">mike2 account</a></td>
-                              <td>1</td>
-                              <td>14/04/2020</td>
-                              <td>afternoon</td>
-                              
-                            </tr>
-                          </tbody>
-                         
-                        </table>
-                      </div>
-                      <!-- /.table-responsive-->
-                      <div class="row addresses">
-                        <div class="col-lg-6">
-                          <h2></h2>
-                        </div>
-                        <div class="col-lg-6">
-                          <h2>Hospital address</h2>
-                          <p>John Brown<br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>Beijing</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          
+          <div id="customer-orders" class="col-lg-9">
+            <div class="box" style="margin-right: -220px;margin-left: -14px;">
+              <h1>Emergency Appiontment Status</h1>
+              <p class="lead">Status of your pets</p>
+              <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Pet Name</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>33333</th>
+                      <td>mike</td>
+                      <td>14/04/2020</td>
+                      <td><span class="badge badge-info">Waiting</span></td>
+                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
+                    </tr>
+                    <tr>
+                      <th>33333</th>
+                      <td>mike</td>
+                      <td>14/04/2020</td>
+                      <td><span class="badge badge-info">Waiting</span></td>
+                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
+                    </tr>
+                    <tr>
+                      <th>33333</th>
+                      <td>mike</td>
+                      <td>14/04/2020</td>
+                      <td><span class="badge badge-success">Success</span></td>
+                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
+                    </tr>
+                    <tr>
+                      <th>33333</th>
+                      <td>mike</td>
+                      <td>14/04/2020</td>
+                      <td><span class="badge badge-success">Success</span></td>
+                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
+                    </tr>
+                    <tr>
+                      <th>33333</th>
+                      <td>mike</td>
+                      <td>14/04/2020</td>
+                      <td><span class="badge badge-success">Success</span></td>
+                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            </div>
+            </div>            <!-- /.col-lg-9-->
           </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

@@ -18,20 +18,20 @@
                 <h1>Pet accounts</h1>
                 <p class="lead">Add your pets' details.</p>
               
-                <form>
-                 
+                <form action="" method="post" novalidate>
+                 {{ form.hidden_tag() }}
                   
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="firstname">Name</label>
-                        <input id="firstname" type="text" class="form-control">
+                        {{ form.pet_name(size=32) }}
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="lastname">Old</label>
-                        <input id="lastname" type="text" class="form-control">
+                        {{ form.pet_age(size=32) }}
                       </div>
                     </div>
                   </div>
@@ -40,13 +40,13 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="company">gender</label>
-                        <input id="company" type="text" class="form-control">
+                        {{ form.pet_gender(size=32) }}
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="street">Type</label>
-                        <input id="street" type="text" class="form-control">
+                        {{ form.pet_type(size=32) }}
                       </div>
                     </div>
                   </div>

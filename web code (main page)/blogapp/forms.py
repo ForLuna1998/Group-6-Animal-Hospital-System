@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, RadioField, FileField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,SelectField, DateField, RadioField, FileField, TextAreaField
 from wtforms.validators import DataRequired,ValidationError
 from flask_wtf.file import FileRequired, FileAllowed
 
@@ -25,10 +25,68 @@ class ERForm(FlaskForm):
 	password2 = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Repeat Password...","required":'required'})
 	accept_rules = BooleanField('I accept the ', validators=[DataRequired()])
 	submit = SubmitField('Register',render_kw={"class": "btn btn-primary btn-block btn-flat"})
+
+
+class PetAccountForm(FlaskForm):
+	pet_id = SelectField('', validators=[DataRequired()], choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
+	pet_name = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Name", "required": 'required'})
+	pet_age = StringField('', validators=[DataRequired()],
+						  render_kw={"class": "form-control", "placeholder": "Old", "required": 'required'})
+	pet_gender = StringField('', validators=[DataRequired()],
+							 render_kw={"class": "form-control", "placeholder": "Gender", "required": 'required'})
+	pet_type = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
+
+
+class CustomerAccountForm(FlaskForm):
+	password = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Old Password...","required":'required'})
+	password2 = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"New Password...","required":'required'})
+	password3 = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Retype Password...","required":'required'})
+	firstname = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Firstname...","required":'required'})
+	lastname = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Lastname...","required":'required'})
+	email = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Email...","required":'required'})
+	telephone = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Telephone...","required":'required'})
+
+class REForm(FlaskForm):
+	pet_id = SelectField('', validators=[DataRequired()], choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
+	time = SelectField('', validators=[DataRequired()], choices=[('0.5', '0 - 0.5 hour'), ('1', '0.5 - 1 hour')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
+	city = SelectField('', validators=[DataRequired()], choices=[('BJ', 'Beijing'), ('SH', 'Shanghai'), ('CD', 'Chengdu')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
+	detial = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Detial...", "required": 'required'})
 	
-	
-	
-	
+class RSForm(FlaskForm):
+	pet_id = SelectField('', validators=[DataRequired()], choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
+	date = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Arrive date...", "required": 'required'})
+	time = SelectField('', validators=[DataRequired()], choices=[('0.5', '0 - 0.5 hour'), ('1', '0.5 - 1 hour')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
+	city = SelectField('', validators=[DataRequired()], choices=[('BJ', 'Beijing'), ('SH', 'Shanghai'), ('CD', 'Chengdu')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
+	detial = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Detial...", "required": 'required'})
+		
+class PetAddForm(FlaskForm):
+	pet_name = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Name", "required": 'required'})
+	pet_age = StringField('', validators=[DataRequired()],
+						  render_kw={"class": "form-control", "placeholder": "Old", "required": 'required'})
+	pet_gender = StringField('', validators=[DataRequired()],
+							 render_kw={"class": "form-control", "placeholder": "Gender", "required": 'required'})
+	pet_type = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
 
 
 

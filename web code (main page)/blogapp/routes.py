@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, session,request,jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from blogapp import app, db
-from blogapp.forms import LoginForm, ERForm, CRForm
+from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm
 from blogapp.models import Customer, Employee
 from blogapp.config import Config
 import os
@@ -102,20 +102,22 @@ def check_email():
 		return jsonify({'text': 'Sorry! Email is already taken',
 						'returnvalue': 1})
 
-@app.route('/customer_index')
+@app.route('/customer_index', methods=['GET','POST'])
 def customer_index():
 	user = {'username': 'User'}
 	return render_template('customer_index.html', title='Home', user=user)
 
-@app.route('/customer_account')
+@app.route('/customer_account', methods=['GET','POST'])
 def customer_account():
 	user = {'username': 'User'}
-	return render_template('customer_account.html', title='account', user=user)
+	form = CustomerAccountForm()
+	return render_template('customer_account.html', title='account', user=user, form=form)
 
-@app.route('/pet_account')
+@app.route('/pet_account', methods=['GET','POST'])
 def pet_account():
 	user = {'username': 'User'}
-	return render_template('pet_account.html', title='account', user=user)
+	form = PetAccountForm()
+	return render_template('pet_account.html', title='account', user=user, form=form)
 
 @app.route('/record_a')
 def record_a():
@@ -127,15 +129,17 @@ def record_e():
 	user = {'username': 'User'}
 	return render_template('record_e.html', title='record', user=user)
 
-@app.route('/reservation_e')
+@app.route('/reservation_e', methods=['GET','POST'])
 def reservation_e():
 	user = {'username': 'User'}
-	return render_template('reservation_e.html', title='reservation', user=user)
+	form = REForm()
+	return render_template('reservation_e.html', title='reservation', user=user, form=form)
 
-@app.route('/reservation_s')
+@app.route('/reservation_s', methods=['GET','POST'])
 def reservation_s():
 	user = {'username': 'User'}
-	return render_template('reservation_s.html', title='reservation', user=user)
+	form = RSForm()
+	return render_template('reservation_s.html', title='reservation', user=user, form=form)
 
 @app.route('/status_a')
 def status_a():
@@ -152,10 +156,11 @@ def status_sur():
 	user = {'username': 'User'}
 	return render_template('status_sur.html', title='status', user=user)
 
-@app.route('/pet_add')
+@app.route('/pet_add', methods=['GET','POST'])
 def pet_add():
 	user = {'username': 'User'}
-	return render_template('pet_add.html', title='pet', user=user)
+	form = PetAddForm()
+	return render_template('pet_add.html', title='pet', user=user, form=form)
 
 @app.route('/employee_base')
 def employee_base():
