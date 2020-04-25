@@ -60,7 +60,7 @@ class REForm(FlaskForm):
 	city = SelectField('', validators=[DataRequired()], choices=[('BJ', 'Beijing'), ('SH', 'Shanghai'), ('CD', 'Chengdu')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
-	detial = StringField('', validators=[DataRequired()],
+	detail = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
 	
 class RSForm(FlaskForm):
@@ -69,13 +69,13 @@ class RSForm(FlaskForm):
 									"required": 'required'})
 	date = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Arrive date...", "required": 'required'})
-	time = RadioField('', validators=[DataRequired()], choices=[('0.5', '0 - 0.5 hour'), ('1', '0.5 - 1 hour')],
+	time = SelectField('', validators=[DataRequired()], choices=[('morning', 'morning'), ('afternoon', 'afternoon'), ('evening', 'evening')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
 	city = SelectField('', validators=[DataRequired()], choices=[('BJ', 'Beijing'), ('SH', 'Shanghai'), ('CD', 'Chengdu')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
-	detial = StringField('', validators=[DataRequired()],
+	detail = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
 		
 class PetAddForm(FlaskForm):

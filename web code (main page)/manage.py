@@ -1,8 +1,8 @@
 from blogapp import app
-from flask_script import Manager
+# from flask_script import Manager
 
-app = app
-manage = Manager(app)
+# app = app
+# manage = Manager(app)
 
-if __name__ == '__main__':
-    manage.run()
+# if __name__ == '__main__':
+#     manage.run()
