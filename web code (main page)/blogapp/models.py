@@ -45,6 +45,9 @@ class StandardAppointment(db.Model):
 	details = db.Column(db.String(120), index=True)
 	pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
 
+	def __repr__(self):
+		return '<Standard Appointment {}>'.format(self.id)
+
 
 class EmergencyAppointment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -53,5 +56,8 @@ class EmergencyAppointment(db.Model):
 	city = db.Column(db.String(64), index=True)
 	details = db.Column(db.String(120), index=True)
 	pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
+
+	def __repr__(self):
+		return '<Emergency Appointment {}>'.format(self.id)
 
 

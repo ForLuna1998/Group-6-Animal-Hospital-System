@@ -64,7 +64,7 @@ class REForm(FlaskForm):
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
 	
 class RSForm(FlaskForm):
-	pet_id = SelectField('', validators=[DataRequired()], choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
+	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
 	date = DateField('', validators=[DataRequired()],
@@ -77,6 +77,7 @@ class RSForm(FlaskForm):
 									"required": 'required'})
 	detail = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
+	submit = SubmitField('Submit', render_kw={"class": "btn btn-primary btn-block btn-flat"})
 		
 class PetAddForm(FlaskForm):
 	pet_name = StringField('', validators=[DataRequired()],

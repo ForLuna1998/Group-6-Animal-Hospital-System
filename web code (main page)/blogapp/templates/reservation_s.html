@@ -16,7 +16,9 @@
             <div class="col-lg-9">
               <div class="box">
                 <h1>Standard Reservation</h1>
-                <div class="row">
+                  <form action="" method="post" novalidate>
+                    {{form.hidden_tag() }}
+                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="firstname">Select your pet here.</label>
@@ -27,7 +29,7 @@
                   </div>
                   <!-- /.row-->
               
-                <form>
+
                  
                   <div class="row">
                     <div class="col-md-6">
@@ -61,7 +63,8 @@
                   <!-- /.row-->
                 
                     <div class="col-md-12 text-center">
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-list"></i>Submit</button>
+<!--                      <button type="submit" class="btn btn-primary"><i class="fa fa-list"></i>Submit</button>-->
+                        {{ form.submit() }}
                     </div>
                   </div>
                 </form>
