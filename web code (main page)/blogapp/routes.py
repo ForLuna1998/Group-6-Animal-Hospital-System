@@ -6,6 +6,7 @@ from blogapp.models import Customer, Employee
 from blogapp.config import Config
 import os
 
+
 @app.route('/')
 @app.route('/index')
 def index():

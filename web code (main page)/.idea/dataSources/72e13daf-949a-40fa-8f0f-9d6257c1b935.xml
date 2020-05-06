@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="blogdb">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.17">
+    <root id="1">
+      <ServerVersion>3.25.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <table id="6" parent="2" name="customer"/>
+    <table id="7" parent="2" name="employee"/>
+    <table id="8" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <column id="9" parent="6" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="10" parent="6" name="username">
+      <Position>2</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="11" parent="6" name="email">
+      <Position>3</Position>
+      <DataType>VARCHAR(120)|0s</DataType>
+    </column>
+    <column id="12" parent="6" name="password_hash">
+      <Position>4</Position>
+      <DataType>VARCHAR(128)|0s</DataType>
+    </column>
+    <index id="13" parent="6" name="ix_customer_username">
+      <ColNames>username</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="14" parent="6" name="ix_customer_email">
+      <ColNames>email</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="15" parent="6">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="16" parent="7" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="7" name="username">
+      <Position>2</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="18" parent="7" name="key">
+      <Position>3</Position>
+      <DataType>VARCHAR(120)|0s</DataType>
+    </column>
+    <column id="19" parent="7" name="password_hash">
+      <Position>4</Position>
+      <DataType>VARCHAR(128)|0s</DataType>
+    </column>
+    <index id="20" parent="7" name="ix_employee_username">
+      <ColNames>username</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="21" parent="7" name="ix_employee_key">
+      <ColNames>key</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="22" parent="7">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="23" parent="8" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="24" parent="8" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="25" parent="8" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="26" parent="8" name="rootpage">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="27" parent="8" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+  </database-model>
+</dataSource>
