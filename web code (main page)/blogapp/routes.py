@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, session,request,jso
 from werkzeug.security import generate_password_hash, check_password_hash
 from blogapp import app, db
 from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm
-from blogapp.models import Customer, Employee
+from blogapp.models import Customer, Employee, Pet
 from blogapp.config import Config
 import os
 
@@ -140,6 +140,7 @@ def reservation_e():
 def reservation_s():
 	user = {'username': 'User'}
 	form = RSForm()
+
 	return render_template('reservation_s.html', title='reservation', user=user, form=form)
 
 @app.route('/status_a')

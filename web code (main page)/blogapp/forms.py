@@ -67,7 +67,7 @@ class RSForm(FlaskForm):
 	pet_id = SelectField('', validators=[DataRequired()], choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
-	date = StringField('', validators=[DataRequired()],
+	date = DateField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Arrive date...", "required": 'required'})
 	time = SelectField('', validators=[DataRequired()], choices=[('morning', 'morning'), ('afternoon', 'afternoon'), ('evening', 'evening')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
