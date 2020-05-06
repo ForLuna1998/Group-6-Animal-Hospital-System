@@ -56,15 +56,15 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="street">Type</label>
-                        {{ form.pet_gender(size=32) }}
+                        {{ form.pet_type(size=32) }}
                       </div>
                     </div>
                   </div>
                   <!-- /.row-->
                 
                     <div class="col-md-12 text-center">
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button>
-                      <button type="delete" class="btn btn-primary"><i class="fa fa-save"></i> Delete</button>
+                      {{ form.save() }}
+                      {{ form.delete() }}
                     </div>
                   </div>
                 </form>

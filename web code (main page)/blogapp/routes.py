@@ -123,14 +123,32 @@ def customer_index():
 def customer_account():
 	user = {'username': 'User'}
 	form = CustomerAccountForm()
-	return render_template('customer_account.html', title='account', user=user, form=form)
+	return render_template('customer_account.html', title='reservation', user=user, form=form)
 
 
 @app.route('/pet_account', methods=['GET','POST'])
 def pet_account():
 	user = {'username': 'User'}
 	form = PetAccountForm()
-	return render_template('pet_account.html', title='account', user=user, form=form)
+	if not session.get("USERNAME") is None:
+		if form.save.data and form.validate_on_submit():
+			pet_in_db = Pet.query.filter(Pet.id == form.pet_id.data).first()
+			pet_in_db.name = form.pet_name.data 
+			pet_in_db.old = form.pet_age.data
+			pet_in_db.gender = form.pet_gender.data
+			pet_in_db.type = form.pet_type.data
+			pet_in_db.customer_id = customer_in_db.id
+			db.session.commit()
+			return redirect(url_for('customer_index'))
+		if form.delete.data and form.validate_on_submit():
+			pet_in_db = Pet.query.filter(Pet.id == form.pet_id.data).first()
+			db.session.delete(pet_in_db)
+			db.session.commit()
+			return redirect(url_for('customer_index'))
+		return render_template('pet_account.html', title='reservation', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
 
 
 @app.route('/record_a')
@@ -149,7 +167,17 @@ def record_e():
 def reservation_e():
 	user = {'username': 'User'}
 	form = REForm()
-	return render_template('reservation_e.html', title='reservation', user=user, form=form)
+	if not session.get("USERNAME") is None:
+		if form.validate_on_submit():
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			emergency_appointment = EmergencyAppointment(arrive=form.time.data , city=form.city.data, details=form.detail.data,  pet_id=form.pet_id.data)
+			db.session.add(emergency_appointment)
+			db.session.commit()
+			return redirect(url_for('customer_index'))
+		return render_template('reservation_e.html', title='reservation', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
 
 
 @app.route('/reservation_s', methods=['GET','POST'])
@@ -191,7 +219,17 @@ def status_sur():
 def pet_add():
 	user = {'username': 'User'}
 	form = PetAddForm()
-	return render_template('pet_add.html', title='pet', user=user, form=form)
+	if not session.get("USERNAME") is None:
+		if form.validate_on_submit():
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			pet = Pet(name=form.pet_name.data, old=form.pet_age.data, gender=form.pet_gender.data, type=form.pet_type.data, customer_id=customer_in_db.id)
+			db.session.add(pet)
+			db.session.commit()
+			return redirect(url_for('customer_index'))
+		return render_template('pet_add.html', title='reservation', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
 
 
 @app.route('/employee_base')

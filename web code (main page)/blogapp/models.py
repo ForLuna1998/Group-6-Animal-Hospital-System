@@ -52,7 +52,7 @@ class StandardAppointment(db.Model):
 class EmergencyAppointment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	date = db.Column(db.DateTime, index=True, default=datetime.utcnow())
-	arrive = db.Column(db.Integer, index=True)
+	arrive = db.Column(db.String(64), index=True)
 	city = db.Column(db.String(64), index=True)
 	details = db.Column(db.String(120), index=True)
 	pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))

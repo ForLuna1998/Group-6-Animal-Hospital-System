@@ -28,7 +28,7 @@ class ERForm(FlaskForm):
 
 
 class PetAccountForm(FlaskForm):
-	pet_id = SelectField('', validators=[DataRequired()], choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
+	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
 	pet_name = StringField('', validators=[DataRequired()],
@@ -39,6 +39,8 @@ class PetAccountForm(FlaskForm):
 							 render_kw={"class": "form-control", "placeholder": "Gender", "required": 'required'})
 	pet_type = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
+	save = SubmitField('Save change', render_kw={"class": "btn btn-primary "})
+	delete = SubmitField('Delete', render_kw={"class": "btn btn-primary "})
 
 
 class CustomerAccountForm(FlaskForm):
@@ -49,9 +51,12 @@ class CustomerAccountForm(FlaskForm):
 	lastname = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Lastname...","required":'required'})
 	email = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Email...","required":'required'})
 	telephone = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Telephone...","required":'required'})
+	pas = SubmitField('Set new password', render_kw={"class": "btn btn-primary "})
+	save = SubmitField('Save change', render_kw={"class": "btn btn-primary "})
+
 
 class REForm(FlaskForm):
-	pet_id = SelectField('', validators=[DataRequired()], choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
+	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
 	time = SelectField('', validators=[DataRequired()], choices=[('0.5', '0 - 0.5 hour'), ('1', '0.5 - 1 hour')],
@@ -62,7 +67,8 @@ class REForm(FlaskForm):
 									"required": 'required'})
 	detail = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
-	
+	submit = SubmitField('Submit', render_kw={"class": "btn btn-primary "})
+
 class RSForm(FlaskForm):
 	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
@@ -77,7 +83,7 @@ class RSForm(FlaskForm):
 									"required": 'required'})
 	detail = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
-	submit = SubmitField('Submit', render_kw={"class": "btn btn-primary btn-block btn-flat"})
+	submit = SubmitField('Submit', render_kw={"class": "btn btn-primary "})
 		
 class PetAddForm(FlaskForm):
 	pet_name = StringField('', validators=[DataRequired()],
@@ -88,6 +94,6 @@ class PetAddForm(FlaskForm):
 							 render_kw={"class": "form-control", "placeholder": "Gender", "required": 'required'})
 	pet_type = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
-
+	submit = SubmitField('Add new pet', render_kw={"class": "btn btn-primary "})
 
 
