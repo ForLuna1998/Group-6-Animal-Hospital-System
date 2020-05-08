@@ -116,118 +116,142 @@
       <Position>4</Position>
       <DataType>VARCHAR(128)|0s</DataType>
     </column>
-    <index id="35" parent="7" name="ix_customer_username">
+    <column id="35" parent="7" name="phone">
+      <Position>5</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="36" parent="7" name="firstname">
+      <Position>6</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="37" parent="7" name="lastname">
+      <Position>7</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <index id="38" parent="7" name="ix_customer_username">
       <ColNames>username</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="36" parent="7" name="ix_customer_email">
+    <index id="39" parent="7" name="ix_customer_email">
       <ColNames>email</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="37" parent="7">
+    <index id="40" parent="7" name="ix_customer_phone">
+      <ColNames>phone</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="41" parent="7" name="ix_customer_firstname">
+      <ColNames>firstname</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="42" parent="7" name="ix_customer_lastname">
+      <ColNames>lastname</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="43" parent="7">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="38" parent="8" name="id">
+    <column id="44" parent="8" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="39" parent="8" name="username">
+    <column id="45" parent="8" name="username">
       <Position>2</Position>
       <DataType>VARCHAR(64)|0s</DataType>
     </column>
-    <column id="40" parent="8" name="key">
+    <column id="46" parent="8" name="key">
       <Position>3</Position>
       <DataType>VARCHAR(120)|0s</DataType>
     </column>
-    <column id="41" parent="8" name="password_hash">
+    <column id="47" parent="8" name="password_hash">
       <Position>4</Position>
       <DataType>VARCHAR(128)|0s</DataType>
     </column>
-    <index id="42" parent="8" name="ix_employee_username">
+    <index id="48" parent="8" name="ix_employee_username">
       <ColNames>username</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <index id="43" parent="8" name="ix_employee_key">
+    <index id="49" parent="8" name="ix_employee_key">
       <ColNames>key</ColNames>
       <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
-    <key id="44" parent="8">
+    <key id="50" parent="8">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="45" parent="9" name="id">
+    <column id="51" parent="9" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="46" parent="9" name="name">
+    <column id="52" parent="9" name="name">
       <Position>2</Position>
       <DataType>VARCHAR(64)|0s</DataType>
     </column>
-    <column id="47" parent="9" name="type">
+    <column id="53" parent="9" name="type">
       <Position>3</Position>
       <DataType>VARCHAR(64)|0s</DataType>
     </column>
-    <column id="48" parent="9" name="old">
+    <column id="54" parent="9" name="old">
       <Position>4</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="49" parent="9" name="gender">
+    <column id="55" parent="9" name="gender">
       <Position>5</Position>
       <DataType>VARCHAR(64)|0s</DataType>
     </column>
-    <column id="50" parent="9" name="customer_id">
+    <column id="56" parent="9" name="customer_id">
       <Position>6</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <index id="51" parent="9" name="ix_pet_name">
+    <index id="57" parent="9" name="ix_pet_name">
       <ColNames>name</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="52" parent="9" name="ix_pet_type">
+    <index id="58" parent="9" name="ix_pet_type">
       <ColNames>type</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="53" parent="9" name="ix_pet_old">
+    <index id="59" parent="9" name="ix_pet_old">
       <ColNames>old</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="54" parent="9" name="ix_pet_gender">
+    <index id="60" parent="9" name="ix_pet_gender">
       <ColNames>gender</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="55" parent="9">
+    <key id="61" parent="9">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="56" parent="9">
+    <foreign-key id="62" parent="9">
       <ColNames>customer_id</ColNames>
       <RefTableName>customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="57" parent="10" name="type">
+    <column id="63" parent="10" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="58" parent="10" name="name">
+    <column id="64" parent="10" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="59" parent="10" name="tbl_name">
+    <column id="65" parent="10" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="60" parent="10" name="rootpage">
+    <column id="66" parent="10" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="61" parent="10" name="sql">
+    <column id="67" parent="10" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
