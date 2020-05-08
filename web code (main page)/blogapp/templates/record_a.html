@@ -65,7 +65,7 @@
               </div>
              
               <!-- *** MENUS AND FILTERS END ***-->
-              <div class="banner"><a href="#"><img src="img/banner.jpg"  class="img-fluid"></a></div>
+              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
             </div>
             <div class="col-lg-9">
               
@@ -89,22 +89,24 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {% for post in prev_posts %}
                             <tr>
-                              <td>mike</td>
-                              <td><a href="#">mike account</a></td>
-                              <td>2</td>
-                              <td>14/04/2020</td>
-                              <td>morning</td>
+                              <td>{{post.Pet.name}}</td>
+                              <td><a href="#">{{post.Pet.name}} account</a></td>
+                              <td>{{post.Pet.old}}</td>
+                              <td>{{post.Appointment.date}}</td>
+                              <td>{{post.Appointment.time}}</td>
                               
                             </tr>
-                            <tr>
+                            {% endfor %}
+<!--                             <tr>
                                 <td>mike2</td>
                                 <td><a href="#">mike2 account</a></td>
                               <td>1</td>
                               <td>14/04/2020</td>
                               <td>afternoon</td>
                               
-                            </tr>
+                            </tr> -->
                           </tbody>
                          
                         </table>
