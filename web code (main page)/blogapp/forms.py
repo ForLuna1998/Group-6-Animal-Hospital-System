@@ -27,6 +27,20 @@ class ERForm(FlaskForm):
 	submit = SubmitField('Register',render_kw={"class": "btn btn-primary btn-block btn-flat"})
 
 
+class CustomerAccountForm(FlaskForm):
+	firstname = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Firstname...","required":'required'})
+	lastname = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Lastname...","required":'required'})
+	email = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Email...","required":'required'})
+	telephone = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Telephone...","required":'required'})
+	save = SubmitField('Save change', render_kw={"class": "btn btn-primary "})
+
+class CustomerPasswordForm(FlaskForm):
+	password = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Old Password...","required":'required'})
+	password2 = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"New Password...","required":'required'})
+	password3 = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Retype Password...","required":'required'})
+	pas = SubmitField('Set new password', render_kw={"class": "btn btn-primary "})
+
+
 class PetAccountForm(FlaskForm):
 	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
@@ -40,19 +54,12 @@ class PetAccountForm(FlaskForm):
 	pet_type = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
 	save = SubmitField('Save change', render_kw={"class": "btn btn-primary "})
+
+class PetDeleteForm(FlaskForm):
+	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
 	delete = SubmitField('Delete', render_kw={"class": "btn btn-primary "})
-
-
-class CustomerAccountForm(FlaskForm):
-	password = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Old Password...","required":'required'})
-	password2 = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"New Password...","required":'required'})
-	password3 = PasswordField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Retype Password...","required":'required'})
-	firstname = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Firstname...","required":'required'})
-	lastname = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Lastname...","required":'required'})
-	email = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Email...","required":'required'})
-	telephone = StringField('', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Telephone...","required":'required'})
-	pas = SubmitField('Set new password', render_kw={"class": "btn btn-primary "})
-	save = SubmitField('Save change', render_kw={"class": "btn btn-primary "})
 
 
 class REForm(FlaskForm):

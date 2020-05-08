@@ -41,7 +41,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="time">city </label>
-                        {{ form.city }}
+                        {{ form.city }} 
                       </div>
                     </div>
                   </div>
@@ -51,6 +51,9 @@
                       <div class="form-group">
                         <label for="street">More Details</label>
                         {{ form.detail(size=300) }}
+                        {% for error in form.detail.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %} 
                       </div>
                     </div>
                   </div>

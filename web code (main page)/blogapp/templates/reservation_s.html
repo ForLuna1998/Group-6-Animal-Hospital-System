@@ -34,14 +34,20 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="company">Arrive Date(yyyy/mm/dd)</label>
+                        <label for="company">Arrive Date(yyyy-mm-dd)</label>
                         {{ form.date (size=32)}}
+                        {% for error in form.date.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %} 
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="street">Time Slot</label>
                         {{ form.time }}
+                        {% for error in form.time.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %} 
                       </div>
                     </div>
                   </div>
@@ -51,12 +57,18 @@
                       <div class="form-group">
                         <label for="company">City</label>
                         {{ form.city }}
+                        {% for error in form.city.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %} 
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="street">More Details</label>
                         {{ form.detail(size=32) }}
+                        {% for error in form.detail.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %} 
                       </div>
                     </div>
                   </div>

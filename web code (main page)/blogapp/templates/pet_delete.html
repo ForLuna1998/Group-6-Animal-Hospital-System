@@ -23,52 +23,19 @@
                 <form action="" method="post" novalidate>
                   {{ form.hidden_tag() }}
 
-                <div class="row">
+                <div class="row " >
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="firstname">Select your pet here.</label>
                         {{form.pet_id}}
-                        <a href="{{ url_for('pet_add') }}" ><i class="fa fa-list"></i> Add new pet</a>
+                        
                       </div>
                     </div>
                   </div>
                   <!-- /.row-->
-              
-                 
                   
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="firstname">Name</label>
-                        {{ form.pet_name(size=32) }}
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="lastname">Old</label>
-                        {{ form.pet_age(size=32) }}
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /.row-->
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="company">Gender</label>
-                        {{ form.pet_gender(size=32) }}
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="street">Type</label>
-                        {{ form.pet_type(size=32) }}
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /.row-->
-                
                     <div class="col-md-12 text-center">
-                      {{ form.save() }}
+                      {{ form.delete() }}
                     </div>
                   </div>
                 </form>

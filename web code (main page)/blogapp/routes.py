@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, session,request,jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from blogapp import app, db
-from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm
+from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm
 from blogapp.models import Customer, Employee, Pet, Appointment
 from blogapp.config import Config
 import os
@@ -123,7 +123,13 @@ def customer_index():
 def customer_account():
 	user = {'username': 'User'}
 	form = CustomerAccountForm()
-	return render_template('customer_account.html', title='reservation', user=user, form=form)
+	return render_template('customer_account.html', title='customer', user=user, form=form)
+
+@app.route('/customer_password', methods=['GET', 'POST'])
+def customer_password():
+	user = {'username': 'User'}
+	form = CustomerPasswordForm()
+	return render_template('customer_password.html', title='customer', user=user, form=form)
 
 
 @app.route('/pet_account', methods=['GET','POST'])
@@ -131,7 +137,8 @@ def pet_account():
 	user = {'username': 'User'}
 	form = PetAccountForm()
 	if not session.get("USERNAME") is None:
-		if form.save.data and form.validate_on_submit():
+		if form.validate_on_submit():
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			pet_in_db = Pet.query.filter(Pet.id == form.pet_id.data).first()
 			pet_in_db.name = form.pet_name.data 
 			pet_in_db.old = form.pet_age.data
@@ -140,12 +147,22 @@ def pet_account():
 			pet_in_db.customer_id = customer_in_db.id
 			db.session.commit()
 			return redirect(url_for('customer_index'))
-		if form.delete.data and form.validate_on_submit():
+		return render_template('pet_account.html', title='pet', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/pet_delete', methods=['GET', 'POST'])
+def pet_delete():
+	user = {'username': 'User'}
+	form = PetDeleteForm()
+	if not session.get("USERNAME") is None:
+		if form.validate_on_submit():
 			pet_in_db = Pet.query.filter(Pet.id == form.pet_id.data).first()
 			db.session.delete(pet_in_db)
 			db.session.commit()
 			return redirect(url_for('customer_index'))
-		return render_template('pet_account.html', title='reservation', user=user, form=form)
+		return render_template('pet_delete.html', title='pet', user=user, form=form)
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
