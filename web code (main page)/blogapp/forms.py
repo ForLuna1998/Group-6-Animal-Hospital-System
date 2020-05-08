@@ -59,7 +59,7 @@ class REForm(FlaskForm):
 	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
-	time = SelectField('', validators=[DataRequired()], choices=[('0.5', '0 - 0.5 hour'), ('1', '0.5 - 1 hour')],
+	time = SelectField('', validators=[DataRequired()], choices=[('0 - 0.5 hour', '0 - 0.5 hour'), ('0.5 - 1 hour', '0.5 - 1 hour')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
 	city = SelectField('', validators=[DataRequired()], choices=[('BJ', 'Beijing'), ('SH', 'Shanghai'), ('CD', 'Chengdu')],

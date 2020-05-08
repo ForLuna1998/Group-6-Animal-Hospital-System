@@ -30,34 +30,29 @@ class Pet(db.Model):
 	old = db.Column(db.Integer, index=True)
 	gender = db.Column(db.String(64), index=True)
 	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
-	standards = db.relationship('StandardAppointment', backref='pet', lazy='dynamic')
-	emergencies = db.relationship('EmergencyAppointment', backref='pet', lazy='dynamic')
+	appointments = db.relationship('Appointment', backref='pet', lazy='dynamic')
+
 
 	def __repr__(self):
 		return '<Pet {}>'.format(self.name)
 
 
-class StandardAppointment(db.Model):
+class Appointment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	type = db.Column(db.String,index=True)
 	date = db.Column(db.DateTime, index=True, default=datetime.utcnow())
-	slot = db.Column(db.String(64), index=True)
+	time = db.Column(db.String(64), index=True)
 	city = db.Column(db.String(64), index=True)
 	details = db.Column(db.String(120), index=True)
 	pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
+	start = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+	end = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+	status = db.Column(db.String(64), index=True, default='appointment submitted')
+
 
 	def __repr__(self):
-		return '<Standard Appointment {}>'.format(self.id)
+		return '<Appointment {}>'.format(self.id)
 
 
-class EmergencyAppointment(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	date = db.Column(db.DateTime, index=True, default=datetime.utcnow())
-	arrive = db.Column(db.String(64), index=True)
-	city = db.Column(db.String(64), index=True)
-	details = db.Column(db.String(120), index=True)
-	pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
-
-	def __repr__(self):
-		return '<Emergency Appointment {}>'.format(self.id)
 
 

@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, session,request,jso
 from werkzeug.security import generate_password_hash, check_password_hash
 from blogapp import app, db
 from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm
-from blogapp.models import Customer, Employee, Pet, StandardAppointment, EmergencyAppointment
+from blogapp.models import Customer, Employee, Pet, Appointment
 from blogapp.config import Config
 import os
 
@@ -170,7 +170,7 @@ def reservation_e():
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-			emergency_appointment = EmergencyAppointment(arrive=form.time.data , city=form.city.data, details=form.detail.data,  pet_id=form.pet_id.data)
+			emergency_appointment = Appointment(type='Emergency', time=form.time.data , city=form.city.data, details=form.detail.data,  pet_id=form.pet_id.data)
 			db.session.add(emergency_appointment)
 			db.session.commit()
 			return redirect(url_for('customer_index'))
@@ -187,7 +187,7 @@ def reservation_s():
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-			standard_appointment = StandardAppointment(slot=form.time.data, city=form.city.data, details=form.detail.data, date=form.date.data, pet_id=form.pet_id.data)
+			standard_appointment = Appointment(type='Standard', time=form.time.data, city=form.city.data, details=form.detail.data, date=form.date.data, pet_id=form.pet_id.data)
 			db.session.add(standard_appointment)
 			db.session.commit()
 			return redirect(url_for('customer_index'))
