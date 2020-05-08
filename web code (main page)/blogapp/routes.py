@@ -123,13 +123,41 @@ def customer_index():
 def customer_account():
 	user = {'username': 'User'}
 	form = CustomerAccountForm()
-	return render_template('customer_account.html', title='customer', user=user, form=form)
+	if not session.get("USERNAME") is None:
+		if form.validate_on_submit():
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			customer_in_db.firstname = form.firstname.data
+			customer_in_db.lastname = form.lastname.data
+			customer_in_db.email = form.email.data
+			customer_in_db.phone = form.telephone.data
+			db.session.commit()
+			return redirect(url_for('customer_index'))
+		return render_template('customer_account.html', title='pet', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
 
 @app.route('/customer_password', methods=['GET', 'POST'])
 def customer_password():
 	user = {'username': 'User'}
 	form = CustomerPasswordForm()
-	return render_template('customer_password.html', title='customer', user=user, form=form)
+	if not session.get("USERNAME") is None:
+		if form.validate_on_submit():
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			if not (check_password_hash(customer_in_db.password_hash, form.password.data)):
+				flash('Incorrect Password')
+				return redirect(url_for('customer_password'))
+			if form.password2.data != form.password3.data:
+				flash('Passwords do not match!')
+				return redirect(url_for('customer_password'))
+			else:
+				customer_in_db.password_hash = generate_password_hash(form.password2.data)
+				db.session.commit()
+				return redirect(url_for('customer_index'))
+		return render_template('customer_password.html', title='pet', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
 
 
 @app.route('/pet_account', methods=['GET','POST'])
