@@ -25,7 +25,7 @@
                     <li><a href="category.html" class="nav-link">Surgical Operation </a>
                       <ul class="list-unstyled">
                         <li><a href="{{ url_for('status_sur') }}" class="nav-link">Operation Status</a></li>
-                        <li><a href="category.html" class="nav-link">Operation record</a></li>
+                        <li><a href="{{ url_for('record_o') }}" class="nav-link">Operation record</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -90,14 +90,15 @@
                           </thead>
                           <tbody>
                             {% for post in prev_posts %}
+                            {% if post.Pet.customer_id == customer_in_db.id and post.Appointment.type == "Standard" %}
                             <tr>
                               <td>{{post.Pet.name}}</td>
                               <td><a href="#">{{post.Pet.name}} account</a></td>
                               <td>{{post.Pet.old}}</td>
                               <td>{{post.Appointment.date}}</td>
                               <td>{{post.Appointment.time}}</td>
-                              
                             </tr>
+                            {% endif %}
                             {% endfor %}
 <!--                             <tr>
                                 <td>mike2</td>

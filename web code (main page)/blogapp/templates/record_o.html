@@ -68,73 +68,64 @@
               <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
             </div>
             <div class="col-lg-9">
-             
+              
 		
            
-          
-          <div id="customer-orders" class="col-lg-9">
-            <div class="box" style="margin-right: -220px;margin-left: -14px;">
-              <h1>Emergency Appiontment Status</h1>
-              <!-- <p class="lead">Status of your appointments</p> -->
-              <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
-              <hr>
-              <div class="table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Pet Name</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for post in prev_posts %}
-                    {% if post.Pet.customer_id == customer_in_db.id and post.Appointment.type == "Emergency" %}
-                    <tr>
-                      <th>{{post.Pet.id}}</th>
-                      <td>{{post.Pet.name}}</td>
-                      <td>{{post.Appointment.date}}</td>
-                      <td><span class="badge badge-info">{{post.Appointment.status}}</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                    <!-- <tr>
-                      <th>33333</th>
-                      <td>mike</td>
-                      <td>14/04/2020</td>
-                      <td><span class="badge badge-info">Waiting</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr>
-                    <tr>
-                      <th>33333</th>
-                      <td>mike</td>
-                      <td>14/04/2020</td>
-                      <td><span class="badge badge-success">Success</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr>
-                    <tr>
-                      <th>33333</th>
-                      <td>mike</td>
-                      <td>14/04/2020</td>
-                      <td><span class="badge badge-success">Success</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr>
-                    <tr>
-                      <th>33333</th>
-                      <td>mike</td>
-                      <td>14/04/2020</td>
-                      <td><span class="badge badge-success">Success</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr> -->
-                  </tbody>
-                </table>
+                  <div id="customer-order" class="col-lg-9">
+                    <div class="box" style="margin-right: -220px;margin-left: -14px;">
+                      <h1>Standard Appointment List</h1>
+                      
+                      <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                      <hr>
+                      <div class="table-responsive mb-4">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th colspan="2">Pets</th>
+                              <th>Old</th>
+                              <th>Operation Date</th>
+                              <th>Time</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for post in prev_posts %}
+                            {% if post.Pet.customer_id == customer_in_db.id %}
+                            <tr>
+                              <td>{{post.Pet.name}}</td>
+                              <td><a href="#">{{post.Pet.name}} account</a></td>
+                              <td>{{post.Pet.old}}</td>
+                              <td>{{post.Appointment.date}}</td>
+                              <td>{{post.Appointment.time}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+<!--                             <tr>
+                                <td>mike2</td>
+                                <td><a href="#">mike2 account</a></td>
+                              <td>1</td>
+                              <td>14/04/2020</td>
+                              <td>afternoon</td>
+                              
+                            </tr> -->
+                          </tbody>
+                         
+                        </table>
+                      </div>
+                      <!-- /.table-responsive-->
+                      <div class="row addresses">
+                        <div class="col-lg-6">
+                          <h2></h2>
+                        </div>
+                        <div class="col-lg-6">
+                          <h2>Hospital address</h2>
+                          <p>John Brown<br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>Beijing</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>            <!-- /.col-lg-9-->
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
 {% endblock %}
