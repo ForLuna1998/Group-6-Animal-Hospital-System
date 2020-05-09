@@ -1,7 +1,12 @@
+
+from flask import session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField,SelectField, DateField, RadioField, FileField, TextAreaField
 from wtforms.validators import DataRequired,ValidationError
 from flask_wtf.file import FileRequired, FileAllowed
+
+from blogapp.models import Pet, Customer
+
 
 class LoginForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired()],render_kw={"class":"form-control","placeholder":"Username...","required":'required'})
@@ -42,9 +47,11 @@ class CustomerPasswordForm(FlaskForm):
 
 
 class PetAccountForm(FlaskForm):
-	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
-						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-									"required": 'required'})
+	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
+	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+	# 								"required": 'required'})
+	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
+
 	pet_name = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Name", "required": 'required'})
 	pet_age = StringField('', validators=[DataRequired()],
@@ -55,17 +62,30 @@ class PetAccountForm(FlaskForm):
 						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
 	save = SubmitField('Save change', render_kw={"class": "btn btn-primary "})
 
+	def __init__(self, *args, **kwargs):
+		super(PetAccountForm, self).__init__(*args, **kwargs)
+		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
+
 class PetDeleteForm(FlaskForm):
-	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
-						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-									"required": 'required'})
+	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
+	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+	# 								"required": 'required'})
+	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
+
 	delete = SubmitField('Delete', render_kw={"class": "btn btn-primary "})
+
+	def __init__(self, *args, **kwargs):
+		super(PetDeleteForm, self).__init__(*args, **kwargs)
+		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
 
 
 class REForm(FlaskForm):
-	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
-						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-									"required": 'required'})
+	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
+	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+	# 								"required": 'required'})
+	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
 	time = SelectField('', validators=[DataRequired()], choices=[('0 - 0.5 hour', '0 - 0.5 hour'), ('0.5 - 1 hour', '0.5 - 1 hour')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
@@ -76,10 +96,19 @@ class REForm(FlaskForm):
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
 	submit = SubmitField('Submit', render_kw={"class": "btn btn-primary "})
 
+	def __init__(self, *args, **kwargs):
+		super(REForm, self).__init__(*args, **kwargs)
+		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
+
+
+
 class RSForm(FlaskForm):
-	pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
-						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-									"required": 'required'})
+	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
+	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+	# 								"required": 'required'})
+	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
+
 	date = DateField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Arrive date...", "required": 'required'})
 	time = SelectField('', validators=[DataRequired()], choices=[('morning', 'morning'), ('afternoon', 'afternoon'), ('evening', 'evening')],
@@ -91,6 +120,12 @@ class RSForm(FlaskForm):
 	detail = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
 	submit = SubmitField('Submit', render_kw={"class": "btn btn-primary "})
+
+	def __init__(self, *args, **kwargs):
+		super(RSForm, self).__init__(*args, **kwargs)
+		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
+
 		
 class PetAddForm(FlaskForm):
 	pet_name = StringField('', validators=[DataRequired()],
