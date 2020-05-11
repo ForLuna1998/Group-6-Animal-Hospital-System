@@ -18,14 +18,14 @@
                   <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
                       <ul class="list-unstyled">
                         <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
-                        <li><a href="{{ url_for('status_e') }}" class="nav-link">Appointment Status</a></li>
+                        <li><a href="{{ url_for('status_en') }}" class="nav-link">Appointment Status</a></li>
                         <li><a href="{{ url_for('record_e') }}" class="nav-link">Appointment record</a></li>
                       </ul>
                     </li>
-                    <li><a href="category.html" class="nav-link">Surgical Operation </a>
+                    <li><a href="category.html" class="nav-link">Surgical Operation  <span cElass="badge badge-secondary">1</span></a>
                       <ul class="list-unstyled">
                         <li><a href="{{ url_for('status_sur') }}" class="nav-link">Operation Status</a></li>
-                        <li><a href="{{ url_for('record_o') }}" class="nav-link">Operation record</a></li>
+                        <li><a href="category.html" class="nav-link">Operation record</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -33,25 +33,52 @@
               </div>
               <div class="card sidebar-menu mb-4">
                 <div class="card-header">
-                  <h3 class="h4 card-title">PETS</h3>
+                  <h3 class="h4 card-title">PETS <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
                 </div>
                 <div class="card-body">
-                                <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
-
+                  <form>
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> 1
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> 2
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> 3
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> 4
+                        </label>
+                      </div>
+                    </div>
+                   
+                  </form>
                 </div>
               </div>
              
               <!-- *** MENUS AND FILTERS END ***-->
+              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
             </div>
             <div class="col-lg-9">
-             
+              <div class="box">
+                <h1>Pet Paw</h1>
+                <p>In our Healing Paws Veterinary Hospital, there are two appointment types: emergency and standard.</p>
+			      </div>
 		
            
           
           <div id="customer-orders" class="col-lg-9">
             <div class="box" style="margin-right: -220px;margin-left: -14px;">
               <h1>Emergency Appiontment Status</h1>
-              <!-- <p class="lead">Status of your appointments</p> -->
+              <p class="lead">Status of your pets</p>
               <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
               <hr>
               <div class="table-responsive">
@@ -60,14 +87,13 @@
                     <tr>
                       <th>ID</th>
                       <th>Pet Name</th>
-                      <th>Time</th>
+                      <th>Date</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {% for post in prev_posts %}
-                    {% if post.Pet.customer_id == customer_in_db.id and post.Appointment.type == "Emergency" %}
                     <tr>
                       <th>{{post.Pet.id}}</th>
                       <td>{{post.Pet.name}}</td>
@@ -75,7 +101,6 @@
                       <td><span class="badge badge-info">{{post.Appointment.status}}</span></td>
                       <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
                     </tr>
-                    {% endif %}
                     {% endfor %}
                     <!-- <tr>
                       <th>33333</th>

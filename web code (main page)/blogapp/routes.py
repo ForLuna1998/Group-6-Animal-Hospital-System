@@ -139,6 +139,16 @@ def customer_account():
 			customer_in_db.phone = form.telephone.data
 			db.session.commit()
 			return redirect(url_for('customer_index'))
+		else:
+			stored_account = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			if not stored_account:
+				return render_template('customer_account.html', title='Init your details', form=form)
+			else:
+				form.email.data = stored_account.email
+				form.firstname.data = stored_account.firstname
+				form.lastname.data = stored_account.lastname
+				form.telephone.data = stored_account.phone
+				return render_template('customer_account.html', title='Modify your details', form=form)
 		return render_template('customer_account.html', title='pet', user=user, form=form)
 	else:
 		flash("User needs to either login or signup first")
