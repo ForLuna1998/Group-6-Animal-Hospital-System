@@ -11,6 +11,9 @@ class Customer(db.Model):
 	phone = db.Column(db.Integer, index=True)
 	firstname = db.Column(db.String(64), index=True)
 	lastname = db.Column(db.String(64), index=True)
+	appointment = db.relationship('Appointment', backref='customer', lazy='dynamic')
+	posts = db.relationship('Post', backref='customer', lazy='dynamic')
+
 
 	def __repr__(self):
 		return '<User {}>'.format(self.username)
@@ -19,7 +22,7 @@ class Customer(db.Model):
 class Employee(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(64), index=True, unique=True)
-	key = db.Column(db.String(120), index=True, unique=True)
+	key = db.Column(db.String(120), index=True)
 	password_hash = db.Column(db.String(128))
 
 	def __repr__(self):
@@ -42,8 +45,8 @@ class Pet(db.Model):
 
 class Appointment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	type = db.Column(db.String,index=True)
-	date = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+	type = db.Column(db.String(64),index=True)
+	date = db.Column(db.String(64), index=True)
 	time = db.Column(db.String(64), index=True)
 	city = db.Column(db.String(64), index=True)
 	details = db.Column(db.String(120), index=True)
@@ -51,11 +54,18 @@ class Appointment(db.Model):
 	start = db.Column(db.DateTime, index=True, default=datetime.utcnow())
 	end = db.Column(db.DateTime, index=True, default=datetime.utcnow())
 	status = db.Column(db.String(64), index=True, default='appointment submitted')
-
+	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
 	def __repr__(self):
 		return '<Appointment {}>'.format(self.id)
 
 
+class Post(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	body = db.Column(db.String(140))
+	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+	name = db.Column(db.String(140))
+	user_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
-
+	def __repr__(self):
+		return '{}: {}  --- <{}>'.format(self.name, self.body, str(self.timestamp)[0:16])

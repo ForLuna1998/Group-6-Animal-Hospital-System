@@ -34,13 +34,17 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="company">Arrive Date(yyyy-mm-dd)</label>
-                        {{ form.date (size=32)}}
+                        <label>Arrive Date</label>
+                        
+                        {{ form.date (id="datepicker", onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}") }}
+                        
+
                         {% for error in form.date.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
                                 {% endfor %} 
                       </div>
                     </div>
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="street">Time Slot</label>
@@ -86,4 +90,10 @@
         </div>
       </div>
     </div>
+
+    <script>
+    $(function() {
+    $( "#datepicker,#datepicker1" ).datepicker();
+    });
+  </script>
 {% endblock %}

@@ -1,0 +1,169 @@
+{% extends "employee_base.html" %}
+
+{% block head %}
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <!-- <link href="{{ url_for('static', filename='assets4/css/bootstrap.css') }}" rel='stylesheet'> -->
+        <link href="{{ url_for('static', filename='assets4/css/fresh-bootstrap-table.css') }}" rel='stylesheet'>
+
+     
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+
+       
+     
+{% endblock %}
+
+{% block content %}
+
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" >
+                                
+                <div style="height: 600px;overflow: auto;" class="fresh-table full-color-green">
+                <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange                  
+                        Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                -->
+                    <table id="fresh-table" class="table">
+                        <thead>
+                            <th data-field="id">ID</th>
+                            <th data-field="phone" data-sortable="true">Phone Number</th>
+                        	<th data-field="date" data-sortable="true">Date</th>
+                            <th data-field="time" data-sortable="true">Time Slot</th>
+                            <th data-field="type" data-sortable="true">Type</th>
+                            <th data-field="detail">Details</th>
+                        	<th data-field="actions">Actions</th>
+                        </thead>
+                        <tbody>
+                            {% for post in prev_posts %}
+                            {% if post.Appointment.city == employee_in_db.key and post.Appointment.customer_id == post.Customer.id %}
+                                <tr>
+                                  <td>{{post.Appointment.customer_id}}</td>  
+                                <td>{{post.Customer.phone}}</td>
+                                  <td>{{post.Appointment.date}}</td>
+                                  <td>{{post.Appointment.time}}</td>
+                                  <td>{{post.Appointment.type}}</td>
+                                  <td>{{post.Appointment.details}}</td>
+                                  <td>
+                                    <form>
+                                        <input type="text" name="date" size="16">
+                                        <select><option>date confirmed</option></select>
+                                        <button onclick="GetRow()">Change</button>
+                                    </form>  
+                                </td>
+                                </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+ <script src="{{ url_for('static', filename='assets4/js/jquery-1.11.2.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets4/js/bootstrap.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets4/js/bootstrap-table.js') }}"></script>
+<script type="text/javascript">
+                var $table = $('#fresh-table'),
+            // $alertBtn = $('#alertBtn'),
+            full_screen = false;
+            
+        $().ready(function(){
+            $table.bootstrapTable({
+                toolbar: ".toolbar",
+    
+                showRefresh: true,
+                search: true,
+                showToggle: true,
+                showColumns: true,
+                pagination: true,
+                striped: true,
+                pageSize: 7,
+                pageList: [7,20,30],
+                
+                formatShowingRows: function(pageFrom, pageTo, totalRows){
+                    //do nothing here, we don't want to show the text "showing x of y from..." 
+                },
+                formatRecordsPerPage: function(pageNumber){
+                    return pageNumber + " rows visible";
+                },
+                icons: {
+                    refresh: 'fa fa-refresh',
+                    toggle: 'fa fa-th-list',
+                    columns: 'fa fa-columns',
+                    detailOpen: 'fa fa-plus-circle',
+                    detailClose: 'fa fa-minus-circle'
+                }
+            });
+                        
+            
+            $(window).resize(function () {
+                $table.bootstrapTable('resetView');
+            });
+    
+            
+            window.operateEvents = {
+                'click .like': function (e, value, row, index) {
+                    alert('You click like icon, row: ' + JSON.stringify(row));
+                    console.log(value, row, index);
+                },
+                'click .edit': function (e, value, row, index) {
+                    alert('You click edit icon, row: ' + JSON.stringify(row));
+                    console.log(value, row, index);    
+                },
+                'click .remove': function (e, value, row, index) {
+                    $table.bootstrapTable('remove', {
+                        field: 'id',
+                        values: [row.id]
+                    });
+            
+                }
+            };
+            
+            // $alertBtn.click(function () {
+            //     alert("You pressed on Alert");
+            // });
+            
+        });
+            
+    
+        function operateFormatter(value, row, index) {
+            return [
+                '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
+                    '<i class="fa fa-heart"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
+                    '<i class="fa fa-edit"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
+                    '<i class="fa fa-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+
+        function GetRow(node)
+{
+     var row = $(node);//获取当前行
+     var ss= $(node).children();  
+    var code = $(row).find("td:eq(0)").text();//获取当前行的第一列单元格内容
+    var name = $(row).find("td:eq(1)").text();//
+   
+//遍历获取指定行所有字段值
+   for (var int = 0; int < ss.length; int++) {
+        alert($(row).find("td:eq('"+int+"')").text());
+    }
+//获取指定行指定字段值
+    alert(row.attr("Date"));
+}
+
+     </script>
+{% endblock %}
+
+
+

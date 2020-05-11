@@ -86,12 +86,10 @@ class REForm(FlaskForm):
 	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 	# 								"required": 'required'})
 	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
-	time = SelectField('', validators=[DataRequired()], choices=[('0 - 0.5 hour', '0 - 0.5 hour'), ('0.5 - 1 hour', '0.5 - 1 hour')],
-						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-									"required": 'required'})
-	city = SelectField('', validators=[DataRequired()], choices=[('BJ', 'Beijing'), ('SH', 'Shanghai'), ('CD', 'Chengdu')],
-						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-									"required": 'required'})
+	time = StringField('', validators=[DataRequired()], 
+						 render_kw={"class": "form-control", "required": 'required'})
+	city = SelectField('', validators=[DataRequired()], choices=[('Beijing', 'Beijing'), ('Shanghai', 'Shanghai'), ('Chengdu', 'Chengdu')]
+						 ,render_kw={"class": "form-control", "required": 'required'})
 	detail = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
 	submit = SubmitField('Submit', render_kw={"class": "btn btn-primary "})
@@ -109,14 +107,13 @@ class RSForm(FlaskForm):
 	# 								"required": 'required'})
 	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
 
-	date = DateField('', validators=[DataRequired()],
-						   render_kw={"class": "form-control", "placeholder": "Arrive date...", "required": 'required'})
+	date = StringField('', validators=[DataRequired()],
+						   render_kw={ "class": "form-control","placeholder": "Select date...", "required": 'required'})
 	time = SelectField('', validators=[DataRequired()], choices=[('morning', 'morning'), ('afternoon', 'afternoon'), ('evening', 'evening')],
 						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
 									"required": 'required'})
-	city = SelectField('', validators=[DataRequired()], choices=[('BJ', 'Beijing'), ('SH', 'Shanghai'), ('CD', 'Chengdu')],
-						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-									"required": 'required'})
+	city = SelectField('', validators=[DataRequired()], choices=[('Beijing', 'Beijing'), ('Shanghai', 'Shanghai'), ('Chengdu', 'Chengdu')]
+						 ,render_kw={"class": "form-control", "required": 'required'})
 	detail = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Details...", "required": 'required'})
 	submit = SubmitField('Submit', render_kw={"class": "btn btn-primary "})
@@ -138,4 +135,11 @@ class PetAddForm(FlaskForm):
 						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
 	submit = SubmitField('Add new pet', render_kw={"class": "btn btn-primary "})
 
+class PostForm(FlaskForm):
+	postbody = StringField('Chatbox', validators=[DataRequired()])
+	submit = SubmitField('Send')
 
+class PostForm2(FlaskForm):
+	postbody = StringField('Chatbox', validators=[DataRequired()])
+	who=StringField('To user: ', validators=[DataRequired()])
+	submit = SubmitField('Send')

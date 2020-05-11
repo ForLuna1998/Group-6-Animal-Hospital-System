@@ -33,9 +33,10 @@
                   
                   <div class="row">
                     <div class="col-md-6">
+                      <!-- <div class="col-sm-2 col-lg-offset-1"> -->
                       <div class="form-group">
                         <label for="city">Arrive time</label>
-                        {{ form.time }}
+                        {{ form.time (id="date", placeholder="Select Time", class="form-control") }}
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -71,4 +72,17 @@
         </div>
       </div>
     </div>
+
+     <script type="text/javascript">
+        $('#date').datetimepicker({
+        forceParse: 0,//设置为0，时间不会跳转1899，会显示当前时间。
+        // language: 'zh-CN',//显示中文
+        format: 'yyyy-mm-dd hh:ii',//显示格式
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+    })
+   $("#date").datetimepicker("setDate", new Date() );  //设置显示默认当天的时间
+    </script>
+
 {% endblock %}

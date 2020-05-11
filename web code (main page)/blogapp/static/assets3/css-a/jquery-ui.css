@@ -22,6 +22,24 @@
 	color: #EEE;
 	font-size: 1.2em;
 }
+
+.ui-datepicker .ui-datepicker-prev {
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: url(../images/img-sp1.png) no-repeat 0px 0px;
+    cursor: pointer;
+}
+.ui-datepicker .ui-datepicker-next {
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: url(../images/img-sp.png) no-repeat 0px 0px;
+    cursor: pointer;
+} 
+.ui-datepicker table {
+	    background-color: #c74184 !important;
+}
 /* Interaction Cues
 ----------------------------------*/
 .ui-state-disabled { cursor: default !important; }

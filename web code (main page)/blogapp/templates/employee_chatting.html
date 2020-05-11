@@ -1,0 +1,39 @@
+{% extends "employee_base.html" %}
+{% block content %}
+
+            <div class="container">
+              	<div class="row">
+				{% if prev_posts %}
+						<ul>
+						{% for post in prev_posts %}
+							<li> {{ post }}</li>
+						{% endfor %}
+						</ul>
+						<hr>
+					{% else %}
+						<p>No previous posts!</p>
+						<hr>
+				{% endif %}
+                
+                  <!-- /.row-->
+		            <form action="" method="post" novalidate>
+				        {{ form.hidden_tag() }}
+				        <p>
+				            {{ form.postbody.label }}<br>
+				            {{ form.postbody(size=120) }}
+							
+							{% for error in form.postbody.errors %}
+				            <span style="color: red;">[{{ error }}]</span>
+				            {% endfor %}
+						</p>
+						<p>
+				            {{ form.who.label }}<br>
+				            {{ form.who(size=120) }}
+						</p>    
+						
+						<p>{{ form.submit() }}</p>
+				    </form>
+                
+              	</div>
+            </div>
+{% endblock %}

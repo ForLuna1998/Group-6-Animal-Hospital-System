@@ -1,0 +1,54 @@
+{% extends "employee_base.html" %}
+
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='packages/core/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='packages/daygrid/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='packages/list/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='packages/timegrid/main.css') }}">
+
+        <script src="{{ url_for('static', filename='packages/core/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='packages/interaction/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='packages/daygrid/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='packages/timegrid/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='packages/list/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/e.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+<div id='wrap'>
+
+    <div id='external-events'>
+      <h4>Draggable Appointments</h4>
+
+      <div id='external-events-list'>
+        {% for post in prev_posts %}
+            {% if post.Appointment.city == employee_in_db.key and post.Appointment.customer_id == post.Customer.id %}
+               <div class='fc-event'>
+                   {{post.Appointment.customer_id}}
+               <br>
+                    {{post.Appointment.date}}
+               <br>     
+                    {{post.Appointment.time}}
+                <br>
+                {{post.Appointment.type}}
+              </div>
+            {% endif %}
+        {% endfor %}
+      </div>
+  
+      <p>
+        <input type='checkbox' id='drop-remove' />
+        <label for='drop-remove'>remove after drop</label>
+      </p>
+    </div>
+
+    <div id='calendar'></div>
+
+    <div style='clear:both'></div>
+
+  </div>
+
+{% endblock %}

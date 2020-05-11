@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, session,request,jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from blogapp import app, db
-from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm
-from blogapp.models import Customer, Employee, Pet, Appointment
+from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm, PostForm, PostForm2
+from blogapp.models import Customer, Employee, Pet, Appointment, Post
 from blogapp.config import Config
 import os
 
@@ -75,7 +75,14 @@ def employee_register():
 			flash('Username already existed!')
 			return redirect(url_for('employee_register'))
 		passw_hash = generate_password_hash(form.password.data)
-		user = Employee(username=form.username.data, key=form.key.data, password_hash=passw_hash)
+		place=''
+		if form.key.data=='BJ001':
+			place='Beijing'
+		if form.key.data=='SH002':
+			place='Shanghai'
+		if form.key.data=='CD003':
+			place='Chengdu'
+		user = Employee(username=form.username.data, key=place, password_hash=passw_hash)
 		db.session.add(user)
 		db.session.commit()
 		flash('User registered with username:{}'.format(form.username.data))
@@ -174,8 +181,24 @@ def pet_account():
 			pet_in_db.type = form.pet_type.data
 			pet_in_db.customer_id = customer_in_db.id
 			db.session.commit()
-			return redirect(url_for('customer_index'))
+			return redirect(url_for('reservation_s'))
 		return render_template('pet_account.html', title='pet', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/pet_add', methods=['GET','POST'])
+def pet_add():
+	user = {'username': 'User'}
+	form = PetAddForm()
+	if not session.get("USERNAME") is None:
+		if form.validate_on_submit():
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			pet = Pet(name=form.pet_name.data, old=form.pet_age.data, gender=form.pet_gender.data, type=form.pet_type.data, customer_id=customer_in_db.id)
+			db.session.add(pet)
+			db.session.commit()
+			return redirect(url_for('reservation_s'))
+		return render_template('pet_add.html', title='reservation', user=user, form=form)
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -187,6 +210,7 @@ def pet_delete():
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			pet_in_db = Pet.query.filter(Pet.id == form.pet_id.data).first()
+			Appointment.query.filter(Appointment.pet_id == form.pet_id.data).delete(synchronize_session=False)
 			db.session.delete(pet_in_db)
 			db.session.commit()
 			return redirect(url_for('customer_index'))
@@ -196,40 +220,6 @@ def pet_delete():
 		return redirect(url_for('login'))
 
 
-@app.route('/record_a', methods=['GET', 'POST'])
-def record_a():
-	user = {'username': 'User'}
-	if not session.get("USERNAME") is None:
-		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
-		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
-		return render_template('record_a.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
-	else:
-		flash("User needs to either login or signup first")
-		return redirect(url_for('login'))
-
-
-@app.route('/record_e', methods=['GET', 'POST'])
-def record_e():
-	user = {'username': 'User'}
-	if not session.get("USERNAME") is None:
-		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
-		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
-		return render_template('record_e.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
-	else:
-		flash("User needs to either login or signup first")
-		return redirect(url_for('login'))
-
-@app.route('/record_o', methods=['GET', 'POST'])
-def record_o():
-	user = {'username': 'User'}
-	if not session.get("USERNAME") is None:
-		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
-		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
-		return render_template('record_o.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
-	else:
-		flash("User needs to either login or signup first")
-		return redirect(url_for('login'))
-
 @app.route('/reservation_e', methods=['GET','POST'])
 def reservation_e():
 	user = {'username': 'User'}
@@ -237,7 +227,8 @@ def reservation_e():
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-			emergency_appointment = Appointment(type='Emergency', time=form.time.data , city=form.city.data, details=form.detail.data,  pet_id=form.pet_id.data)
+			emergency_appointment = Appointment(type='Emergency', date=form.time.data , city=form.city.data, details=form.detail.data,  
+				pet_id=form.pet_id.data, customer_id=customer_in_db.id)
 			db.session.add(emergency_appointment)
 			db.session.commit()
 			return redirect(url_for('customer_index'))
@@ -254,7 +245,8 @@ def reservation_s():
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-			standard_appointment = Appointment(type='Standard', time=form.time.data, city=form.city.data, details=form.detail.data, date=form.date.data, pet_id=form.pet_id.data)
+			standard_appointment = Appointment(type='Standard', time=form.time.data, city=form.city.data, 
+				details=form.detail.data, date=form.date.data, pet_id=form.pet_id.data, customer_id=customer_in_db.id)
 			db.session.add(standard_appointment)
 			db.session.commit()
 			return redirect(url_for('customer_index'))
@@ -293,25 +285,43 @@ def status_sur():
 	user = {'username': 'User'}
 	if not session.get("USERNAME") is None:
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
-		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
+		# prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
+		prev_posts = Appointment.query.filter(Appointment.status==4 ).all()
 		return render_template('status_sur.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
 
-
-@app.route('/pet_add', methods=['GET','POST'])
-def pet_add():
+@app.route('/record_a', methods=['GET', 'POST'])
+def record_a():
 	user = {'username': 'User'}
-	form = PetAddForm()
 	if not session.get("USERNAME") is None:
-		if form.validate_on_submit():
-			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-			pet = Pet(name=form.pet_name.data, old=form.pet_age.data, gender=form.pet_gender.data, type=form.pet_type.data, customer_id=customer_in_db.id)
-			db.session.add(pet)
-			db.session.commit()
-			return redirect(url_for('customer_index'))
-		return render_template('pet_add.html', title='reservation', user=user, form=form)
+		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
+		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
+		return render_template('record_a.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/record_e', methods=['GET', 'POST'])
+def record_e():
+	user = {'username': 'User'}
+	if not session.get("USERNAME") is None:
+		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
+		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
+		return render_template('record_e.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/record_o', methods=['GET', 'POST'])
+def record_o():
+	user = {'username': 'User'}
+	if not session.get("USERNAME") is None:
+		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
+		# prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
+		prev_posts = Appointment.query.filter(Appointment.status==4 ).all()
+		return render_template('record_o.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -319,11 +329,78 @@ def pet_add():
 
 @app.route('/employee_base', methods=['GET', 'POST'])
 def employee_base():
-	return render_template('employee_base.html', title='employee')
+	if not session.get("USERNAME") is None:
+		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()		
+		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).all()
+		return render_template('employee_c.html', title='calendar', prev_posts=prev_posts, employee_in_db=employee_in_db )
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/employee_c', methods=['GET', 'POST'])
+def employee_c():
+	if not session.get("USERNAME") is None:
+		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()		
+		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).all()
+		return render_template('employee_c.html', title='calendar', prev_posts=prev_posts, employee_in_db=employee_in_db )
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/employee_t', methods=['GET', 'POST'])
+def employee_t():
+	if not session.get("USERNAME") is None:
+		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()		
+		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).all()
+		return render_template('employee_t.html', title='table', prev_posts=prev_posts, employee_in_db=employee_in_db )
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/customer_chatting', methods=['GET', 'POST'])
+def customer_chatting():
+	form = PostForm()
+	if not session.get("USERNAME") is None:
+		if form.validate_on_submit():
+			body = form.postbody.data
+			user_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			post = Post(body=body, customer = user_in_db, name=session.get("USERNAME"))
+			db.session.add(post)
+			db.session.commit()
+			return redirect(url_for('customer_chatting'))
+		else:
+			user_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			prev_posts = Post.query.filter(Post.user_id == user_in_db.id).all()
+			print("Checking for user: {} with id: {}".format(user_in_db.username, user_in_db.id))
+			return render_template('customer_chatting.html', title='Message', prev_posts=prev_posts, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/employee_chatting', methods=['GET', 'POST'])
+def employee_chatting():
+	form = PostForm2()
+	if not session.get("USERNAME") is None:
+		if form.validate_on_submit():
+			body = form.postbody.data
+			who=form.who.data
+			user_in_db = Customer.query.filter(Customer.username == who).first()
+			if user_in_db:
+				post = Post(body = body, customer = user_in_db, name=session.get("USERNAME"))
+				db.session.add(post)
+				db.session.commit()
+			return redirect(url_for('employee_chatting'))
+		else:
+			# user_in_db = Customer.query.first()
+			prev_posts = Post.query.all()
+			# print("Checking for user: {} with id: {}".format(user_in_db.username, user_in_db.id))
+			return render_template('employee_chatting.html', title='Message', prev_posts=prev_posts, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
 
 
-@app.route('/employee_index')
-def employee_index():
-	return render_template('employee_index.html', title='employee')
-
-
+@app.route('/logout')
+def logout():
+	session.pop("USERNAME", None)
+	return redirect(url_for('login'))

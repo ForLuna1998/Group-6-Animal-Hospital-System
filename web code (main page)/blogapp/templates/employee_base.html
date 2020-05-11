@@ -15,43 +15,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="modern appointment form a Flat Responsive Widget,Login form widgets, Sign up Web     forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
 
-        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-            function hideURLbar(){ window.scrollTo(0,1); } </script>
-
-        <link rel="stylesheet" href="{{ url_for('static', filename='assets3/css-a/jquery-ui.css') }}">
+        
         <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl.carousel/assets/owl.carousel.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl.carousel/assets/owl.theme.default.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.default.css') }}" id="theme-stylesheet">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.default1.css') }}">
 
-        <link href="css-a/style.css" rel="stylesheet" type="text/css" media="all"/><!--stylesheet-css-->
-        <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet"><!--online-fonts-->
-        <link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet"><!--online-fonts-->
+        <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
 
-        <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendor/jquery.cookie/jquery.cookie.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendor/owl.carousel/owl.carousel.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/front.js') }}"></script>
-
-        <!-- calendar -->
-        <link href="{{ url_for('static', filename='style/style.css') }}" rel='stylesheet'>
-        <link href="{{ url_for('static', filename='fullcalendar.css') }}" rel='stylesheet'>
-        <link href="{{ url_for('static', filename='fullcalendar.print.css') }}" rel='stylesheet' media='print'>
-        <script src="{{ url_for('static', filename='jquery/jquery-1.10.2.js') }}"></script>
-        <script src="{{ url_for('static', filename='jquery/jquery-ui.custom.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='fullcalendar.js') }}"></script>
-        <script src="{{ url_for('static', filename='jquery/calendar.js') }}"></script>
+{% block head %}
+        
+{% endblock %}
 
     </head>
     
     <body>
-    <!-- navbar-->
+
+     
     <header style="padding-bottom: 1em;" >
       <!--
       *** TOPBAR ***
@@ -66,10 +46,11 @@
             </div>
             <div class="col-lg-6 text-center text-lg-right">
               <ul class="menu list-inline mb-0">
-                <li class="list-inline-item"><a href="{{ url_for('index') }}">Notification</a></li>
-                <li class="list-inline-item"><a href="{{ url_for('index') }}">Chatting</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_c') }}">Full Calendar</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_t') }}">Table</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_chatting') }}">Chatting</a></li>
                 <li class="list-inline-item"><a href="{{ url_for('index') }}">Logout</a></li>
-                <li class="list-inline-item"><a href="">Language</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_c') }}">Language</a></li>
               </ul>
             </div>
           </div>
@@ -77,15 +58,6 @@
       </div>
     </header>
 
-
-    <div style="text-align: left; margin-left: 6em; margin-bottom: 10px; ">
-<a style="color: white; border:2px solid; border-radius: 20px; background: darkblue; padding: 7px; text-decoration: none; font-size: 15px;" href="{{url_for('employee_index')}}"><b>View all appointments</b></a>
-</div>
-<div id='wrap'>
-
-<div id='calendar'></div>
-
-<div style='clear:both'></div>
-</div>
+{% block content %}{% endblock %}
     </body>
 </html>

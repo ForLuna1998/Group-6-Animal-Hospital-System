@@ -33,39 +33,15 @@
               </div>
               <div class="card sidebar-menu mb-4">
                 <div class="card-header">
-                  <h3 class="h4 card-title">PETS <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
+                  <h3 class="h4 card-title">PETS</h3>
                 </div>
                 <div class="card-body">
-                  <form>
-                    <div class="form-group">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> 1
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> 2
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> 3
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> 4
-                        </label>
-                      </div>
-                    </div>
-                   
-                  </form>
+                                <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
+
                 </div>
               </div>
              
               <!-- *** MENUS AND FILTERS END ***-->
-              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
             </div>
             <div class="col-lg-9">
              
@@ -84,7 +60,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Pet Name</th>
-                      <th>Date</th>
+                      <th>Time</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -95,7 +71,7 @@
                     <tr>
                       <th>{{post.Pet.id}}</th>
                       <td>{{post.Pet.name}}</td>
-                      <td>{{post.Appointment.date}}</td>
+                      <td>{{post.Appointment.time}}</td>
                       <td><span class="badge badge-info">{{post.Appointment.status}}</span></td>
                       <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
                     </tr>
