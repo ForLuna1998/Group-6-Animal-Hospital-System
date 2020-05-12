@@ -31,11 +31,17 @@
                   </ul>
                 </div>
               </div>
-<!--               <div class="card sidebar-menu mb-4">
+              <div class="card sidebar-menu mb-4">
                 <div class="card-header">
                   <h3 class="h4 card-title">PETS</h3>
-                </div> -->
-              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
+                </div>
+                <div class="card-body">
+                                <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
+
+                </div>
+              </div>
+             
+              <!-- *** MENUS AND FILTERS END ***-->
             </div>
             <div class="col-lg-9">
              
@@ -61,44 +67,27 @@
                   </thead>
                   <tbody>
                     {% for post in prev_posts %}
-                    {% if post.Pet.customer_id == customer_in_db.id %}
+                    {% if post.Pet.customer_id == customer_in_db.id and post.Appointment.type == "Surgery" %}
                     <tr>
                       <th>{{post.Pet.id}}</th>
                       <td>{{post.Pet.name}}</td>
                       <td>{{post.Appointment.date}}</td>
-                      <td><span class="badge badge-info">{{post.Appointment.status}}</span></td>
+                      <td>
+                                             <!-- 加上了不同状态的标签 -->
+                        {% if post.Appointment.status == "date confirmed" %}
+                        <span class="badge badge-warning">{{post.Appointment.status}}</span>
+                        {% elif post.Appointment.status == "in operation" %}
+                        <span class="badge badge-info">{{post.Appointment.status}}</span>
+                        {% else %}
+                        <span class="badge badge-success">{{post.Appointment.status}}</span>
+                        {% endif %}
+                      
+                      </td>
                       <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
                     </tr>
                     {% endif %}
                     {% endfor %}
-                    <!-- <tr>
-                      <th>33333</th>
-                      <td>mike</td>
-                      <td>14/04/2020</td>
-                      <td><span class="badge badge-info">Confirmed and Waiting</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr>
-                    <tr>
-                      <th>33333</th>
-                      <td>mike</td>
-                      <td>14/04/2020</td>
-                      <td><span class="badge badge-success">in the operation</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr>
-                    <tr>
-                      <th>33333</th>
-                      <td>mike</td>
-                      <td>14/04/2020</td>
-                      <td><span class="badge badge-success">in the operation</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr>
-                    <tr>
-                      <th>33333</th>
-                      <td>mike</td>
-                      <td>14/04/2020</td>
-                      <td><span class="badge badge-warning">surgery complete</span></td>
-                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">View</a></td>
-                    </tr> -->
+
                   </tbody>
                 </table>
               </div>

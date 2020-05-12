@@ -53,11 +53,11 @@ class Appointment(db.Model):
 	pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
 	start = db.Column(db.DateTime, index=True, default=datetime.utcnow())
 	end = db.Column(db.DateTime, index=True, default=datetime.utcnow())
-	status = db.Column(db.String(64), index=True, default='appointment submitted')
+	status = db.Column(db.String(64), index=True, default='Submitted')
 	customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
 	def __repr__(self):
-		return '<Appointment {}>'.format(self.id)
+		return '{}'.format(str(self.date)[0:10])
 
 
 class Post(db.Model):

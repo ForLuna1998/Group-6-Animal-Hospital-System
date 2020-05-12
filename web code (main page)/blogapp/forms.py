@@ -143,3 +143,8 @@ class PostForm2(FlaskForm):
 	postbody = StringField('Chatbox', validators=[DataRequired()])
 	who=StringField('To user: ', validators=[DataRequired()])
 	submit = SubmitField('Send')
+
+class ManageForm(FlaskForm):
+	date=StringField('')
+	submit = SubmitField('Search',render_kw={"class": "btn btn-primary btn-sm edit"})
+

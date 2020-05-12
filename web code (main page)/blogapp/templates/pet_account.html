@@ -35,6 +35,7 @@
                   </thead>
                   <tbody>
                     {% for pet in prev_posts %}
+
                     {% if pet.id %}
                     <tr>
                       <th>{{pet.id}}</th>
@@ -44,18 +45,16 @@
                       <td>{{pet.type}}</td>
                       <td><a href="customer-order.html" class="btn btn-primary btn-sm">Change</a></td>
                     </tr>
-                    {% else %}
-                      <p class="text-muted">There is no pet, you can <a href="{{ url_for('customer_index') }}">add your pet</a> here.</p>
                     {% endif %}
+
                     {% endfor %}
                     
                   </tbody>
                 </table>
               </div>
-
-               
-
-
+               {% if not prev_posts.pet_id %}
+               <p class="text-muted">There is no pet, you can <a href="contact.html">add your pet</a> here.</p>
+               {% endif %}
               </div>
             </div>
           </div>

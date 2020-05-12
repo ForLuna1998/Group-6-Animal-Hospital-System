@@ -42,14 +42,15 @@
           <div class="row">
             <div style="text-align: left;" class="col-lg-6 offer mb-3 mb-lg-0">
                 <a href="#" class="btn btn-success btn-sm">OPEN HOURS</a><a href="#" class="ml-1">Every day(9:00-21:00)
-                </a>
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <b><i>{{ user.city }}</i></b>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
               <ul class="menu list-inline mb-0">
-                <li class="list-inline-item"><a href="{{ url_for('employee_c') }}">Full Calendar</a></li>
-                <li class="list-inline-item"><a href="{{ url_for('employee_t') }}">Table</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_f') }}">Full Table</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_c') }}">Calendar</a></li>
                 <li class="list-inline-item"><a href="{{ url_for('employee_chatting') }}">Chatting</a></li>
-                <li class="list-inline-item"><a href="{{ url_for('index') }}">Logout</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('logout') }}">Logout</a></li>
                 <li class="list-inline-item"><a href="{{ url_for('employee_c') }}">Language</a></li>
               </ul>
             </div>
@@ -57,7 +58,15 @@
         </div>
       </div>
     </header>
-
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
 {% block content %}{% endblock %}
     </body>
 </html>
