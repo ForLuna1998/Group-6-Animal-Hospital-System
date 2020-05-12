@@ -47,9 +47,6 @@ class CustomerPasswordForm(FlaskForm):
 
 
 class PetAccountForm(FlaskForm):
-	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
-	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-	# 								"required": 'required'})
 	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
 
 	pet_name = StringField('', validators=[DataRequired()],
@@ -67,10 +64,19 @@ class PetAccountForm(FlaskForm):
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
 
+class PetChangeForm(FlaskForm):
+	pet_name = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Name", "required": 'required'})
+	pet_age = StringField('', validators=[DataRequired()],
+						  render_kw={"class": "form-control", "placeholder": "Old", "required": 'required'})
+	pet_gender = SelectField('', validators=[DataRequired()], choices=[('male', 'Male'), ('female', 'Female')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
+	pet_type = StringField('', validators=[DataRequired()],
+						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
+	save = SubmitField('Save change', render_kw={"class": "btn btn-primary "})
+
 class PetDeleteForm(FlaskForm):
-	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
-	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-	# 								"required": 'required'})
 	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
 
 	delete = SubmitField('Delete', render_kw={"class": "btn btn-primary "})
@@ -82,9 +88,6 @@ class PetDeleteForm(FlaskForm):
 
 
 class REForm(FlaskForm):
-	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
-	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-	# 								"required": 'required'})
 	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
 	time = StringField('', validators=[DataRequired()], 
 						 render_kw={"class": "form-control", "required": 'required'})
@@ -102,9 +105,6 @@ class REForm(FlaskForm):
 
 
 class RSForm(FlaskForm):
-	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
-	# 					 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
-	# 								"required": 'required'})
 	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
 
 	date = StringField('', validators=[DataRequired()],
@@ -129,8 +129,9 @@ class PetAddForm(FlaskForm):
 						   render_kw={"class": "form-control", "placeholder": "Name", "required": 'required'})
 	pet_age = StringField('', validators=[DataRequired()],
 						  render_kw={"class": "form-control", "placeholder": "Old", "required": 'required'})
-	pet_gender = StringField('', validators=[DataRequired()],
-							 render_kw={"class": "form-control", "placeholder": "Gender", "required": 'required'})
+	pet_gender = SelectField('', validators=[DataRequired()], choices=[('male', 'Male'), ('female', 'Female')],
+						 render_kw={"class": "form-control", "placeholder": "Select your pet here.",
+									"required": 'required'})
 	pet_type = StringField('', validators=[DataRequired()],
 						   render_kw={"class": "form-control", "placeholder": "Type", "required": 'required'})
 	submit = SubmitField('Add new pet', render_kw={"class": "btn btn-primary "})

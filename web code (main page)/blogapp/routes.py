@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, session,request,jsonify,json
 from werkzeug.security import generate_password_hash, check_password_hash
 from blogapp import app, db
-from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm, PostForm, PostForm2, ManageForm
+from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm, PostForm, PostForm2, ManageForm,  PetChangeForm
 from blogapp.models import Customer, Employee, Pet, Appointment, Post
 from blogapp.config import Config
 import os
@@ -177,6 +177,38 @@ def customer_password():
 		return redirect(url_for('login'))
 
 
+@app.route('/pet_change', methods=['GET','POST'])
+def pet_change():
+	user = {'username': 'User'}
+	form = PetChangeForm()
+	if not session.get("USERNAME") is None:
+		petid = request.args.get("id")
+		if form.validate_on_submit():
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			pet_in_db = Pet.query.filter(Pet.id == petid).first()
+			pet_in_db.name = form.pet_name.data 
+			pet_in_db.old = form.pet_age.data
+			pet_in_db.gender = form.pet_gender.data
+			pet_in_db.type = form.pet_type.data
+			pet_in_db.customer_id = customer_in_db.id
+			db.session.commit()
+			return redirect(url_for('customer_index'))
+		else:
+			stored_account = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			stored_Paccount = Pet.query.filter(Pet.customer_id == stored_account.id, Pet.id == petid).first()
+			if not stored_account:
+				return render_template('pet_change.html', title='Init your details', form=form)
+			else:
+				form.pet_name.data = stored_Paccount.name
+				form.pet_age.data = stored_Paccount.old
+				form.pet_gender.data = stored_Paccount.gender
+				form.pet_type.data = stored_Paccount.type
+				return render_template('pet_change.html', title='Modify your details', form=form)
+		return render_template('pet_change.html', title='pet', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
 @app.route('/pet_account', methods=['GET','POST'])
 def pet_account():
 	user = {'username': 'User'}
@@ -184,26 +216,6 @@ def pet_account():
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
 		prev_posts = Pet.query.filter(Pet.customer_id == customer_in_db.id ).all()
 		return render_template('pet_account.html', title='pet', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
-	else:
-		flash("User needs to either login or signup first")
-		return redirect(url_for('login'))
-
-@app.route('/pet_change', methods=['GET','POST'])
-def pet_change():
-	user = {'username': 'User'}
-	form = PetAccountForm()
-	if not session.get("USERNAME") is None:
-		if form.validate_on_submit():
-			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-			pet_in_db = Pet.query.filter(Pet.id == form.pet_id.data).first()
-			pet_in_db.name = form.pet_name.data 
-			pet_in_db.old = form.pet_age.data
-			pet_in_db.gender = form.pet_gender.data
-			pet_in_db.type = form.pet_type.data
-			pet_in_db.customer_id = customer_in_db.id
-			db.session.commit()
-			return redirect(url_for('reservation_s'))
-		return render_template('pet_change.html', title='pet', user=user, form=form)
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -218,7 +230,7 @@ def pet_add():
 			pet = Pet(name=form.pet_name.data, old=form.pet_age.data, gender=form.pet_gender.data, type=form.pet_type.data, customer_id=customer_in_db.id)
 			db.session.add(pet)
 			db.session.commit()
-			return redirect(url_for('reservation_s'))
+			return redirect(url_for('customer_index'))
 		return render_template('pet_add.html', title='reservation', user=user, form=form)
 	else:
 		flash("User needs to either login or signup first")
