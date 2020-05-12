@@ -177,8 +177,8 @@ def customer_password():
 		return redirect(url_for('login'))
 
 
-@app.route('/pet_account', methods=['GET','POST'])
-def pet_account():
+@app.route('/pet_change', methods=['GET','POST'])
+def pet_change():
 	user = {'username': 'User'}
 	form = PetAccountForm()
 	if not session.get("USERNAME") is None:
@@ -192,7 +192,18 @@ def pet_account():
 			pet_in_db.customer_id = customer_in_db.id
 			db.session.commit()
 			return redirect(url_for('reservation_s'))
-		return render_template('pet_account.html', title='pet', user=user, form=form)
+		return render_template('pet_change.html', title='pet', user=user, form=form)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/pet_account', methods=['GET','POST'])
+def pet_account():
+	user = {'username': 'User'}
+	if not session.get("USERNAME") is None:
+		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
+		prev_posts = Pet.query.filter(Pet.customer_id == customer_in_db.id ).all()
+		return render_template('pet_account.html', title='pet', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -414,3 +425,8 @@ def employee_chatting():
 def logout():
 	session.pop("USERNAME", None)
 	return redirect(url_for('login'))
+
+@app.route('/detail')
+def detail():
+	user = {'username': 'User'}
+	return render_template('detail.html', title='detail', user=user )

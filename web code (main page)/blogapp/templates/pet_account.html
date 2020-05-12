@@ -1,7 +1,6 @@
 {% extends "customer_base.html" %}
 
 {% block content %}
-
               <div class="card sidebar-menu">
                 <div class="card-header">
                   <h3 class="h4 card-title">Pet Accounts</h3>
@@ -18,60 +17,45 @@
             </div>
             <div class="col-lg-9">
               <div class="box">
-                <h1>Pet accounts</h1>
+                <h1>My pets' account</h1>
+              <!-- <p class="lead">Status of your appointments</p> -->
+              <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Gender</th>
+                      <th>Type</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for pet in prev_posts %}
+                    {% if pet.id %}
+                    <tr>
+                      <th>{{pet.id}}</th>
+                      <td>{{pet.name}}</td>
+                      <td>{{pet.old}}</td>
+                      <td>{{pet.gender}}</span></td>
+                      <td>{{pet.type}}</td>
+                      <td><a href="customer-order.html" class="btn btn-primary btn-sm">Change</a></td>
+                    </tr>
+                    {% else %}
+                      <p class="text-muted">There is no pet, you can <a href="{{ url_for('customer_index') }}">add your pet</a> here.</p>
+                    {% endif %}
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
 
-                <form action="" method="post" novalidate>
-                  {{ form.hidden_tag() }}
+               
 
-                <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="firstname">Select your pet here.</label>
-                        {{form.pet_id}}
-                        <a href="{{ url_for('pet_add') }}" ><i class="fa fa-list"></i> Add new pet</a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /.row-->
-              
-                 
-                  
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="firstname">Name</label>
-                        {{ form.pet_name(size=32) }}
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="lastname">Old</label>
-                        {{ form.pet_age(size=32) }}
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /.row-->
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="company">Gender</label>
-                        {{ form.pet_gender(size=32) }}
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="street">Type</label>
-                        {{ form.pet_type(size=32) }}
-                      </div>
-                    </div>
-                  </div>
-                  <!-- /.row-->
-                
-                    <div class="col-md-12 text-center">
-                      {{ form.save() }}
-                    </div>
-                  </div>
-                </form>
+
               </div>
             </div>
           </div>
