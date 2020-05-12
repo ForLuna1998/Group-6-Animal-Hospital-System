@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+			<span>{{ language['header-text'] }}</span>
+			<a id="btn" href="/changelang">{{ language['header-btn_name'] }}</a>
+			<span>|</span>
+			<a id="btn" href="/home">{{ language['header-btn_home'] }}</a>
+			<span>|</span>
+			<a id="btn" href="/about">{{ language['header-btn_about'] }}</a>
+		{% block body %}
+
+		{% endblock %}
+    </body>
+</html>
