@@ -1,0 +1,71 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+
+              <div class="card sidebar-menu">
+                <div class="card-header">
+                  <h3 class="h4 card-title">Pet Accounts</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('pet_account') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Account</a>
+                    <a href="{{ url_for('pet_delete') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Delete</a>
+                    <a href="{{ url_for('pet_add') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Add</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> Back</a></ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+            </div>
+            <div class="col-lg-9">
+              <div class="box">
+                <h1>Pet accounts</h1>
+                <p class="lead">Add your pets' details.</p>
+              
+                <form action="" method="post" novalidate>
+                 {{ form.hidden_tag() }}
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="firstname">Name</label>
+                        {{ form.pet_name(size=32) }}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="lastname">Old</label>
+                        {{ form.pet_age(size=32) }}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="company">gender</label>
+                        {{ form.pet_gender }}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="street">Type</label>
+                        {{ form.pet_type }}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                
+                    <div class="col-md-12 text-center">
+                      <!-- <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button> -->
+                      {{ form.submit() }}
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

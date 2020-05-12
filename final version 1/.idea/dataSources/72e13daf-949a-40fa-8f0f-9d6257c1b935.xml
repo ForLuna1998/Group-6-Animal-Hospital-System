@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="blogdb">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.17">
+    <root id="1">
+      <ServerVersion>3.25.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <table id="6" parent="2" name="appointment"/>
+    <table id="7" parent="2" name="customer"/>
+    <table id="8" parent="2" name="employee"/>
+    <table id="9" parent="2" name="pet"/>
+    <table id="10" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <column id="11" parent="6" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="12" parent="6" name="type">
+      <Position>2</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="13" parent="6" name="date">
+      <Position>3</Position>
+      <DataType>DATETIME|0s</DataType>
+    </column>
+    <column id="14" parent="6" name="time">
+      <Position>4</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="15" parent="6" name="city">
+      <Position>5</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="16" parent="6" name="details">
+      <Position>6</Position>
+      <DataType>VARCHAR(120)|0s</DataType>
+    </column>
+    <column id="17" parent="6" name="pet_id">
+      <Position>7</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="18" parent="6" name="start">
+      <Position>8</Position>
+      <DataType>DATETIME|0s</DataType>
+    </column>
+    <column id="19" parent="6" name="end">
+      <Position>9</Position>
+      <DataType>DATETIME|0s</DataType>
+    </column>
+    <column id="20" parent="6" name="status">
+      <Position>10</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <index id="21" parent="6" name="ix_appointment_type">
+      <ColNames>type</ColNames>
+    </index>
+    <index id="22" parent="6" name="ix_appointment_date">
+      <ColNames>date</ColNames>
+    </index>
+    <index id="23" parent="6" name="ix_appointment_time">
+      <ColNames>time</ColNames>
+    </index>
+    <index id="24" parent="6" name="ix_appointment_city">
+      <ColNames>city</ColNames>
+    </index>
+    <index id="25" parent="6" name="ix_appointment_details">
+      <ColNames>details</ColNames>
+    </index>
+    <index id="26" parent="6" name="ix_appointment_start">
+      <ColNames>start</ColNames>
+    </index>
+    <index id="27" parent="6" name="ix_appointment_end">
+      <ColNames>end</ColNames>
+    </index>
+    <index id="28" parent="6" name="ix_appointment_status">
+      <ColNames>status</ColNames>
+    </index>
+    <key id="29" parent="6">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="30" parent="6">
+      <ColNames>pet_id</ColNames>
+      <RefTableName>pet</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="31" parent="7" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="7" name="username">
+      <Position>2</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="33" parent="7" name="email">
+      <Position>3</Position>
+      <DataType>VARCHAR(120)|0s</DataType>
+    </column>
+    <column id="34" parent="7" name="password_hash">
+      <Position>4</Position>
+      <DataType>VARCHAR(128)|0s</DataType>
+    </column>
+    <column id="35" parent="7" name="phone">
+      <Position>5</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="36" parent="7" name="firstname">
+      <Position>6</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="37" parent="7" name="lastname">
+      <Position>7</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <index id="38" parent="7" name="ix_customer_username">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="39" parent="7" name="ix_customer_email">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="40" parent="7" name="ix_customer_phone">
+      <ColNames>phone</ColNames>
+    </index>
+    <index id="41" parent="7" name="ix_customer_firstname">
+      <ColNames>firstname</ColNames>
+    </index>
+    <index id="42" parent="7" name="ix_customer_lastname">
+      <ColNames>lastname</ColNames>
+    </index>
+    <key id="43" parent="7">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="44" parent="8" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="8" name="username">
+      <Position>2</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="46" parent="8" name="key">
+      <Position>3</Position>
+      <DataType>VARCHAR(120)|0s</DataType>
+    </column>
+    <column id="47" parent="8" name="password_hash">
+      <Position>4</Position>
+      <DataType>VARCHAR(128)|0s</DataType>
+    </column>
+    <index id="48" parent="8" name="ix_employee_username">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="49" parent="8" name="ix_employee_key">
+      <ColNames>key</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="50" parent="8">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="51" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="9" name="name">
+      <Position>2</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="53" parent="9" name="type">
+      <Position>3</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="54" parent="9" name="old">
+      <Position>4</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <column id="55" parent="9" name="gender">
+      <Position>5</Position>
+      <DataType>VARCHAR(64)|0s</DataType>
+    </column>
+    <column id="56" parent="9" name="customer_id">
+      <Position>6</Position>
+      <DataType>INTEGER|0s</DataType>
+    </column>
+    <index id="57" parent="9" name="ix_pet_name">
+      <ColNames>name</ColNames>
+    </index>
+    <index id="58" parent="9" name="ix_pet_type">
+      <ColNames>type</ColNames>
+    </index>
+    <index id="59" parent="9" name="ix_pet_old">
+      <ColNames>old</ColNames>
+    </index>
+    <index id="60" parent="9" name="ix_pet_gender">
+      <ColNames>gender</ColNames>
+    </index>
+    <key id="61" parent="9">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="62" parent="9">
+      <ColNames>customer_id</ColNames>
+      <RefTableName>customer</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="63" parent="10" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="64" parent="10" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="65" parent="10" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="66" parent="10" name="rootpage">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="67" parent="10" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+  </database-model>
+</dataSource>

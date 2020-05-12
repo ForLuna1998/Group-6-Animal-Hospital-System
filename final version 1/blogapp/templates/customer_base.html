@@ -1,0 +1,294 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Healing Paws System</title>
+        {% else %}
+        <title>No link</title>
+        {% endif %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="all,follow">
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="modern appointment form a Flat Responsive Widget,Login form widgets, Sign up Web     forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+            function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets3/css-a/jquery-ui.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='https://fonts.googleapis.com/css?family=Roboto:100,300,400,700') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl.carousel/assets/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl.carousel/assets/owl.theme.default.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.default.css') }}" id="theme-stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+        <link rel="shortcut icon" href="favicon.png">
+
+        <link href="css-a/style.css" rel="stylesheet" type="text/css" media="all"/><!--stylesheet-css-->
+        <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet"><!--online-fonts-->
+        <link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet"><!--online-fonts-->
+
+        <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/jquery.cookie/jquery.cookie.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/owl.carousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/front.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets3/js-a/jquery-ui.js') }}"></script>
+        <script src="{{ url_for('static', filename='bootstrap-datetimepicker.js') }}"></script>
+        <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='locales/bootstrap-datetimepicker.fr.js') }}"></script>
+
+
+        </head>
+    
+    <body>
+    <!-- navbar-->
+    <header class="header mb-5">
+      <!--
+      *** TOPBAR ***
+      _________________________________________________________
+      -->
+      <div id="top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">OPEN HOURS</a><a href="#" class="ml-1">Every Day(9:00-21:00)
+            </a></div>
+            <div class="col-lg-6 text-center text-lg-right">
+              <ul class="menu list-inline mb-0">
+                <li class="list-inline-item"><a href="{{ url_for('customer_index') }}">Home</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li class="list-inline-item"><a href="">Language</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- *** TOP BAR END ***-->
+        
+        
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="{{ url_for('customer_index') }}" class="navbar-brand home">
+                <img src="static/img/logo.png" alt="Obaju logo" class="d-none d-md-inline-block">
+                <img src="static/img/logo-small.png" alt="Obaju logo" class="d-inline-block d-md-none">
+                <span class="sr-only">Obaju - go to homepage</span></a>
+          <div class="navbar-buttons">
+            <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-align-justify"></i></button>
+            <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler">
+                <span class="sr-only">Toggle search</span>
+                <i class="fa fa-search"></i></button>
+                <a href="basket.html" class="btn btn-outline-secondary navbar-toggler">
+                    <i class="fa fa-shopping-cart"></i></a>
+          </div>
+          <div id="navigation" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">Appointment<b class="caret"></b></a>
+                <ul class="dropdown-menu megamenu">
+                  <li>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-3">
+                        <h5>Standard</h5>
+                        <ul class="list-unstyled mb-3">
+                          <li class="nav-item"><a href="{{ url_for('reservation_s') }}" class="nav-link">Make appointment</a></li>
+                          <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">telephone</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">address</a></li> -->
+                        </ul>
+                      </div>
+                      <div class="col-md-6 col-lg-3">
+                        <h5>Emergency</h5>
+                        <ul class="list-unstyled mb-3">
+                          <li class="nav-item"><a href="{{ url_for('reservation_e') }}" class="nav-link">Make appointment</a></li>
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">old</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">hobby</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">food</a></li> -->
+                        </ul>
+                      
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">ACCOUNT<b class="caret"></b></a>
+                <ul class="dropdown-menu megamenu">
+                  <li>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-3">
+                        <h5>personal account</h5>
+                        <ul class="list-unstyled mb-3">
+                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">my Profile</a></li>
+                          <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">telephone</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">address</a></li> -->
+                        </ul>
+                      </div>
+                      <div class="col-md-6 col-lg-3">
+                        <h5>pet accounts</h5>
+                        <ul class="list-unstyled mb-3">
+                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">my Pet</a></li>
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">old</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">hobby</a></li> -->
+                          <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">food</a></li> -->
+                        </ul>
+                      
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">Help<b class="caret"></b></a>
+                <ul class="dropdown-menu megamenu">
+                  <li>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-3">
+                        <h5>INSTRUCTION</h5>
+                        <ul class="list-unstyled mb-3">
+                          <li class="nav-item"><a href="category.html" class="nav-link">APPOINTMENT</a></li>
+                          <li class="nav-item"><a href="category.html" class="nav-link">DOCTOR</a></li>
+                          <li class="nav-item"><a href="category.html" class="nav-link">ACCOUNT</a></li>
+                          <li class="nav-item"><a href="category.html" class="nav-link">MESSAGE</a></li>
+                        </ul>
+                      </div>
+                     
+                     
+                     
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              
+               
+                 
+              </li>
+            </ul>
+            <div class="navbar-buttons d-flex justify-content-end">
+              <!-- /.nav-collapse-->
+              <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
+              
+              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="{{url_for('customer_chatting')}}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>Consultation</span></a>
+                  
+              
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="search" class="collapse">
+        <div class="container">
+          <form role="search" class="ml-auto">
+
+
+            <div class="input-group">
+              <input type="text" placeholder="Search" class="form-control">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </header>
+    <div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- breadcrumb-->
+              <nav aria-label="breadcrumb">
+              
+              </nav>
+            </div>
+            <div class="col-lg-3">
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+
+<!--         *** FOOTER ***
+    _________________________________________________________
+    --> 
+    <div id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <h4 class="mb-3">Pages</h4>
+            <ul class="list-unstyled">
+              <li><a href="text.html">About us</a></li>
+              <li><a href="text.html">Terms and conditions</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="contact.html">Contact us</a></li>
+            </ul>
+            <hr>
+            <h4 class="mb-3">User section</h4>
+            <ul class="list-unstyled">
+              <li><a href="{{ url_for('login') }}" >Login</a></li>
+              <li><a href="{{ url_for('customer_register') }}">Regiter</a></li>
+            </ul>
+          </div>
+          <!-- /.col-lg-3-->
+          <div class="col-lg-3 col-md-6">
+            <h4 class="mb-3">Top categories</h4>
+            <h5>Standard Appointment</h5>
+            <ul class="list-unstyled">
+              <li><a href="{{ url_for('reservation_s') }}">reservation</a></li>
+              <li><a href="{{ url_for('status_a') }}">record</a></li>
+              <li><a href="{{ url_for('record_a') }}">status</a></li>
+            </ul>
+            <h5>Emergency Appiontment</h5>
+            <ul class="list-unstyled">
+              <li><a href="{{ url_for('reservation_e') }}">reservation</a></li>
+              <li><a href="{{ url_for('status_e') }}">record</a></li>
+              <li><a href="{{ url_for('record_e') }}">status</a></li>
+      
+            </ul>
+          </div>
+          <!-- /.col-lg-3-->
+          <div class="col-lg-3 col-md-6">
+            <h4 class="mb-3">Where to find us</h4>
+            <p><strong>Obaju Ltd.</strong><br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>Beijing<br></p><a href="contact.html">Go to contact page</a>
+            <hr class="d-block d-md-none">
+          </div>
+          <!-- /.col-lg-3-->
+          <div class="col-lg-3 col-md-6">
+            <h4 class="mb-3">Get the news</h4>
+          
+            <form>
+              <div class="input-group">
+                <input type="text" class="form-control"><span class="input-group-append">
+                  <button type="button" class="btn btn-outline-secondary">Subscribe!</button></span>
+              </div>
+              <!-- /input-group-->
+            </form>
+            <hr>
+            <h4 class="mb-3">Stay in touch</h4>
+            <p class="social"><a href="#" class="facebook external"><i class="fa fa-facebook"></i></a><a href="#" class="twitter external"><i class="fa fa-twitter"></i></a><a href="#" class="instagram external"><i class="fa fa-instagram"></i></a><a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a><a href="#" class="email external"><i class="fa fa-envelope"></i></a></p>
+          </div>
+          <!-- /.col-lg-3-->
+        </div>
+        <!-- /.row-->
+      </div>
+      <!-- /.container-->
+    </div>
+    <!-- /#footer-->
+    <!-- *** FOOTER END ***-->
+    
+    
+    <!--
+    *** COPYRIGHT ***
+    _________________________________________________________
+    -->
+    </body>
+</html>

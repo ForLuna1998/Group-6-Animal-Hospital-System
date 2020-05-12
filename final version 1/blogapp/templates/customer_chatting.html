@@ -1,0 +1,50 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+	<div class="card sidebar-menu">
+    	<div class="card-header">
+        	<h3 class="h4 card-title">Online Chatting</h3>
+    	</div>
+   		<div class="card-body">
+            <ul class="nav nav-pills flex-column"><a href="{{ url_for('pet_account') }}" class="nav-link active">Online Chatting</a><a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> Back</a></ul>
+        </div>
+    </div>
+    </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+        <div class="col-lg-9">
+            <div class="box">
+				{% if prev_posts %}
+						<ul>
+						{% for post in prev_posts %}
+							<li> {{ post }}</li>
+						{% endfor %}
+						</ul>
+						<hr>
+					{% else %}
+						<p>No previous posts!</p>
+						<hr>
+				{% endif %}
+                
+                  <!-- /.row-->
+		        <form action="" method="post" novalidate>
+				    {{ form.hidden_tag() }}
+				    <p>
+				        {{ form.postbody.label }}<br>
+				        {{ form.postbody(size=119) }}
+							<br>
+						{% for error in form.postbody.errors %}
+				        <span style="color: red;">[{{ error }}]</span>
+				       	{% endfor %}
+
+				  	</p>
+						
+					<p>{{ form.submit() }}</p>
+				</form>
+      
+            </div>
+        </div>
+ </div>
+ </div>
+ </div>
+{% endblock %}
