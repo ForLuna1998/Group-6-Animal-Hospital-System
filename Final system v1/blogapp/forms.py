@@ -73,7 +73,7 @@ class PetDeleteForm(FlaskForm):
 	# 								"required": 'required'})
 	pet_id = SelectField('', coerce=int, validators=[DataRequired()], render_kw={"class": "form-control", "placeholder": "Select your pet here.", "required": 'required'})
 
-	delete = SubmitField('Delete', render_kw={"class": "btn btn-primary "})
+	delete = SubmitField('Delete', render_kw={"class": "btn btn-primary"})
 
 	def __init__(self, *args, **kwargs):
 		super(PetDeleteForm, self).__init__(*args, **kwargs)
@@ -154,6 +154,6 @@ class PostForm2(FlaskForm):
 	submit = SubmitField('Send')
 
 class ManageForm(FlaskForm):
-	date=StringField('',render_kw={"placeholder": "YYYY-MM-DD", "required": 'required'})
-	submit = SubmitField('Search',render_kw={"class": "btn btn-primary btn-sm edit"})
+	date=StringField('',render_kw={"style": "font-size: large;", "placeholder": "YYYY-MM-DD", "required": 'required'})
+	submit = SubmitField('Search',render_kw={"class": "btn btn-primary edit"})
 

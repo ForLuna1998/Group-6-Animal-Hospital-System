@@ -22,38 +22,40 @@
 {% block content %}
 
 <div class="wrapper">
-    <div class="container">
+    <div class="container" style="background-color:#FDF5E6">
         <div class="row">
             <form method="post" style="width: 1125px; text-align: right;">
-                <a href="{{url_for('employee_f')}}" class="btn btn-primary btn-sm submit">Back</a>
+                <a href="{{url_for('employee_f')}}" class="btn btn-primary submit">Back</a>
                 <!-- {{ form.date( id="datepicker", onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}") }} -->
                 {{ form.date(size=20) }}
                 {{ form.submit() }}
             </form>
         </div>
         <div class="row">
-            <div class="col-md-12" >
+            <div class="table-responsive" >
                                 
-                    <table id="fresh" border="2" class="table" style="text-align: center;">
-                        <thead>
+                    <table id="fresh" class="table table-hover" style="text-align: center;">
+                        <thead style="font-size: large;">
                             <th data-field="id">ID</th>
                             <th data-field="phone" data-sortable="true">Phone Number</th>
+                            <th data-field="detail">Details</th>
                         	<th data-field="date" data-sortable="true">Date</th>
                             <th data-field="time" data-sortable="true">Time</th>
-                            <th data-field="detail">Details</th>
+                            
                             <th data-field="type" data-sortable="true">Type</th>
                             <th data-field="status" data-sortable="true">Status</th>
                         	<th data-field="edit">Actions</th>
                         </thead>
-                        <tbody>
+                        <tbody style="font-size: 18px;">
                             {% for post in prev_posts %}
                             {% if post.Appointment.city == employee_in_db.key and post.Appointment.date==d %}
                                 <tr>
                                   <td>{{post.Appointment.id}}</td>  
                                     <td>{{post.Customer.phone}}</td>
+                                    <td>{{post.Appointment.details}}</td> 
                                   <td>{{post.Appointment.date}}</td>
                                   <td>{{post.Appointment.time}}</td>
-                                  <td>{{post.Appointment.details}}</td> 
+                                  
                                     <td>{{post.Appointment.type}}</td>
                                   <td>{{post.Appointment.status}}</td>
                                   <td><button class="btn btn-primary btn-sm edit">Edit</button></td>

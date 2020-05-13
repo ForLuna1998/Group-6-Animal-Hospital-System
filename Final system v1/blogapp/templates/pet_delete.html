@@ -10,7 +10,8 @@
                   <ul class="nav nav-pills flex-column">
                     <a href="{{ url_for('pet_account') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Account</a>
                     <a href="{{ url_for('pet_delete') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Delete</a>
-                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> Back</a></ul>
+                    <a href="{{ url_for('pet_add') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Add</a>
+                    <a href="{{ url_for('pet_account') }}" class="nav-link"><i class="fa fa-sign-out"></i> Back</a></ul>
                 </div>
               </div>
               <!-- /.col-lg-3-->
@@ -18,7 +19,7 @@
             </div>
             <div class="col-lg-9">
               <div class="box">
-                <h1>Pet accounts</h1>
+                <h1>Pet Delete</h1>
 
                 <form action="" method="post" novalidate>
                   {{ form.hidden_tag() }}
@@ -34,7 +35,7 @@
                   </div>
                   <!-- /.row-->
                   
-                    <div class="col-md-12 text-center">
+                    <div class="form-group">
                       {{ form.delete() }}
                     </div>
                   </div>

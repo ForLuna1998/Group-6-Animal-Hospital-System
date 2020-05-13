@@ -16,48 +16,52 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <script src="{{ url_for('static', filename='jQ.js') }}"></script>
-
+    <style type="text/css">
+    
+    </style>
 {% endblock %}
 
 {% block content %}
 
 <div class="wrapper">
-    <div class="container">
+    <div class="container" style="background-color: #FDF5E6">
         <div class="row">
             <form method="post" style="width: 1125px; text-align: right;">
-                <a href="{{url_for('employee_t')}}" class="btn btn-primary btn-sm edit">Select a Date</a>
+                <a href="{{url_for('employee_t')}}" class="btn btn-primary edit">Select a Date</a>
             </form>
         </div>
         <div class="row">
-            <div class="col-md-12" >
+            <div class="table-responsive" >
                                 
                 <!-- <div style="height: 600px;overflow: auto;" > -->
                 <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange                  
                         Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
                 -->
-                    <table id="fresh" border="2" class="table" style="text-align: center;">
-                        <thead>
+                    <table id="fresh" class="table table-hover" style="text-align: center;">
+                        <thead style="font-size: large;">
                             <th data-field="id">ID</th>
                             <th data-field="phone" data-sortable="true">Phone Number</th>
+                            <th data-field="detail">Details</th>
                         	<th data-field="date" data-sortable="true">Date</th>
                             <th data-field="time" data-sortable="true">Time</th>
-                            <th data-field="detail">Details</th>
+                            
                             <th data-field="type" data-sortable="true">Type</th>
                             <th data-field="status" data-sortable="true">Status</th>
                         	<th data-field="edit">Actions</th>
                         </thead>
-                        <tbody>
+                        <tbody style="font-size: 18px;">
                             {% for post in prev_posts %}
                             {% if post.Appointment.city == employee_in_db.key %}
                                 <tr>
                                   <td>{{post.Appointment.id}}</td>  
                                     <td>{{post.Customer.phone}}</td>
+                                    <td>{{post.Appointment.details}}</td> 
                                   <td>{{post.Appointment.date}}</td>
                                   <td>{{post.Appointment.time}}</td>
-                                  <td>{{post.Appointment.details}}</td> 
+                                  
                                     <td>{{post.Appointment.type}}</td>
                                   <td>{{post.Appointment.status}}</td>
-                                  <td><button class="btn btn-primary btn-sm edit">Edit</button></td>
+                                  <td><button class="btn btn-primary edit">Edit</button></td>
                                 </tr>
                             {% endif %}
                             {% endfor %}
@@ -69,6 +73,7 @@
             </div>
         </div>
     </div>
+
 </div>
  <!-- <script src="{{ url_for('static', filename='assets4/js/jquery-1.11.2.min.js') }}"></script>
 <script src="{{ url_for('static', filename='assets4/js/bootstrap.js') }}"></script>
@@ -96,7 +101,7 @@
         var $input=$("<input type='text' class='form-control form-control-sm'>");
         $input.appendTo($td).width(_w).val(_t);
     });
-    $this.removeClass().addClass("btn btn-danger btn-sm ajax").text("Submit");  
+    $this.removeClass().addClass("btn btn-danger ajax").text("Submit");  
 });
 
     $("table#fresh").on("click","button.ajax",function(){
@@ -120,7 +125,7 @@
             // alert(d);
             var narray=d.split(',');
             var nhtml="<td>"+v.join("</td><td>")+"</td>";
-            nhtml=nhtml+"<td><button class=\"btn btn-primary btn-sm edit\">Edit</button></td>";
+            nhtml=nhtml+"<td><button class=\"btn btn-primary edit\">Edit</button></td>";
             $tr.html(nhtml);
         },
         error: function(e){
