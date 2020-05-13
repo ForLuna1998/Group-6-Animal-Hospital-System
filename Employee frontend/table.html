@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>jquery+table+ajax编辑后提交数据，动态修改表格内容的在线演示-aijQuery.cn</title>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script language="JavaScript" src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script> -->
+<link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body style="text-align:center"><br><br>
+<div class="container w-90 border">
+<table id="aijquery" border="1" cellpadding="6" cellspacing="0" align="center">
+	<thead>
+		<tr>
+          <th>ID</th>
+          	<th>名字</th>
+			<th class="num">数字</th>
+			<th class="date">日期</th>
+			<th>字母</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+          <td>1</td>
+          	<td>张大峰</td>
+			<td>9</td>
+			<td>1985-10-24</td>
+			<td>zhangdafeng</td>
+          	<td><button class="btn btn-primary btn-sm edit">编辑</button></td>
+		</tr>
+		<tr>
+			<td>2</td>
+          	<td>李小明</td>
+			<td>11</td>
+			<td>2018-12-21</td>
+			<td>lixiaoming</td>
+			<td><button class="btn btn-primary btn-sm edit">编辑</button></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<script language="javascript">
+$("table#aijquery").on("click","button.edit",function(){
+	var $this=$(this);
+  	var $tr=$this.parents("tr");
+  	$tr.find("td").not($("td:has(button)")).each(function(){
+    	var $td=$(this);
+   	 	var _t=$td.text();
+    	var _w=$td.width();
+		var _h=$td.height();
+      	$td.html("");
+      	var $input=$("<input type='text' class='form-control form-control-sm'>");
+      	$input.appendTo($td).width(_w).val(_t);
+    });
+  	$this.removeClass().addClass("btn btn-danger btn-sm ajax").text("提交");	
+});
+$("table#aijquery").on("click","button.ajax",function(){
+	var $this=$(this);
+  	var $tr=$this.parents("tr");
+  	var v=[];
+  	$tr.find("td input:text").each(function(){
+    	v.push($(this).val());
+    });
+  	// $.post("/Html/aijquery/ajax-post/",{"d":v},function(d){
+    	// var narray=d.split(",");
+      var narray=['1','2','3','4','5'];
+      	var nhtml="<td>"+v.join("</td><td>")+"</td>";
+      	nhtml=nhtml+"<td><button class=\"btn btn-primary btn-sm edit\">编辑</button></td>";
+      	$tr.html(nhtml);
+    // });
+});
+</script>
+</body>
+</html>
+<!-- 摘自  爱jQuery：http://www.aijquery.cn/Html/ShiLi/66.html -->
