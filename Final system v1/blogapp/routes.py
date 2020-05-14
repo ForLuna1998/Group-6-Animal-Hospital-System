@@ -510,8 +510,8 @@ def arrange():
 	list1=list1.split(',')
 	stored_app = Appointment.query.filter(Appointment.id == list1[0]).first()
 	if stored_app:
-		stored_app.date=list1[2]
-		stored_app.time=list1[3]
+		stored_app.date=list1[3]
+		stored_app.time=list1[4]
 		stored_app.type=list1[5]
 		stored_app.status=list1[6]
 		db.session.commit()
