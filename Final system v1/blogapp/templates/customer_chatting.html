@@ -21,21 +21,21 @@
 						{% endfor %}
 						</ul>
 						<hr>
-					{% else %}
+				{% else %}
 						<p>No previous messages!</p>
 						<hr>
 				{% endif %}
                 
                   <!-- /.row-->
-		        <form action="" method="post" novalidate>
+		        <form action="" method="post">
 				    {{ form.hidden_tag() }}
 				    <p>
 				        {{ form.postbody.label }}<br>
-				        {{ form.postbody(size=119) }}
+				        {{ form.postbody() }}
 							<br>
-						{% for error in form.postbody.errors %}
+						<!-- {% for error in form.postbody.errors %}
 				        <span style="color: red;">[{{ error }}]</span>
-				       	{% endfor %}
+				       	{% endfor %} -->
 
 				  	</p>
 						

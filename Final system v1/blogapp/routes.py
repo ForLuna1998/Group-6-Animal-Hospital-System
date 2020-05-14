@@ -473,7 +473,7 @@ def customer_chatting():
 		else:
 			user_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			prev_posts = Post.query.filter(Post.user_id == user_in_db.id).all()
-			print("Checking for user: {} with id: {}".format(user_in_db.username, user_in_db.id))
+			# print("Checking for user: {} with id: {}".format(user_in_db.username, user_in_db.id))
 			return render_template('customer_chatting.html', title='Message', prev_posts=prev_posts, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")

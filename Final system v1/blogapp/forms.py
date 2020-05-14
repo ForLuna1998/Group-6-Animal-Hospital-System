@@ -149,7 +149,7 @@ class PetAddForm(FlaskForm):
 	submit = SubmitField('Add new pet', render_kw={"class": "btn btn-primary "})
 
 class PostForm(FlaskForm):
-	postbody = StringField('Chatbox', validators=[DataRequired()])
+	postbody = StringField('Chatbox', validators=[DataRequired()],render_kw={"class": "form-control", "required": 'required'})
 	submit = SubmitField('Send')
 
 class PostForm2(FlaskForm):
