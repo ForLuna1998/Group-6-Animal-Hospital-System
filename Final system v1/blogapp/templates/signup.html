@@ -10,8 +10,8 @@
                         <div class="col-sm-5 form-box">
                             <div class="form-top">
                                 <div class="form-top-left">
-                                    <h3>Sign up now</h3>
-                                    <p>Fill in the form to get an account:</p>
+                                    <h3>{{language['signup-signupnow']}}</h3>
+                                    <p>{{language['signup-fillin']}}</p>
                                 </div>
                                 <div class="form-top-right">
                                     <i class="fa fa-pencil"></i>
@@ -68,20 +68,20 @@
                             </div>
                         </div>
                         <div class="col-sm-7 text">
-                            <h1><strong>Pet Hospital </strong>Registration Form</h1>
+                            <h1><strong>{{language['signup-PetHospital']}} </strong>{{language['signup-RegistrationForm']}}</h1>
                             <div class="description">
                                 <p>
-                                    This is the user registration form of the healing paws veterinary hospital. 
-                                    <br>If you want to make an appointment for your pets, please sign up first.
+                                    {{language['signup-thisis']}} 
+                                    <br>{{language['signup-ifyou']}}
                                 </p>
                             </div>
                             <div class="top-big-link">
                                 <div class="description">
                                     <p>
-                                        Already have an account? Log in here
+                                        {{language['signup-already']}}
                                     </p>
                                 </div>
-                                <a class="btn-link-1" href="{{url_for('login')}}">Log in</a>
+                                <a class="btn-link-1" href="{{url_for('login')}}">{{language['sighup-login']}}</a>
                                 
                             </div>
                         </div>

@@ -27,7 +27,7 @@
     <div class="container" style="background-color: #FDF5E6">
         <div class="row">
             <form method="post" style="width: 1125px; text-align: right;">
-                <a href="{{url_for('employee_t')}}" class="btn btn-primary edit">Select a Date</a>
+                <a href="{{url_for('employee_t')}}" class="btn btn-primary edit">{{language['e-f-select']}}</a>
             </form>
         </div>
         <div class="row">
@@ -39,15 +39,15 @@
                 -->
                     <table id="fresh" class="table table-hover" style="text-align: center;">
                         <thead style="font-size: large;">
-                            <th data-field="id">ID</th>
-                            <th data-field="phone" data-sortable="true">Phone Number</th>
+                            <th data-field="id">{{language['e-index-id']}}</th>
+                            <th data-field="phone" data-sortable="true">{{language['e-index-phonenum']}}</th>
                             <th data-field="detail">Details</th>
-                        	<th data-field="date" data-sortable="true">Date</th>
-                            <th data-field="time" data-sortable="true">Time</th>
+                        	<th data-field="date" data-sortable="true">{{language['e-t-date']}}</th>
+                            <th data-field="time" data-sortable="true">{{language['r-a-time']}}</th>
                             
-                            <th data-field="type" data-sortable="true">Type</th>
-                            <th data-field="status" data-sortable="true">Status</th>
-                        	<th data-field="edit">Actions</th>
+                            <th data-field="type" data-sortable="true">{{language['p-account-type']}}</th>
+                            <th data-field="status" data-sortable="true">{{language['e-f-status']}}</th>
+                        	<th data-field="edit">{{language['e-index-Actions']}}</th>
                         </thead>
                         <tbody style="font-size: 18px;">
                             {% for post in prev_posts %}
@@ -61,7 +61,7 @@
                                   
                                     <td>{{post.Appointment.type}}</td>
                                   <td>{{post.Appointment.status}}</td>
-                                  <td><button class="btn btn-primary edit">Edit</button></td>
+                                  <td><button class="btn btn-primary edit">{{language['e-f-edit']}}</button></td>
                                 </tr>
                             {% endif %}
                             {% endfor %}

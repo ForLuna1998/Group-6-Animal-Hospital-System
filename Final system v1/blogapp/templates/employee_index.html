@@ -1,9 +1,9 @@
 <html lang="en">
 <head>
 	{% if title %}
-        <title>{{ title }} - Healing Paws System</title>
+        <title>{{ title }} - {{language['base-title']}}</title>
         {% else %}
-        <title>404 Not Found</title>
+        <title>{{language['base-nolink']}}</title>
     {% endif %}
 
         <link href="{{ url_for('static', filename='assets4/css/bootstrap.css') }}" rel='stylesheet'>
@@ -28,18 +28,18 @@
                 -->
                 
                     <div class="toolbar">
-                        <a class="btn btn-default" href=" {{url_for('employee_base')}} ">Back to Timetable</a>
+                        <a class="btn btn-default" href=" {{url_for('employee_base')}} ">{{language['e-index-BacktoTimetable']}}</a>
                     </div>
                     
                     <table id="fresh-table" class="table">
                         <thead>
-                            <th data-field="id">ID</th>
-                        	<th data-field="name" data-sortable="true">pet name</th>
-                            <th data-field="city" data-sortable="true">phone number</th>
-                        	<th data-field="salary" data-sortable="true">appointment slot</th>
-                            <th data-field="type" data-sortable="true">appointment type</th>
-                        	<th data-field="country" data-sortable="true">submission time</th>
-                        	<th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+                            <th data-field="id">{{language['e-index-id']}}</th>
+                        	<th data-field="name" data-sortable="true">{{language['e-index-petname']}}</th>
+                            <th data-field="city" data-sortable="true">{{language['e-index-phonenum']}}</th>
+                        	<th data-field="salary" data-sortable="true">{{language['e-index-appointmentslot']}}</th>
+                            <th data-field="type" data-sortable="true">{{language['e-index-appointmenttype']}}</th>
+                        	<th data-field="country" data-sortable="true">{{language['e-index-submissiontime']}}</th>
+                        	<th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">{{language['e-index-Actions']}}</th>
                         </thead>
                         <tbody>
                             <tr>

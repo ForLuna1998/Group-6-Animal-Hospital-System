@@ -4,13 +4,13 @@
 
               <div class="card sidebar-menu">
                 <div class="card-header">
-                  <h3 class="h4 card-title">Standard Reservation</h3>
+                  <h3 class="h4 card-title">{{language['res-e-EmergencyReservation']}}</h3>
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column">
-                    <a href="{{ url_for('reservation_s') }}" class="nav-link active"><i class="fa fa-list"></i>Standard Reservation</a>
-                    <a href="{{ url_for('reservation_e') }}" class="nav-link active"><i class="fa fa-list"></i>Emergency Reservation</a>
-                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> Back</a></ul>
+                    <a href="{{ url_for('reservation_s') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['res-s-standardreservation']}}</a>
+                    <a href="{{ url_for('reservation_e') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['res-e-EmergencyReservation']}}</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['res-e-back']}}</a></ul>
                 </div>
               </div>
               <!-- /.col-lg-3-->
@@ -18,15 +18,15 @@
             </div>
             <div class="col-lg-9">
               <div class="box">
-                <h1>Standard Reservation</h1>
+                <h1>{{language['res-s-standardreservation']}}</h1>
                   <form action="" method="post" novalidate>
                     {{form.hidden_tag() }}
                    <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="firstname">Select your pet here.</label>
+                        <label for="firstname">{{language['res-e-selectpet']}}</label>
                         {{form.pet_id}}
-                        <a href="{{ url_for('pet_add') }}" ><i class="fa fa-list"></i> Add new pet</a>
+                        <a href="{{ url_for('pet_add') }}" ><i class="fa fa-list"></i> {{language['res-e-addnew']}}</a>
                       </div>
                     </div>
                   </div>
@@ -37,7 +37,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Arrive Date</label>
+                        <label>{{language['res-e-arrivetime']}}</label>
                         
                         {{ form.date (id="datepicker", onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}") }}
                         
@@ -50,7 +50,7 @@
 
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="street">Time Slot</label>
+                        <label for="street">{{language['res-s-timeslot']}}</label>
                         {{ form.time }}
                         {% for error in form.time.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
@@ -62,7 +62,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="company">City</label>
+                        <label for="company">{{language['res-e-city']}}</label>
                         {{ form.city }}
                         {% for error in form.city.errors %}
                                     <span style="color: red;">[{{ error }}]</span>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="street">More Details</label>
+                        <label for="street">{{language['res-e-moredetail']}}</label>
                         {{ form.detail(size=32) }}
                         {% for error in form.detail.errors %}
                                     <span style="color: red;">[{{ error }}]</span>

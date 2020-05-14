@@ -1,9 +1,9 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Healing Paws System</title>
+        <title>{{ title }} - {{language['base-title']}}</title>
         {% else %}
-        <title>No link</title>
+        <title>{{language['base-nolink']}}</title>
         {% endif %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,24 +41,24 @@
         <div class="header-w3layouts" style="padding-left: 1.5em;">
         <nav>
           <div id="logo">
-            <h1><a href="{{ url_for('index') }}">&copy;Healing Paws Veterinary Hospital</a></h1>
+            <h1><a href="{{ url_for('index') }}">&copy;Healing Paws Veterinary {{language['base-hospital']}}</a></h1>
           </div>
 
-          <label for="drop" class="toggle">Menu</label>
+          <label for="drop" class="toggle">{{language['base-menu']}}</label>
           <input type="checkbox" id="drop">
           <ul class="menu mt-2">
             <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
-                <a href="{{ url_for('index') }}">ABOUT&nbsp;US</a>
+                <a href="{{ url_for('index') }}">{{language['base-aboutus']}}</a>
             </li>
             <li>
-                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('login') }}">{{language['base-login']}}</a>
             </li>
             <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
               
-              <a href="{{ url_for('employee_register') }}">For Employees</a>
+              <a href="{{ url_for('employee_register') }}">{{language['base-foremployee']}}</a>
             </li>
             <li>
-                <a href="{{ url_for('index') }}">Languages</a>
+                <a href="{{ url_for('change_language') }}">{{ language['base-language'] }}</a>
             </li>
           </ul>
         </nav>

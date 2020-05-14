@@ -18,8 +18,8 @@
                 <div class="col-sm-5 form-box">
                     <div class="form-top">
                         <div class="form-top-left">
-                            <h3>Log on our website</h3>
-                                <p>Fill in the form below to sign in:</p>
+                            <h3>{{language['login-logon']}}</h3>
+                                <p>{{language['login-fillinform']}}</p>
                         </div>
                         <div class="form-top-right">
                             <i class="fa fa-pencil"></i>
@@ -53,8 +53,8 @@
                         <div class="form-check">
                             <br>
                             <p style="font-size: 20px;"><i>
-                                No account? Go to
-                                <a style="font-size: larger;" href="{{ url_for('customer_register') }}"><b><i> Register</i></b></a>
+                                {{language['login-noaccount']}}
+                                <a style="font-size: larger;" href="{{ url_for('customer_register') }}"><b><i> {{language['login-register']}}</i></b></a>
                                 </i>
                             </p>
                         </div>

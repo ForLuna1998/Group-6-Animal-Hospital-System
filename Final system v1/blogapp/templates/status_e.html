@@ -3,45 +3,37 @@
 {% block content %}
               <div class="card sidebar-menu mb-4">
                 <div class="card-header">
-                  <h3 class="h4 card-title">CATELOGUE</h3>
+                  <h3 class="h4 card-title">{{language['r-a-CATELOGUE']}}</h3>
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column category-menu">
-                    <li><a href="#" class="nav-link">Standard</a>
+                    <li><a href="#" class="nav-link">{{language['r-a-Standard']}}</a>
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">Make an appointment</a></li>
-                        <li><a href="{{ url_for('status_a') }}" class="nav-link">Appointment Status</a></li>
-                        <li><a href="{{ url_for('record_a') }}" class="nav-link">Appointment record</a></Sli>
+                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">{{language['r-a-Makeanappointment']}}</a></li>
+                        <li><a href="{{ url_for('status_a') }}" class="nav-link">{{language['r-a-AppointmentStatus']}}</a></li>
+                        <li><a href="{{ url_for('record_a') }}" class="nav-link">{{language['r-a-Appointmentrecord']}}</a></Sli>
                       </ul>
                     </li>
-                    <li><a href="#" class="nav-link">Emergency</a>
+                    <li><a href="#" class="nav-link">{{language['r-a-Emergency']}}</a>
                   <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
-                        <li><a href="{{ url_for('status_e') }}" class="nav-link">Appointment Status</a></li>
-                        <li><a href="{{ url_for('record_e') }}" class="nav-link">Appointment record</a></li>
+                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">{{language['r-a-Makeanappointment']}}</a></li>
+                        <li><a href="{{ url_for('status_e') }}" class="nav-link">{{language['r-a-AppointmentStatus']}}</a></li>
+                        <li><a href="{{ url_for('record_e') }}" class="nav-link">{{language['r-a-Appointmentrecord']}}</a></li>
                       </ul>
                     </li>
-                    <li><a href="#" class="nav-link">Surgical Operation </a>
+                    <li><a href="#" class="nav-link">{{language['r-a-SurgicalOperation']}} </a>
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">Operation Status</a></li>
-                        <li><a href="{{ url_for('record_o') }}" class="nav-link">Operation record</a></li>
+                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">{{language['r-a-OperationStatus']}}</a></li>
+                        <li><a href="{{ url_for('record_o') }}" class="nav-link">{{language['r-a-Operationrecord']}}</a></li>
                       </ul>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div class="card sidebar-menu mb-4">
-                <div class="card-header">
-                  <h3 class="h4 card-title">PETS</h3>
-                </div>
-                <div class="card-body">
-                                <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
-
-                </div>
-              </div>
              
               <!-- *** MENUS AND FILTERS END ***-->
+              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
             </div>
             <div class="col-lg-9">
              
@@ -50,20 +42,20 @@
           
           <div id="customer-orders" class="col-lg-9">
             <div class="box" style="margin-right: -220px;margin-left: -14px;">
-              <h1>Emergency Appiontment Status</h1>
+              <h1>{{language['s-e-emergencystatus']}}</h1>
               <!-- <p class="lead">Status of your appointments</p> -->
-              <p class="text-muted">If you have any questions, please feel free to <a href="{{url_for('customer_chatting')}}">contact us</a>, our customer service center is working for you 24/7.</p>
+              <p class="text-muted">{{language['s-a-ifproblem']}} <a href="{{url_for('customer_chatting')}}">{{language['r-a-contactus']}}</a>{{language['r-a-247']}}</p>
               <hr>
               <div class="table-responsive">
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>Pet Name</th>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th>{{language['s-a-id']}}</th>
+                      <th>{{language['s-a-petname']}}</th>
+                      <th>{{language['s-a-date']}}</th>
+                      <th>{{language['r-a-time']}}</th>
+                      <th>{{language['s-a-status']}}</th>
+                      <th>{{language['s-a-action']}}</th>
                     </tr>
                   </thead>
                   <tbody>

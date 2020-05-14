@@ -1,9 +1,9 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Healing Paws System</title>
+        <title>{{ title }} - {{language['base-title']}}</title>
         {% else %}
-        <title>No link</title>
+        <title>{{language['base-nolink']}}</title>
         {% endif %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,13 +58,13 @@
       <div id="top">
         <div class="container">
           <div class="row">
-            <div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">OPEN HOURS</a><a href="#" class="ml-1">Every Day(9:00-21:00)
+            <div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">{{language['c-base-open']}}</a><a href="#" class="ml-1">{{language['c-base-everyday']}}
             </a></div>
             <div class="col-lg-6 text-center text-lg-right">
               <ul class="menu list-inline mb-0">
-                <li class="list-inline-item"><a href="{{ url_for('customer_index') }}">Home</a></li>
-                <li class="list-inline-item"><a href="{{ url_for('logout') }}">Logout</a></li>
-                <li class="list-inline-item"><a href="">Language</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('customer_index') }}">{{language['c-base-home']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('logout') }}">{{language['c-base-logout']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('change_language') }}">{{ language['c-base-language'] }}</a></li>
               </ul>
             </div>
           </div>
@@ -91,22 +91,22 @@
           </div>
           <div id="navigation" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">Appointment<b class="caret"></b></a>
+              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">{{language['c-base-appointment']}}<b class="caret"></b></a>
                 <ul class="dropdown-menu megamenu">
                   <li>
                     <div class="row">
                       <div class="col-md-6 col-lg-3">
-                        <h5>Standard</h5>
+                        <h5>{{language['c-base-standard']}}</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="{{ url_for('reservation_s') }}" class="nav-link">Make appointment</a></li>
+                          <li class="nav-item"><a href="{{ url_for('reservation_s') }}" class="nav-link">{{language['c-base-m-appointment']}}</a></li>
                           <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">telephone</a></li> -->
                           <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">address</a></li> -->
                         </ul>
                       </div>
                       <div class="col-md-6 col-lg-3">
-                        <h5>Emergency</h5>
+                        <h5>{{language['c-base-emergency']}}</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="{{ url_for('reservation_e') }}" class="nav-link">Make appointment</a></li>
+                          <li class="nav-item"><a href="{{ url_for('reservation_e') }}" class="nav-link">{{language['c-base-m-appointment']}}</a></li>
                           <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">old</a></li> -->
                           <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">hobby</a></li> -->
                           <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">food</a></li> -->
@@ -116,22 +116,22 @@
                 </ul>
               </li>
 
-              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">ACCOUNT<b class="caret"></b></a>
+              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">{{language['c-base-account']}}<b class="caret"></b></a>
                 <ul class="dropdown-menu megamenu">
                   <li>
                     <div class="row">
                       <div class="col-md-6 col-lg-3">
-                        <h5>personal account</h5>
+                        <h5>{{language['c-base-pc']}}</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">my Profile</a></li>
+                          <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">{{language['c-base-mp']}}</a></li>
                           <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">telephone</a></li> -->
                           <!-- <li class="nav-item"><a href="{{ url_for('customer_account') }}" class="nav-link">address</a></li> -->
                         </ul>
                       </div>
                       <div class="col-md-6 col-lg-3">
-                        <h5>pet accounts</h5>
+                        <h5>{{language['c-base-petaccount']}}</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">my Pet</a></li>
+                          <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">{{language['c-base-mypet']}}</a></li>
                           <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">old</a></li> -->
                           <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">hobby</a></li> -->
                           <!-- <li class="nav-item"><a href="{{ url_for('pet_account') }}" class="nav-link">food</a></li> -->
@@ -140,17 +140,17 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">Help<b class="caret"></b></a>
+              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">{{language['c-base-help']}}<b class="caret"></b></a>
                 <ul class="dropdown-menu megamenu">
                   <li>
                     <div class="row">
                       <div class="col-md-6 col-lg-3">
-                        <h5>INSTRUCTION</h5>
+                        <h5>{{language['c-base-INSTRUCTION']}}</h5>
                         <ul class="list-unstyled mb-3">
-                          <li class="nav-item"><a href="category.html" class="nav-link">APPOINTMENT</a></li>
-                          <li class="nav-item"><a href="category.html" class="nav-link">DOCTOR</a></li>
-                          <li class="nav-item"><a href="category.html" class="nav-link">ACCOUNT</a></li>
-                          <li class="nav-item"><a href="category.html" class="nav-link">MESSAGE</a></li>
+                          <li class="nav-item"><a href="category.html" class="nav-link">{{language['c-base-APPOINTMENT']}}</a></li>
+                          <li class="nav-item"><a href="category.html" class="nav-link">{{language['c-base-DOCTOR']}}</a></li>
+                          <li class="nav-item"><a href="category.html" class="nav-link">{{language['c-base-ACCOUNT']}}</a></li>
+                          <li class="nav-item"><a href="category.html" class="nav-link">{{language['c-base-MESSAGE']}}</a></li>
                         </ul>
                       </div>
                      
@@ -169,7 +169,7 @@
               <!-- /.nav-collapse-->
               <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
               
-              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="{{url_for('customer_chatting')}}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>Consultation</span></a>
+              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="{{url_for('customer_chatting')}}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>{{language['c-base-Consultation']}}</span></a>
                   
               
               
@@ -224,45 +224,45 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6">
-            <h4 class="mb-3">Pages</h4>
+            <h4 class="mb-3">{{language['c-base-pages']}}</h4>
             <ul class="list-unstyled">
-              <li><a href="text.html">About us</a></li>
-              <li><a href="{{url_for('customer_chatting')}}">Contact us</a></li>
+              <li><a href="text.html">{{language['c-base-aboutus']}}</a></li>
+              <li><a href="{{url_for('customer_chatting')}}">{{language['c-base-Contactus']}}</a></li>
             </ul>
             <hr>
-            <h4 class="mb-3">User section</h4>
+            <h4 class="mb-3">{{language['c-base-Usersection']}}</h4>
             <ul class="list-unstyled">
-              <li><a href="{{ url_for('login') }}" >Login</a></li>
-              <li><a href="{{ url_for('customer_register') }}">Regiter</a></li>
+              <li><a href="{{ url_for('login') }}" >{{language['c-base-login']}}</a></li>
+              <li><a href="{{ url_for('customer_register') }}">{{language['c-base-register']}}</a></li>
             </ul>
           </div>
           <!-- /.col-lg-3-->
           <div class="col-lg-3 col-md-6">
-            <h4 class="mb-3">Top categories</h4>
-            <h5>Standard Appointment</h5>
+            <h4 class="mb-3">{{language['c-base-Topcategories']}}</h4>
+            <h5>{{language['c-base-StandardAppointment']}}</h5>
             <ul class="list-unstyled">
-              <li><a href="{{ url_for('reservation_s') }}">reservation</a></li>
-              <li><a href="{{ url_for('status_a') }}">record</a></li>
-              <li><a href="{{ url_for('record_a') }}">status</a></li>
+              <li><a href="{{ url_for('reservation_s') }}">{{language['c-base-reservation']}}</a></li>
+              <li><a href="{{ url_for('status_a') }}">{{language['c-base-status']}}</a></li>
+              <li><a href="{{ url_for('record_a') }}">{{language['c-base-record']}}</a></li>
             </ul>
-            <h5>Emergency Appiontment</h5>
+            <h5>{{language['c-base-EmergencyAppiontment']}}</h5>
             <ul class="list-unstyled">
-              <li><a href="{{ url_for('reservation_e') }}">reservation</a></li>
-              <li><a href="{{ url_for('status_e') }}">record</a></li>
-              <li><a href="{{ url_for('record_e') }}">status</a></li>
+              <li><a href="{{ url_for('reservation_e') }}">{{language['c-base-reservation']}}</a></li>
+              <li><a href="{{ url_for('status_e') }}">{{language['c-base-status']}}</a></li>
+              <li><a href="{{ url_for('record_e') }}">{{language['c-base-record']}}</a></li>
       
             </ul>
           </div>
           <!-- /.col-lg-3-->
           <div class="col-lg-3 col-md-6">
-            <h4 class="mb-3">Where to find us</h4>
-            <p><strong>Obaju Ltd.</strong><br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>Beijing<br></p><a href="{{url_for('customer_chatting')}}">Go to contact page</a>
+            <h4 class="mb-3">{{language['c-base-wheretodind']}}</h4>
+            <p><strong>Obaju Ltd.</strong><br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>Beijing<br></p><a href="{{url_for('customer_chatting')}}">{{language['c-base-gtcp']}}</a>
             <hr class="d-block d-md-none">
           </div>
           <!-- /.col-lg-3-->
           <div class="col-lg-3 col-md-6">
             
-            <h4 class="mb-3">Stay in touch</h4>
+            <h4 class="mb-3">{{language['c-base-Stayintouch']}}</h4>
             <p class="social"><a href="https://www.facebook.com/" class="facebook external"><i class="fa fa-facebook"></i></a><a href="https://twitter.com" class="twitter external"><i class="fa fa-twitter"></i></a><a href="https://www.instagram.com/" class="instagram external"><i class="fa fa-instagram"></i></a><a href="https://mail.google.com" class="email external"><i class="fa fa-envelope"></i></a></p>
           </div>
           <!-- /.col-lg-3-->

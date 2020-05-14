@@ -10,8 +10,8 @@
                         <div class="col-sm-5 form-box">
                             <div class="form-top">
                                 <div class="form-top-left">
-                                    <h3>Sign up now</h3>
-                                    <p>Fill in the form to get an account:</p>
+                                    <h3>{{language['c-register-Signupnow']}}</h3>
+                                    <p>{{language['c-register-fillinform']}}</p>
                                 </div>
                                 <div class="form-top-right">
                                     <i class="fa fa-pencil"></i>
@@ -60,7 +60,7 @@
                                     <div class="form-check">
                                         {{ form.accept_rules() }} 
                                         {{ form.accept_rules.label }}
-                                        <a href="{{ url_for('index') }}"><b>SITE RULES</b></a> <br>
+                                        <a href="{{ url_for('index') }}"><b>{{language['c-register-siterule']}}</b></a> <br>
                                         {% for error in form.accept_rules.errors %}
                                         <span style="color: red;">[{{ error }}]</span>
                                         {% endfor %}
@@ -70,19 +70,19 @@
                             </div>
                         </div>
                         <div class="col-sm-7 text" style="padding-top: 10em;">
-                            <h1>Customer Registration Form</h1>
+                            <h1>{{language['c-register-registerform']}}</h1>
                             <div class="description">
-                                If you want to make an appointment for your pet, 
-                                <br>please sign up first. 
+                                {{language['c-register-ifyouwant']}} 
+                                <br>{{language['c-register-pleasesignup']}} 
                             </div>
                             <div class="top-big-link">
                                 <div class="description">
                                     <p>
                                         <br>
-                                        Already have an account? Log in here
+                                        {{language['c-register-already']}}
                                     </p>
                                 </div>
-                                <a class="btn-link-1" href="{{url_for('login')}}">Log in</a>
+                                <a class="btn-link-1" href="{{url_for('login')}}">{{language['c-register-login']}}</a>
                                 
                             </div>
                         </div>

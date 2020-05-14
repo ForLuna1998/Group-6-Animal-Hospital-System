@@ -25,7 +25,7 @@
     <div class="container" style="background-color:#FDF5E6">
         <div class="row">
             <form method="post" style="width: 1125px; text-align: right;">
-                <a href="{{url_for('employee_f')}}" class="btn btn-primary submit">Back</a>
+                <a href="{{url_for('employee_f')}}" class="btn btn-primary submit">{{language['p-account-back']}}</a>
                 <!-- {{ form.date( id="datepicker", onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}") }} -->
                 {{ form.date(size=20) }}
                 {{ form.submit() }}
@@ -36,15 +36,15 @@
                                 
                     <table id="fresh" class="table table-hover" style="text-align: center;">
                         <thead style="font-size: large;">
-                            <th data-field="id">ID</th>
-                            <th data-field="phone" data-sortable="true">Phone Number</th>
-                            <th data-field="detail">Details</th>
-                        	<th data-field="date" data-sortable="true">Date</th>
-                            <th data-field="time" data-sortable="true">Time</th>
+                            <th data-field="id">{{language['e-t-id']}}</th>
+                            <th data-field="phone" data-sortable="true">{{language['e-t-phonenumber']}}</th>
+                            <th data-field="detail">{{language['e-t-details']}}</th>
+                        	<th data-field="date" data-sortable="true">{{language['e-t-date']}}</th>
+                            <th data-field="time" data-sortable="true">{{language['e-t-timeslot']}}</th>
                             
-                            <th data-field="type" data-sortable="true">Type</th>
-                            <th data-field="status" data-sortable="true">Status</th>
-                        	<th data-field="edit">Actions</th>
+                            <th data-field="type" data-sortable="true">{{language['e-t-Type']}}</th>
+                            <th data-field="status" data-sortable="true">{{language['s-a-status']}}</th>
+                        	<th data-field="edit">{{language['e-t-action']}}</th>
                         </thead>
                         <tbody style="font-size: 18px;">
                             {% for post in prev_posts %}
@@ -58,7 +58,7 @@
                                   
                                     <td>{{post.Appointment.type}}</td>
                                   <td>{{post.Appointment.status}}</td>
-                                  <td><button class="btn btn-primary btn-sm edit">Edit</button></td>
+                                  <td><button class="btn btn-primary btn-sm edit">{{language['e-f-edit']}}</button></td>
                                 </tr>
                             {% endif %}
                             {% endfor %}

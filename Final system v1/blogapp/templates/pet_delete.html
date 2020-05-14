@@ -4,14 +4,14 @@
 
               <div class="card sidebar-menu">
                 <div class="card-header">
-                  <h3 class="h4 card-title">Pet Accounts</h3>
+                  <h3 class="h4 card-title">{{language['p-account-petaccount']}}</h3>
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column">
-                    <a href="{{ url_for('pet_account') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Account</a>
-                    <a href="{{ url_for('pet_delete') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Delete</a>
-                    <a href="{{ url_for('pet_add') }}" class="nav-link active"><i class="fa fa-list"></i> Pet Add</a>
-                    <a href="{{ url_for('pet_account') }}" class="nav-link"><i class="fa fa-sign-out"></i> Back</a></ul>
+                    <a href="{{ url_for('pet_account') }}" class="nav-link active"><i class="fa fa-list"></i> {{language['p-account-petaccount']}}</a>
+                    <a href="{{ url_for('pet_delete') }}" class="nav-link active"><i class="fa fa-list"></i> {{language['p-account-petdelete']}}</a>
+                    <a href="{{ url_for('pet_add') }}" class="nav-link active"><i class="fa fa-list"></i> {{language['p-account-add']}}</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['p-account-back']}}</a></ul>
                 </div>
               </div>
               <!-- /.col-lg-3-->
@@ -19,7 +19,7 @@
             </div>
             <div class="col-lg-9">
               <div class="box">
-                <h1>Pet Delete</h1>
+                <h1>{{language['p-delete-petdelete']}}</h1>
 
                 <form action="" method="post" novalidate>
                   {{ form.hidden_tag() }}
@@ -27,7 +27,7 @@
                 <div class="row " >
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="firstname">Select your pet here.</label>
+                        <label for="firstname">{{language['p-delete-selectpet']}}</label>
                         {{form.pet_id}}
                         
                       </div>

@@ -4,13 +4,13 @@
 
               <div class="card sidebar-menu">
                 <div class="card-header">
-                  <h3 class="h4 card-title">Emergency Reservation</h3>
+                  <h3 class="h4 card-title">{{language['res-e-EmergencyReservation']}}</h3>
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column">
-                    <a href="{{ url_for('reservation_s') }}" class="nav-link active"><i class="fa fa-list"></i>Standard Reservation</a>
-                    <a href="{{ url_for('reservation_e') }}" class="nav-link active"><i class="fa fa-list"></i>Emergency Reservation</a>
-                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> Back</a></ul>
+                    <a href="{{ url_for('reservation_s') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['res-s-standardreservation']}}</a>
+                    <a href="{{ url_for('reservation_e') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['res-e-EmergencyReservation']}}</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['res-e-back']}}</a></ul>
                 </div>
               </div>
               <!-- /.col-lg-3-->
@@ -18,16 +18,16 @@
             </div >
             <div class="col-lg-9">
               <div class="box">
-                <h1>Emergency Reservation</h1>
+                <h1>{{language['res-e-EmergencyReservation']}}</h1>
               
                 <form action="" method="post" novalidate>
                   {{ form.hidden_tag() }}
                 <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="firstname">Select your pet here.</label>
+                        <label for="firstname">{{language['res-e-selectpet']}}</label>
                         {{form.pet_id}}
-                        <a href="{{ url_for('pet_add') }}" ><i class="fa fa-list"></i> Add new pet</a>
+                        <a href="{{ url_for('pet_add') }}" ><i class="fa fa-list"></i> {{language['res-e-addnew']}}</a>
                       </div>
                     </div>
                   </div>
@@ -38,13 +38,13 @@
                     <div class="col-md-6">
                       <!-- <div class="col-sm-2 col-lg-offset-1"> -->
                       <div class="form-group">
-                        <label for="city">Arrive time</label>
+                        <label for="city">{{language['res-e-arrivetime']}}</label>
                         {{ form.time (id="date", placeholder="Select Time", class="form-control") }}
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="time">city </label>
+                        <label for="time">{{language['res-e-city']}} </label>
                         {{ form.city }} 
                       </div>
                     </div>
@@ -53,7 +53,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="street">More Details</label>
+                        <label for="street">{{language['res-e-moredetail']}}</label>
                         {{ form.detail(size=300) }}
                         {% for error in form.detail.errors %}
                                     <span style="color: red;">[{{ error }}]</span>

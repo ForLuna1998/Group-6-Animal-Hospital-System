@@ -3,29 +3,29 @@
 {% block content %}
               <div class="card sidebar-menu mb-4">
                 <div class="card-header">
-                  <h3 class="h4 card-title">CATELOGUE</h3>
+                  <h3 class="h4 card-title">{{language['c-index-cat']}}</h3>
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column category-menu">
-                    <li><a href="#" class="nav-link">Standard</a>
+                    <li><a href="#" class="nav-link">{{language['c-index-Standard']}}</a>
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">Make an appointment</a></li>
-                        <li><a href="{{ url_for('status_a') }}" class="nav-link">Appointment Status</a></li>
-                        <li><a href="{{ url_for('record_a') }}" class="nav-link">Appointment record</a></Sli>
+                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">{{language['c-index-Makeanappointment']}}</a></li>
+                        <li><a href="{{ url_for('status_a') }}" class="nav-link">{{language['c-index-AppointmentStatus']}}</a></li>
+                        <li><a href="{{ url_for('record_a') }}" class="nav-link">{{language['c-index-Appointmentrecord']}}</a></Sli>
                       </ul>
                     </li>
-                    <li><a href="#" class="nav-link">Emergency</a>
+                    <li><a href="#" class="nav-link">{{language['c-index-Emergency']}}</a>
                   <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
-                        <li><a href="{{ url_for('status_e') }}" class="nav-link">Appointment Status</a></li>
-                        <li><a href="{{ url_for('record_e') }}" class="nav-link">Appointment record</a></li>
+                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">{{language['c-index-Makeanappointment']}}</a></li>
+                        <li><a href="{{ url_for('status_e') }}" class="nav-link">{{language['c-index-AppointmentStatus']}}</a></li>
+                        <li><a href="{{ url_for('record_e') }}" class="nav-link">{{language['c-index-Appointmentrecord']}}</a></li>
                       </ul>
                     </li>
-                    <li><a href="#" class="nav-link">Surgical Operation</a>
+                    <li><a href="#" class="nav-link">{{language['c-index-SurgicalOperation']}}</a>
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">Operation Status</a></li>
-                        <li><a href="{{ url_for('record_o') }}" class="nav-link">Operation record</a></li>
+                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">{{language['c-index-OperationStatus']}}</a></li>
+                        <li><a href="{{ url_for('record_o') }}" class="nav-link">{{language['c-index-OperationRecord']}}</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -69,8 +69,8 @@
             </div>
             <div class="col-lg-9">
               <div class="box">
-                <h1>Healing Paws Veterinary Hospital</h1>
-                <p>Click on each section below for more information</p>
+                <h1>{{language['c-index-Healing']}}</h1>
+                <p>{{language['c-index-click']}}</p>
         </div>
     
               <div class="row products">
@@ -83,7 +83,7 @@
                       </div>
                     </div><a href="#" class="invisible"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
-                      <h3><a href="#">Standard Appointment</a></h3>
+                      <h3><a href="#">{{language['c-index-StandardAppointment']}}</a></h3>
                      
             <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>
             View more</a></p> -->
@@ -101,18 +101,18 @@
                       </div>
                     </div><a href="#" class="invisible"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
-                      <h3><a href="#">Emergency Appointment</a></h3>
+                      <h3><a href="#">{{language['c-index-EmergencyAppointment']}}</a></h3>
                     
                       <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>View more</a></p> -->
                     </div>
                     <!-- /.text-->
                     <div class="ribbon sale">
-                      <div class="theribbon"> URGENT</div>
+                      <div class="theribbon"> &nbsp; &nbsp;{{language['c-index-URGENT']}}</div>
                       <div class="ribbon-background"></div>
                     </div>
                     <!-- /.ribbon-->
                     <div class="ribbon new">
-                      <div class="theribbon"> &nbsp; &nbsp;FAST</div>
+                      <div class="theribbon"> &nbsp; &nbsp;{{language['c-index-fast']}}</div>
                       <div class="ribbon-background"></div>
                     </div>
                    
@@ -128,7 +128,7 @@
                       </div>
                     </div><a href="#" class="invisible"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
-                      <h3><a href="#">Surgical Operation</a></h3>
+                      <h3><a href="#">{{language['r-a-SurgicalOperation']}}</a></h3>
                      
                       <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>View more</a></p> -->
                     </div>
@@ -145,7 +145,7 @@
                       </div>
                     </div><a href="#" class="invisible"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
-                      <h3><a href="#">Postoperative care</a></h3>
+                      <h3><a href="#">{{language['c-index-Postoperativecare']}}</a></h3>
                      
                       <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>View more</a></p> -->
                     </div>
@@ -162,13 +162,13 @@
                       </div>
                     </div><a href="#" class="invisible"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
-                      <h3><a href="#">Check-ups</a></h3>
+                      <h3><a href="#">{{language['c-index-Checkups']}}</a></h3>
                     
                       <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>View more</a></p> -->
                     </div>
                     <!-- /.text-->
                     <div class="ribbon new">
-                      <div class="theribbon">&nbsp;&thinsp; NEW</div>
+                      <div class="theribbon">&nbsp;&thinsp; {{language['c-index-NEW']}}</div>
                       <div class="ribbon-background"></div>
                     </div>
                     <!-- /.ribbon-->
@@ -184,13 +184,13 @@
                       </div>
                     </div><a href="#" class="invisible"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a>
                     <div class="text">
-                      <h3><a href="#">Bathe Pets</a></h3>
+                      <h3><a href="#">{{language['c-index-BathePets']}}</a></h3>
                     
                       <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>View more</a></p> -->
                     </div>
                     <!-- /.text-->
                     <div class="ribbon gift">
-                      <div class="theribbon">&nbsp;&nbsp;&thinsp;GIFT</div>
+                      <div class="theribbon">&nbsp;&nbsp;&thinsp;{{language['c-index-GIFT']}}</div>
                       <div class="ribbon-background"></div>
                     </div>
                     <!-- /.ribbon-->
