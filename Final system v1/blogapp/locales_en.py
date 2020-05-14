@@ -136,7 +136,7 @@ en = {
     'e-base-table':"Full Table",
     'e-base-chatting':"Chatting",
     'e-base-logout':"Logout",
-    'e-base-language':"Language",
+    'e-base-language':"中文",
 
 # emoloyee c
     'e-c-draggable':"Draggable Appointments",

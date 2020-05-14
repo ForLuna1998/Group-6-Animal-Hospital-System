@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, session,request,jsonify,json
 from werkzeug.security import generate_password_hash, check_password_hash
 from blogapp import app, db
-from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm, PostForm, PostForm2, ManageForm, PetChangeForm
+from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm, PetChangeForm,PostForm, PostForm2, ManageForm
 from blogapp.models import Customer, Employee, Pet, Appointment, Post
 from blogapp.config import Config
 from blogapp.locales_cn import cn

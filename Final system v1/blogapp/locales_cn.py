@@ -89,7 +89,7 @@ cn = {
 
     'c-index-Clear':"清除",
     'c-index-Healing':"治愈之爪兽医院",
-    'c-index-click':"点击以获取更多信息",
+    'c-index-click':"点击下方区块以获取更多信息",
     'c-index-StandardAppointment':"常规预约",
 
     'c-index-Viewmore':"更多",
@@ -137,11 +137,11 @@ cn = {
     'e-base-table':"表格",
     'e-base-chatting':"聊天",
     'e-base-logout':"登出",
-    'e-base-language':"语言",
+    'e-base-language':"English",
 
 # emoloyee c
     'e-c-draggable':"可拖拽的预约",
-    'e-c-removeafterdrop':"下划移除",
+    'e-c-removeafterdrop':"拖拽后移除",
 
 # employee chatting
     'e-chatting-noprevious':"没有更多了！",
