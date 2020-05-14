@@ -1,7 +1,7 @@
 {% extends "employee_base.html" %}
 
 {% block head %}
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
         <!-- <link href="{{ url_for('static', filename='assets4/css/bootstrap.css') }}" rel='stylesheet'> -->
@@ -41,13 +41,13 @@
                         <thead style="font-size: large;">
                             <th data-field="id">{{language['e-index-id']}}</th>
                             <th data-field="phone" data-sortable="true">{{language['e-index-phonenum']}}</th>
-                            <th data-field="detail">Details</th>
-                        	<th data-field="date" data-sortable="true">{{language['e-t-date']}}</th>
+                            <th data-field="detail">{{language['e-t-details']}}</th>
+                            <th data-field="date" data-sortable="true">{{language['e-t-date']}}</th>
                             <th data-field="time" data-sortable="true">{{language['r-a-time']}}</th>
                             
-                            <th data-field="type" data-sortable="true">{{language['p-account-type']}}</th>
+                            <th data-field="type" data-sortable="true">{{language['e-t-Type']}}</th>
                             <th data-field="status" data-sortable="true">{{language['e-f-status']}}</th>
-                        	<th data-field="edit">{{language['e-index-Actions']}}</th>
+                            <th data-field="edit">{{language['e-index-Actions']}}</th>
                         </thead>
                         <tbody style="font-size: 18px;">
                             {% for post in prev_posts %}

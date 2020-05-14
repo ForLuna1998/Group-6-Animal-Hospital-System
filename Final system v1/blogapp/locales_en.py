@@ -25,7 +25,7 @@ en = {
 # customer base
 # from top to down
 # title is the same with base
-    'c-base-open':"POEN HOURS",
+    'c-base-open':"OPEN HOURS",
     'c-base-everyday':"Every Day(9:00-21:00)",
     'c-base-home':"Home",
     'c-base-logout':"Logout",
@@ -132,8 +132,8 @@ en = {
 
 # employee base
 #     title is the same with base
-    'e-base-fullcalender':"Full Calendar",
-    'e-base-table':"Table",
+    'e-base-fullcalender':"Calendar",
+    'e-base-table':"Full Table",
     'e-base-chatting':"Chatting",
     'e-base-logout':"Logout",
     'e-base-language':"Language",

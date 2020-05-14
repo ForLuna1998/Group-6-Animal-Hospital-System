@@ -175,7 +175,7 @@ cn = {
     'e-t-id':"ID",
     'e-t-phonenumber':"电话号码",
     'e-t-date':"日期",
-    'e-t-timeslot':"时间格",
+    'e-t-timeslot':"时间",
     'e-t-Type':"类型",
     'e-t-details':"具体信息",
     'e-t-action':"动作",
