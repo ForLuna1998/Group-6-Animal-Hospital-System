@@ -64,8 +64,9 @@ class PetAccountForm(FlaskForm):
 
 	def __init__(self, *args, **kwargs):
 		super(PetAccountForm, self).__init__(*args, **kwargs)
-		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
+		if not session.get("USERNAME") is None:
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
 
 class PetDeleteForm(FlaskForm):
 	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
@@ -77,8 +78,9 @@ class PetDeleteForm(FlaskForm):
 
 	def __init__(self, *args, **kwargs):
 		super(PetDeleteForm, self).__init__(*args, **kwargs)
-		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
+		if not session.get("USERNAME") is None:
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
 
 
 class REForm(FlaskForm):
@@ -96,8 +98,9 @@ class REForm(FlaskForm):
 
 	def __init__(self, *args, **kwargs):
 		super(REForm, self).__init__(*args, **kwargs)
-		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
+		if not session.get("USERNAME") is None:
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
 
 class RSForm(FlaskForm):
 	# pet_id = SelectField('', validators=[DataRequired()], choices=[('1', 'A'), ('2', 'B'), ('3', 'C'), ('4', 'D')],
@@ -118,8 +121,9 @@ class RSForm(FlaskForm):
 
 	def __init__(self, *args, **kwargs):
 		super(RSForm, self).__init__(*args, **kwargs)
-		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-		self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
+		if not session.get("USERNAME") is None:
+			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			self.pet_id.choices=[(pet_id.id,pet_id.name) for pet_id in Pet.query.filter(Pet.customer_id == customer_in_db.id).all()]
 
 class PetChangeForm(FlaskForm):
 	pet_name = StringField('', validators=[DataRequired()],

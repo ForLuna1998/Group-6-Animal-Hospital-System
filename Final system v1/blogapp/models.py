@@ -12,7 +12,7 @@ class Customer(db.Model):
 	firstname = db.Column(db.String(64), index=True)
 	lastname = db.Column(db.String(64), index=True)
 	appointment = db.relationship('Appointment', backref='customer', lazy='dynamic')
-	posts = db.relationship('Post', backref='customer', lazy='dynamic')
+	posts = db.relationship('Post', backref='author', lazy='dynamic')
 
 
 	def __repr__(self):
@@ -68,4 +68,4 @@ class Post(db.Model):
 	user_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
 	def __repr__(self):
-		return '{}: {}  --- <{}>'.format(self.name, self.body, str(self.timestamp)[0:16])
+		return '{}: {}   <{}>'.format(self.name, self.body, str(self.timestamp)[0:16])
