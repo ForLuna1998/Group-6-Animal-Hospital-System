@@ -4,11 +4,11 @@
 
               <div class="card sidebar-menu">
                 <div class="card-header">
-                  <h3 class="h4 card-title">{{language{'c-account-ps'}}</h3>
+                  <h3 class="h4 card-title">{{language['c-account-ps']}}</h3>
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column">
-                    <a href="{{ url_for('customer_account') }}" class="nav-link active"><i class="fa fa-list"></i> {{language['c-account-myaccount']}</a>
+                    <a href="{{ url_for('customer_account') }}" class="nav-link active"><i class="fa fa-list"></i> {{language['c-account-myaccount']}}</a>
                     <a href="{{ url_for('customer_password') }}" class="nav-link active"><i class="fa fa-list"></i> {{language['c-account-ChangePassword']}}</a>
                     <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['c-account-back']}}</a></ul>
                 </div>
@@ -18,8 +18,14 @@
             </div>
             <div class="col-lg-9">
               <div class="box">
-                <h1>{{language['c-account-myaccount']}}</h1>
-                <p class="lead">{{language['c-account-change']}}</p>
+                <h1>{{language['c-account-change']}}</h1>
+                <p class="lead">{{language['c-account-pd']}}</p>
+              
+
+                <form action="" method="post" novalidate>
+                 {{ form.hidden_tag() }}
+
+                </form>
                 <h3 class="mt-5">{{language['c-account-pd']}}</h3>
 
                 <form action="" method="post" novalidate>
@@ -34,7 +40,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="lastname">{{['c-account-ln']}}</label>
+                        <label for="lastname">{{language['c-account-ln']}}</label>
                         {{ form.lastname(size=32) }}
                       </div>
                     </div>
@@ -43,13 +49,13 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="company">{{['c-account-email']}}</label>
+                        <label for="company">{{language['c-account-email']}}</label>
                         {{ form.email(size=32) }}
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="street">{{['c-account-telephone']}}</label>
+                        <label for="street">{{language['c-account-telephone']}}</label>
                         {{ form.telephone(size=32) }}
                       </div>
                     </div>
