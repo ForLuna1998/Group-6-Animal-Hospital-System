@@ -32,7 +32,7 @@ function check_username(){
 	}).done(function (response){
 		var server_response = response['text']
 		var server_code = response['returnvalue']
-		var u=/^[A-Z]{1}[A-Za-z0-9]*$/;
+		var u=/^[A-Z]{1}[A-Za-z0-9_]*$/;
 		if (server_code == 0 && u.test(chosen_user.val()) == true){ // success: Username does not exist in the database
 			$("#email").focus();
 			$("#checkuser").html('<span>' + server_response + '</span>');
@@ -113,7 +113,7 @@ function check_password(){
 		'password': chosen_user.val() //field value being sent to the server
 	}).done(function (response){
 		var server_response = response['text']
-		var u=/^[A-Z]{1}[A-Za-z0-9]*$/;
+		var u=/^[A-Z]{1}[A-Za-z0-9_]*$/;
 		if ( u.test(chosen_user.val()) == true){ // success: Username does not exist in the database
 			$("#password2").focus();
 			$("#checkpassword").html('<span>' + server_response + '</span>');
