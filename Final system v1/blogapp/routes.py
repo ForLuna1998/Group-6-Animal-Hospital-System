@@ -298,7 +298,7 @@ def reservation_e():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			#存到数据库的日期和时间格式分别是yyyy-mm-dd 和 hh:mm
 			emergency_appointment = Appointment(type='Emergency', time=str(form.time.data)[11:16],date=str(form.time.data)[0:10], 
-				city=form.city.data, details=form.detail.data, pet_id=form.pet_id.data, customer=customer_in_db.id)
+				city=form.city.data, details=form.detail.data, pet_id=form.pet_id.data, customer=customer_in_db)
 			db.session.add(emergency_appointment)
 			db.session.commit()
 			return redirect(url_for('status_e'))
@@ -317,7 +317,7 @@ def reservation_s():
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			standard_appointment = Appointment(type='Standard',date=form.date.data, time=form.time.data, city=form.city.data, 
-				details=form.detail.data,  pet_id=form.pet_id.data, customer=customer_in_db.id)
+				details=form.detail.data,  pet_id=form.pet_id.data, customer=customer_in_db)
 			db.session.add(standard_appointment)
 			db.session.commit()
 			return redirect(url_for('status_a'))
