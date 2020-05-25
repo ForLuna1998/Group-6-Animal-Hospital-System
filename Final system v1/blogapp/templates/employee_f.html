@@ -13,7 +13,7 @@
  -->    <!--     Fonts and icons     -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'> -->
-
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap-grid.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <script src="{{ url_for('static', filename='jQ.js') }}"></script>
     <style type="text/css">
@@ -40,7 +40,7 @@
                     <table id="fresh" class="table table-hover" style="text-align: center;">
                         <thead style="font-size: large;">
                             <th data-field="id">{{language['e-index-id']}}</th>
-                            <th data-field="phone" data-sortable="true">{{language['e-index-phonenum']}}</th>
+                            <th data-field="phone" data-sortable="true">{{language['e-t-phonenumber']}}</th>
                             <th data-field="detail">{{language['e-t-details']}}</th>
                             <th data-field="date" data-sortable="true">{{language['e-t-date']}}</th>
                             <th data-field="time" data-sortable="true">{{language['r-a-time']}}</th>
@@ -50,7 +50,8 @@
                             <th data-field="edit">{{language['e-index-Actions']}}</th>
                         </thead>
                         <tbody style="font-size: 18px;">
-                            {% for post in prev_posts %}
+                            
+                            {% for post in prev_posts.items %}
                             {% if post.Appointment.city == employee_in_db.key %}
                                 <tr>
                                   <td>{{post.Appointment.id}}</td>  
@@ -63,15 +64,20 @@
                                   <td>{{post.Appointment.status}}</td>
                                   <td><button class="btn btn-primary edit">{{language['e-f-edit']}}</button></td>
                                 </tr>
+                                
                             {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
                 <!-- </div> -->
-                
+                {% import 'pages.html' as pg %}
+               {{pg.my_paginate(pagination,'employee_f')}}
                 
             </div>
         </div>
+        
+            
+       
     </div>
 
 </div>

@@ -6,7 +6,7 @@ from blogapp.models import Customer, Employee, Pet, Appointment, Post
 from blogapp.config import Config
 from blogapp.locales_cn import cn
 from blogapp.locales_en import en
-import os
+import os, json
 
 current_path = ""
 
@@ -37,7 +37,7 @@ def login():
 			if (check_password_hash(employee_in_db.password_hash, form.password.data)):
 				# flash('Login success!')
 				session["USERNAME"] = employee_in_db.username
-				return redirect(url_for('employee_base'))
+				return redirect(url_for('employee_f'))
 			else:
 				flash('Incorrect Password')
 				return redirect(url_for('login'))
@@ -134,6 +134,7 @@ def check_email():
 
 @app.route('/checkpassword', methods=['POST'])
 def check_password():
+	chosen_password=request.form['password']
 	return jsonify({'text': 'Password is available'})
 
 @app.route('/checkkey', methods=['POST'])
@@ -404,18 +405,6 @@ def record_o():
 		return redirect(url_for('login'))
 
 
-@app.route('/employee_base', methods=['GET', 'POST'])
-def employee_base():
-	session['current_path'] = request.path
-	if not session.get("USERNAME") is None:
-		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
-		user = {'city': employee_in_db.key}		
-		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).all()
-		return render_template('employee_f.html',user=user, title='calendar', prev_posts=prev_posts, employee_in_db=employee_in_db, language=language[render_languages()] )
-	else:
-		flash("User needs to either login or signup first")
-		return redirect(url_for('login'))
-
 @app.route('/employee_c', methods=['GET', 'POST'])
 def employee_c():
 	session['current_path'] = request.path
@@ -438,7 +427,7 @@ def employee_t():
 		else:
 			employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
 			user = {'city': employee_in_db.key}
-			prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).all()
+			prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).order_by(Appointment.type).all()
 			return render_template('employee_t.html', user=user,form=form,d=form.date.data,title='table', prev_posts=prev_posts, employee_in_db=employee_in_db, language=language[render_languages()] )
 	else:
 		flash("User needs to either login or signup first")
@@ -446,13 +435,14 @@ def employee_t():
 
 @app.route('/employee_f', methods=['GET', 'POST'])
 def employee_f():
+	page = request.args.get('page', 1, type = int)
 	session['current_path'] = request.path
 	if not session.get("USERNAME") is None:
 		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
 		user = {'city': employee_in_db.key}
 		# app_in_db=Appointment.query.filter(Appointment.city==employee_in_db.key).first()
-		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).all()
-		return render_template('employee_f.html',user=user, title='table', prev_posts=prev_posts, employee_in_db=employee_in_db, language=language[render_languages()] )
+		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).order_by(Appointment.id.desc()).paginate(page, 6)
+		return render_template('employee_f.html',user=user, title='table', prev_posts=prev_posts, employee_in_db=employee_in_db, language=language[render_languages()],pagination=prev_posts )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -549,3 +539,36 @@ def base():
 	session['current_path'] = request.path
 	# print(current_path)
 	return render_template("base.html", language=language[render_languages()])
+
+@app.route('/events')
+def events():
+	if not session.get("USERNAME") is None:
+		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
+		app=Appointment.query.filter(Appointment.city==employee_in_db.key).group_by(Appointment.id)
+		ids=[]
+		dates=[]
+		time=[]
+		status=[]
+		types=[]
+		for value in Appointment.query.filter(Appointment.city==employee_in_db.key).group_by(Appointment.id):
+			ids.append(value.id)
+			dates.append(value.date)
+			time.append(value.time)
+			status.append(value.status)
+			types.append(value.type)
+		l2=[]
+		i=0
+		while i<len(ids):
+			dic={}
+			if status[i]!='Submitted' and status[i]!='Fail':
+				dic['title']='---ID: '+str(ids[i])
+				dic['start']=dates[i]+'T'+time[i]+':00'
+				if types[i]=='Standard':
+					dic['color']='green'
+				elif types[i]=='Emergency':
+					dic['color']='pink'
+				else:
+					dic['color']='yellow'
+			l2.append(dic)
+			i=i+1
+	return jsonify(l2)

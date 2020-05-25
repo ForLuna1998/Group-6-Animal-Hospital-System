@@ -140,7 +140,7 @@ cn = {
     'e-base-language':"English",
 
 # emoloyee c
-    'e-c-draggable':"可拖拽的预约",
+    'e-c-draggable':"预约",
     'e-c-removeafterdrop':"拖拽后移除",
 
 # employee chatting

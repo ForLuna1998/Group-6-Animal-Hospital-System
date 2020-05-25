@@ -32,7 +32,7 @@ function check_username(){
 	}).done(function (response){
 		var server_response = response['text']
 		var server_code = response['returnvalue']
-		var u=/^[A-Z]{1}[A-Za-z0-9_]*$/;
+		var u=/^[A-Za-z]{1}[A-Za-z0-9_]*$/;
 		if (server_code == 0 && u.test(chosen_user.val()) == true){ // success: Username does not exist in the database
 			$("#email").focus();
 			$("#checkuser").html('<span>' + server_response + '</span>');
@@ -40,7 +40,7 @@ function check_username(){
 		}else if (server_code == 0 && u.test(chosen_user.val()) == false) {
 			chosen_user.val("");
 			chosen_user.focus();
-			$("#checkuser").html('<span>' + "Username should begin with upper letter and only contains letters, numbers and '_'" + '</span>');
+			$("#checkuser").html('<span>' + "Username should begin with an alphabetic letter and contains only letters, numbers and _" + '</span>');
 			$("#checkuser").addClass("failure");
 		}else { // failure: Username already exists in the database
 			chosen_user.val("");
@@ -113,15 +113,15 @@ function check_password(){
 		'password': chosen_user.val() //field value being sent to the server
 	}).done(function (response){
 		var server_response = response['text']
-		var u=/^[A-Z]{1}[A-Za-z0-9_]*$/;
-		if ( u.test(chosen_user.val()) == true){ // success: Username does not exist in the database
+		var u=/^[A-Z]{1}[A-Za-z0-9_]{7,15}$/;
+		if ( u.test(chosen_user.val()) == true ){ // success: Username does not exist in the database
 			$("#password2").focus();
 			$("#checkpassword").html('<span>' + server_response + '</span>');
 			$("#checkpassword").addClass("success");
-		}else {
+		}else{
 			chosen_user.val("");
 			chosen_user.focus();
-			$("#checkpassword").html('<span>' + "Password should begin with upper letter and only contains letters, numbers and '_'" + '</span>');
+			$("#checkpassword").html('<span>' + "Password length should between 8 to 16 and begins with a capital letter, containing only letters, numbers and _ " + '</span>');
 			$("#checkpassword").addClass("failure");
 		}
 	}).fail(function() {

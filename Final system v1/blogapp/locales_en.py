@@ -139,7 +139,7 @@ en = {
     'e-base-language':"中文",
 
 # emoloyee c
-    'e-c-draggable':"Draggable Appointments",
+    'e-c-draggable':"Appointments",
     'e-c-removeafterdrop':"remove after drop",
 
 # employee chatting

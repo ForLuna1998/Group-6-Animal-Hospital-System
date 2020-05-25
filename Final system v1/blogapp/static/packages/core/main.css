@@ -260,7 +260,7 @@ temporary rendered events).
   font-size: 0.85em;
   line-height: 1.4;
   border-radius: 3px;
-  border: 1px solid #3788d8;
+  border: 1px solid;
 }
 
 .fc-event,

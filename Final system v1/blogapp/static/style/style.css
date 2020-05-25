@@ -19,15 +19,19 @@
     text-align: left;
   }
 
-  #external-events h4 {
-    font-size: 16px;
+  #external-events h3 {
+    font-size: 20px;
     margin-top: 0;
     padding-top: 1em;
   }
 
   #external-events .fc-event {
     margin: 10px 0;
-    cursor: pointer;
+    color: black;
+    border-color: white;
+    padding: 2px;
+    font-weight: bold;
+    /*cursor: pointer;*/
   }
 
   #external-events p {
