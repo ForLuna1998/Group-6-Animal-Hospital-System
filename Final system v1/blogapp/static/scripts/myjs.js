@@ -6,14 +6,14 @@ $(document).ready(function(){
 	$("#email").on("change", check_email);
 	$("#password").on("change", check_password);
 	$("#key").on("change", check_key);
-	$("#submit").mouseover(function(){
-		$(this).find("input").css("background-color","yellow");
-		$(this).find("input").css("font-size","large");
-		$(this).find("input").css("width","1000px");
-	});
-	$("#submit").mouseout(function(){
-		$(this).find("input").css("background-color","white");
-	});
+	// $("#submit").mouseover(function(){
+	// 	$(this).find("input").css("background-color","yellow");
+	// 	$(this).find("input").css("font-size","large");
+	// 	$(this).find("input").css("width","1000px");
+	// });
+	// $("#submit").mouseout(function(){
+	// 	$(this).find("input").css("background-color","white");
+	// });
 	console.log("function registered");
 });
 

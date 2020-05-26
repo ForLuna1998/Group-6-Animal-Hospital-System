@@ -6,7 +6,7 @@ from blogapp.models import Customer, Employee, Pet, Appointment, Post
 from blogapp.config import Config
 from blogapp.locales_cn import cn
 from blogapp.locales_en import en
-import os, json
+import os
 
 current_path = ""
 
@@ -126,11 +126,9 @@ def check_email():
 	chosen_email = request.form['email']
 	user_in_db = Customer.query.filter(Customer.email == chosen_email).first()
 	if not user_in_db:
-		return jsonify({'text': 'Email is available',
-						'returnvalue': 0})
+		return jsonify({'text': 'Email is available','returnvalue': 0})
 	else:
-		return jsonify({'text': 'Sorry! Email is already taken',
-						'returnvalue': 1})
+		return jsonify({'text': 'Sorry! Email is already taken','returnvalue': 1})
 
 @app.route('/checkpassword', methods=['POST'])
 def check_password():
