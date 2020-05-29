@@ -68,4 +68,4 @@ class Post(db.Model):
 	user_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
 	def __repr__(self):
-		return '{}: {}   <{}>'.format(self.name, self.body, str(self.timestamp)[0:16])
+		return '<{}>'.format( str(self.timestamp)[0:16])

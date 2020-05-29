@@ -150,12 +150,7 @@ class PetAddForm(FlaskForm):
 
 class PostForm(FlaskForm):
 	postbody = StringField('Chatbox', validators=[DataRequired()],render_kw={"class": "form-control", "required": 'required'})
-	submit = SubmitField('Send')
-
-class PostForm2(FlaskForm):
-	postbody = StringField('Chatbox', validators=[DataRequired()])
-	who=StringField('To user: ', validators=[DataRequired()])
-	submit = SubmitField('Send')
+	submit = SubmitField('Send', render_kw={"class": "btn btn-primary "})
 
 class ManageForm(FlaskForm):
 	date=StringField('',render_kw={"style": "font-size: large;", "placeholder": "YYYY-MM-DD", "required": 'required'})

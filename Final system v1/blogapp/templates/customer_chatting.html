@@ -17,7 +17,13 @@
 				{% if prev_posts %}
 						<ul>
 						{% for post in prev_posts %}
-							<li> {{ post }}</li>
+						
+							{% if post.name!=user_in_db.username %}
+							<li style="background: pink; list-style-type: none; text-align: left;">{{ post }}<b style=" font-size: large; ">{{ post.body }}</b>  </li>
+							{% else %}
+							<li style="background: orange; list-style-type: none; text-align: right;"> <b style="font-size: large; ">{{ post.body }}</b> {{ post }}  </li>
+							{% endif %}
+						
 						{% endfor %}
 						</ul>
 						<hr>

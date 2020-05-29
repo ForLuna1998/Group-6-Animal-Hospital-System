@@ -2,37 +2,32 @@
 {% block content %}
 
             <div class="container">
-              	<div class="row">
-				{% if prev_posts %}
-						<ul>
-						{% for post in prev_posts %}
-							<li> {{ post }}</li>
-						{% endfor %}
-						</ul>
-						<hr>
-					{% else %}
-						<p>{{language['e-chatting-noprevious']}}</p>
-						<hr>
-				{% endif %}
-                
-                  <!-- /.row-->
-		            <form action="" method="post">
-				        {{ form.hidden_tag() }}
-				        <p>
-				            {{ form.postbody.label }}<br>
-				            {{ form.postbody(size=120) }}
+              	<div>
+              	{% for user in customers.items %}
+              	<ul style="text-align: right;">
+              		<b style="background: orange;">{{user.username}}</b> &nbsp; 
+              		<button onclick="do_jump('{{ user.id}}')" class="btn btn-primary">Reply</button>
+              	</ul>
+              	<script type="text/javascript">
+                      function do_jump(id){
+                        window.location.href= ' {{ url_for('chatting_detail') }}?id=' + id
+                      }
+                 </script>
+
+					{% for post in user.posts %}
+						<ul >
+							{% if post.name==user.username %}
+							<li style="text-align: left;">{{ post }} {{post.body}}   </li>
 							
-							{% for error in form.postbody.errors %}
-				            <span style="color: red;">[{{ error }}]</span>
-				            {% endfor %}
-						</p>
-						<p>
-				            {{ form.who.label }}<br>
-				            {{ form.who(size=120) }}
-						</p>    
-						
-						<p>{{ form.submit() }}</p>
-				    </form>
+							{% endif %}
+						</ul>
+					{% endfor %}
+					<hr>
+					
+				{% endfor %}
+                {% import 'pages.html' as pg %}
+               {{pg.my_paginate(pagination,'employee_chatting')}}
+		           
                 
               	</div>
             </div>

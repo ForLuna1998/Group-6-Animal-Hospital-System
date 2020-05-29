@@ -1,12 +1,12 @@
 from flask import render_template, flash, redirect, url_for, session,request,jsonify,json
 from werkzeug.security import generate_password_hash, check_password_hash
 from blogapp import app, db
-from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm, PetChangeForm,PostForm, PostForm2, ManageForm
+from blogapp.forms import LoginForm, ERForm, CRForm, PetAccountForm, CustomerAccountForm, REForm, RSForm, PetAddForm, CustomerPasswordForm, PetDeleteForm, PetChangeForm,PostForm, ManageForm
 from blogapp.models import Customer, Employee, Pet, Appointment, Post
 from blogapp.config import Config
 from blogapp.locales_cn import cn
 from blogapp.locales_en import en
-import os, json
+import os
 
 current_path = ""
 
@@ -126,11 +126,9 @@ def check_email():
 	chosen_email = request.form['email']
 	user_in_db = Customer.query.filter(Customer.email == chosen_email).first()
 	if not user_in_db:
-		return jsonify({'text': 'Email is available',
-						'returnvalue': 0})
+		return jsonify({'text': 'Email is available','returnvalue': 0})
 	else:
-		return jsonify({'text': 'Sorry! Email is already taken',
-						'returnvalue': 1})
+		return jsonify({'text': 'Sorry! Email is already taken','returnvalue': 1})
 
 @app.route('/checkpassword', methods=['POST'])
 def check_password():
@@ -441,7 +439,7 @@ def employee_f():
 		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
 		user = {'city': employee_in_db.key}
 		# app_in_db=Appointment.query.filter(Appointment.city==employee_in_db.key).first()
-		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).order_by(Appointment.id.desc()).paginate(page, 6)
+		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).order_by(Appointment.id.desc()).paginate(page, 7)
 		return render_template('employee_f.html',user=user, title='table', prev_posts=prev_posts, employee_in_db=employee_in_db, language=language[render_languages()],pagination=prev_posts )
 	else:
 		flash("User needs to either login or signup first")
@@ -464,32 +462,44 @@ def customer_chatting():
 			user_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			prev_posts = Post.query.filter(Post.user_id == user_in_db.id).all()
 			# print("Checking for user: {} with id: {}".format(user_in_db.username, user_in_db.id))
-			return render_template('customer_chatting.html', title='Message', prev_posts=prev_posts, form=form, language=language[render_languages()])
+			return render_template('customer_chatting.html', title='Message',user_in_db=user_in_db, prev_posts=prev_posts, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
 
 @app.route('/employee_chatting', methods=['GET', 'POST'])
 def employee_chatting():
+	page = request.args.get('page', 1, type = int)
 	session['current_path'] = request.path
-	form = PostForm2()
 	if not session.get("USERNAME") is None:
 		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
 		user = {'city': employee_in_db.key}
+		customers = Customer.query.order_by(Customer.id).paginate(page, 1)
+		print('customers')
+		return render_template('employee_chatting.html',user=user, title='Message', customers=customers,language=language[render_languages()],pagination=customers)
+	else:
+		flash("User needs to either login or signup first")
+		return redirect(url_for('login'))
+
+@app.route('/chatting_detail', methods=['GET', 'POST'])
+def chatting_detail():
+	session['current_path'] = request.path
+	form = PostForm()
+	if not session.get("USERNAME") is None:
+		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
+		user = {'city': employee_in_db.key}
+		user_id = request.args.get("id")
+		user_in_db = Customer.query.filter(Customer.id == user_id).first()
 		if form.validate_on_submit():
 			body = form.postbody.data
-			who=form.who.data
-			user_in_db = Customer.query.filter(Customer.username == who).first()
 			if user_in_db:
-				post = Post(body = body, author = user_in_db, name=session.get("USERNAME"))
+				name='Employee_'+str(employee_in_db.id)
+				post = Post(body = body, author = user_in_db, name=name)
 				db.session.add(post)
 				db.session.commit()
 			return redirect(url_for('employee_chatting'))
 		else:
-			# user_in_db = Customer.query.first()
-			prev_posts = Post.query.all()
-			# print("Checking for user: {} with id: {}".format(user_in_db.username, user_in_db.id))
-			return render_template('employee_chatting.html',user=user, title='Message', prev_posts=prev_posts, form=form, language=language[render_languages()])
+			return render_template('chatting_detail.html',user=user, title='Message', customer=user_in_db, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
