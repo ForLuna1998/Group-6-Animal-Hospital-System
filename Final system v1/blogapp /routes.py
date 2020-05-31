@@ -439,8 +439,8 @@ def employee_f():
 		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
 		user = {'city': employee_in_db.key}
 		# app_in_db=Appointment.query.filter(Appointment.city==employee_in_db.key).first()
-		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id ).order_by(Appointment.id.desc()).paginate(page, 7)
-		return render_template('employee_f.html',user=user, title='table', prev_posts=prev_posts, employee_in_db=employee_in_db, language=language[render_languages()],pagination=prev_posts )
+		prev_posts = db.session.query(Customer, Appointment).filter(Customer.id == Appointment.customer_id).filter(Appointment.city==employee_in_db.key).order_by(Appointment.id.desc()).paginate(page, 6)
+		return render_template('employee_f.html',user=user, title='table', prev_posts=prev_posts, language=language[render_languages()],pagination=prev_posts )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -474,8 +474,7 @@ def employee_chatting():
 	if not session.get("USERNAME") is None:
 		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
 		user = {'city': employee_in_db.key}
-		customers = Customer.query.order_by(Customer.id).paginate(page, 1)
-		print('customers')
+		customers = Customer.query.filter().order_by(Customer.id).paginate(page, 1)
 		return render_template('employee_chatting.html',user=user, title='Message', customers=customers,language=language[render_languages()],pagination=customers)
 	else:
 		flash("User needs to either login or signup first")
@@ -510,12 +509,12 @@ def arrange():
 	list1=list1.split(',')
 	stored_app = Appointment.query.filter(Appointment.id == list1[0]).first()
 	if stored_app:
-		stored_app.date=list1[3]
-		stored_app.time=list1[4]
-		stored_app.type=list1[5]
-		stored_app.status=list1[6]
+		stored_app.date=list1[1]
+		stored_app.time=list1[2]
+		stored_app.type=list1[3]
+		stored_app.status=list1[4]
 		db.session.commit()
-	s=list1[0]+','+list1[1]+','+list1[2]+','+list1[3]+','+list1[4]+','+list1[5]+','+list1[6]
+	s=list1[1]+','+list1[2]+','+list1[3]+','+list1[4]
 	return jsonify(s)
 
 @app.route('/logout')

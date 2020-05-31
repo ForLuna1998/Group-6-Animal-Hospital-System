@@ -1,13 +1,13 @@
 {% extends "employee_base.html" %}
 {% block content %}
 
-            <div class="container">
+            <div class="container" style="background-color: #FDF5E6;">
               	<div>
               	{% for user in customers.items %}
-              	<ul style="text-align: right;">
-              		<b style="background: orange;">{{user.username}}</b> &nbsp; 
+              	<div style="text-align: right;">
+              		Username: <b style="background: orange;">{{user.username}}</b> &nbsp; 
               		<button onclick="do_jump('{{ user.id}}')" class="btn btn-primary">Reply</button>
-              	</ul>
+              	</div>
               	<script type="text/javascript">
                       function do_jump(id){
                         window.location.href= ' {{ url_for('chatting_detail') }}?id=' + id
@@ -17,7 +17,7 @@
 					{% for post in user.posts %}
 						<ul >
 							{% if post.name==user.username %}
-							<li style="text-align: left;">{{ post }} {{post.body}}   </li>
+							<li style="text-align: left;">{{ post }} <b style="font-size: large;">{{ post.body }}</b>  </li>
 							
 							{% endif %}
 						</ul>

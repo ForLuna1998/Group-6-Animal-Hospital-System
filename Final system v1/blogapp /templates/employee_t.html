@@ -22,9 +22,9 @@
 {% block content %}
 
 <div class="wrapper">
-    <div class="container" style="background-color:#FDF5E6">
-        <div class="row">
-            <form method="post" style="width: 1125px; text-align: right;">
+    <div class="container" style="background-color:#FDF5E6;">
+        <div style="text-align: right;">
+            <form method="post">
                 <a href="{{url_for('employee_f')}}" class="btn btn-primary submit">{{language['p-account-back']}}</a>
                 <!-- {{ form.date( id="datepicker", onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}") }} -->
                 {{ form.date(size=20) }}
@@ -58,7 +58,7 @@
                                   
                                     <td>{{post.Appointment.type}}</td>
                                   <td>{{post.Appointment.status}}</td>
-                                  <td><button class="btn btn-primary btn-sm edit">{{language['e-f-edit']}}</button></td>
+                                  <td><button class="btn btn-primary edit">{{language['e-f-edit']}}</button></td>
                                 </tr>
                             {% endif %}
                             {% endfor %}
@@ -77,39 +77,66 @@
 <!-- <script src="{{ url_for('static', filename='assets3/js-a/jquery-ui.js') }}"></script> -->
 
 <script language="javascript">
-//  function edit(this1){
-
-//     var value = $(this1).parent().parent().find("td");
-
-//     alert(value.eq(0).text());  
-
-// }
 
     $("table#fresh").on("click","button.edit",function(){
     var $this=$(this);
     var $tr=$this.parents("tr");
-    $tr.find("td").not($("td:has(button)")).each(function(){
-        var $td=$(this);
+        var $td4=$tr.find("td:nth-child(4)");
+        var _t4=$td4.text();
+        var _w4=$td4.width();
+        var _h4=$td4.height();
+        $td4.html("");
+        var $date=$("<input type='text' id=\"date\" class='form-control form-control-sm'>");
+        $date.appendTo($td4).width(_w4).val(_t4);
+
+        var $td5=$tr.find("td:nth-child(5)");
+        var _t5=$td5.text();
+        var _w5=$td5.width();
+        var _h5=$td5.height();
+        $td5.html("");
+        var $input=$("<input type='text' id=\"time\" class='form-control form-control-sm'>");
+        $input.appendTo($td5).width(_w5).val(_t5);
+
+        var $td7=$tr.find("td:nth-child(7)");
+        var _t7=$td7.text();
+        var _w7=$td7.width();
+        var _h7=$td7.height();
+        $td7.html("");
+        var $status=$("<select id=\"status\"><option value=\"Success\">Success</option><option value=\"Fail\">Fail</option><option value=\"Date Confirmed\">Date Confirmed</option><option value=\"In Operation\">In Operation</option><option value=\"Surgery Completed\">Surgery Completed</option><option value=\"Ready for Release\">Ready for Release</option></select> ");
+        $status.appendTo($td7).width(_w7).val(_t7);
+   
+        var $td=$tr.find("td:nth-child(6)");
         var _t=$td.text();
         var _w=$td.width();
         var _h=$td.height();
         $td.html("");
-        var $input=$("<input type='text' class='form-control form-control-sm'>");
-        $input.appendTo($td).width(_w).val(_t);
-    });
-    $this.removeClass().addClass("btn btn-danger btn-sm ajax").text("Submit");  
+        var $type=$("<select id=\"type\"><option value=\"Standard\">Standard</option><option value=\"Emergency\">Emergency</option><option value=\"Surgery\">Surgery</option></select> ");
+        $type.appendTo($td).width(_w).val(_t);
+    
+    $this.removeClass().addClass("btn btn-danger ajax").text("Submit");  
 });
 
-    $("table#fresh").on("click","button.ajax",function(){
+$("table#fresh").on("click","button.ajax",function(){
     var $this=$(this);
     var $tr=$this.parents("tr");
-    var v=[];
-    $tr.find("td input:text").each(function(){
-        v.push($(this).val());        
-    });
-    var s=v.join(",")
-    // $.post("/Html/aijquery/ajax-post/",{"d":v},function(d){
-        
+
+    var $td4=$tr.find("#date");
+    var $td5=$tr.find("#time");
+    var $td6=$tr.find("#type");
+    var $td7=$tr.find("#status");
+
+    var $d4=$tr.find("td:nth-child(4)");
+    var $d5=$tr.find("td:nth-child(5)");
+    var $d6=$tr.find("td:nth-child(6)");
+    var $d7=$tr.find("td:nth-child(7)");
+
+    var s1=$tr.find("td:nth-child(1)").html();
+    var s4=$td4.val();
+    var s5=$td5.val();
+    var s6=$td6.val();
+    var s7=$td7.val();
+    
+    var s=s1+","+s4+","+s5+","+s6+","+s7;
     var data={'s':s};
     $.ajax({
         url: '/arrange',
@@ -121,98 +148,18 @@
         success:function(d){
             // alert(d);
             var narray=d.split(',');
-            var nhtml="<td>"+v.join("</td><td>")+"</td>";
-            nhtml=nhtml+"<td><button class=\"btn btn-primary btn-sm edit\">Edit</button></td>";
-            $tr.html(nhtml);
+            $d4.html(narray[0]);
+             $d5.html(narray[1]);
+            $d6.html(narray[2]);
+             $d7.html(narray[3]);
+            $this.removeClass().addClass("btn btn-success edit").text("Edit"); 
         },
         error: function(e){
             alert("error"+e);
         }
     });
-    // $.post('/arrange',{"ids":data_id},function(d){
-        // alert(d);
-        // var narray=d.split(',');
-        // var nhtml="<td>"+v.join("</td><td>")+"</td>";
-        // nhtml=nhtml+"<td><button class=\"btn btn-primary btn-sm edit\">Edit</button></td>";
-        // $tr.html(nhtml);
-    // });
-});
 
-        //     var $table = $('#fresh-table'),
-        //     // $alertBtn = $('#alertBtn'),
-        //     full_screen = false;
-            
-        // $().ready(function(){
-        //     $table.bootstrapTable({
-        //         toolbar: ".toolbar",
-    
-        //         showRefresh: true,
-        //         search: true,
-        //         showToggle: true,
-        //         showColumns: true,
-        //         pagination: true,
-        //         striped: true,
-        //         pageSize: 7,
-        //         pageList: [7,20,30],
-        //         formatShowingRows: function(pageFrom, pageTo, totalRows){
-        //             //do nothing here, we don't want to show the text "showing x of y from..." 
-        //         },
-        //         formatRecordsPerPage: function(pageNumber){
-        //             return pageNumber + " rows visible";
-        //         },
-        //         icons: {
-        //             refresh: 'fa fa-refresh',
-        //             toggle: 'fa fa-th-list',
-        //             columns: 'fa fa-columns',
-        //             detailOpen: 'fa fa-plus-circle',
-        //             detailClose: 'fa fa-minus-circle'
-        //         }
-        //     });
-                        
-            
-            // $(window).resize(function () {
-            //     $table.bootstrapTable('resetView');
-            // });
-    
-            
-            // window.operateEvents = {
-            //     'click .like': function (e, value, row, index) {
-            //         alert('You click like icon, row: ' + JSON.stringify(row));
-            //         console.log(value, row, index);
-            //     },
-            //     'click .edit': function (e, value, row, index) {
-            //         alert('You click edit icon, row: ' + JSON.stringify(row));
-            //         console.log(value, row, index);    
-            //     },
-            //     'click .remove': function (e, value, row, index) {
-            //         $table.bootstrapTable('remove', {
-            //             field: 'id',
-            //             values: [row.id]
-            //         });
-            
-            //     }
-            // };
-            
-            // $alertBtn.click(function () {
-            //     alert("You pressed on Alert");
-            // });
-            
-        // });
-            
-    
-        // function operateFormatter(value, row, index) {
-        //     return [
-        //         '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
-        //             '<i class="fa fa-heart"></i>',
-        //         '</a>',
-        //         '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
-        //             '<i class="fa fa-edit"></i>',
-        //         '</a>',
-        //         '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
-        //             '<i class="fa fa-remove"></i>',
-        //         '</a>'
-        //     ].join('');
-        // }
+});
 
 //         $("table#aijquery").on("click","button.edit",function(){
 //     var $this=$(this);    //获取被点击的按钮
