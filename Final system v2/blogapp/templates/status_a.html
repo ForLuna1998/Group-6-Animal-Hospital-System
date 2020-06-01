@@ -1,0 +1,114 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+              <div class="card sidebar-menu">
+                <div class="card-header">
+                  <h3 class="h4 card-title">{{language['c-index-Status']}}</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('status_a') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['c-index-StandardStatus']}}</a>
+                    
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['res-e-back']}}</a></ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+<!--              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>-->
+            </div>
+            <div class="col-lg-9">
+              
+		
+           
+          
+          <div id="customer-orders" class="col-lg-9">
+            <div class="box" style="margin-right: -220px;margin-left: -14px;">
+              <h1>{{language['s-a-standardstatus']}}</h1>
+              <!-- <p class="lead">Status of your appointments</p> -->
+              <p class="text-muted">{{language['s-a-ifproblem']}} <a href="{{url_for('customer_chatting')}}">{{language['r-a-contactus']}}</a>{{language['r-a-247']}}</p>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-hover" style="text-align: center;">
+                  <thead>
+                    <tr>
+                      <th>{{language['s-a-id']}}</th>
+                      <th>{{language['s-a-petname']}}</th>
+                      <th>{{language['s-a-date']}}</th>
+                      <th>{{language['r-a-time']}}</th>
+                      <th>{{language['r-a-city']}}</th>
+                      <!-- <th>{{language['e-f-detials']}}</th> -->
+                      <th>{{language['s-a-status']}}</th>
+                      
+                      <th>{{language['s-a-action']}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for post in prev_posts %}
+                    {% if post.Pet.customer_id == customer_in_db.id and post.Appointment.type == "Standard" %}
+                    <tr>
+                      <th>{{post.Appointment.id}}</th>
+                      <td>{{post.Pet.name}}</td>
+                      <td>{{post.Appointment.date}}</td>
+                      <td>{{post.Appointment.time}}</td>
+                      <td>{{post.Appointment.city}}</td>
+                      <!-- <td>{{post.Appointment.details}}</td> -->
+                      <!-- 加上了不同状态的标签 -->
+                      <td>
+                        {% if post.Appointment.status == "Submitted" %}
+                        <span class="badge badge-info">{{post.Appointment.status}}</span>
+                        {% elif post.Appointment.status == "Success" %}
+                        <span class="badge badge-success">{{post.Appointment.status}}</span>
+                        {% else %}
+                        <span class="badge badge-warning">{{post.Appointment.status}}</span>
+                        {% endif %}
+                      </td>
+                      <td><button class="btn btn-primary btn-sm">Cancel</button></td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>            <!-- /.col-lg-9-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $("table").on("click","button",function(){
+    var $this=$(this);
+    var $tr=$this.parents("tr");
+    var $th=$tr.find("th");
+    var $status=$tr.find("span.badge-success");
+    // alert($status.html());
+    if($status.html()!='Success'){
+      var res=confirm('Are you sure to cancel the appointment?');
+      if(res==true){
+        var s=$th.html();
+        var data={'s':s};
+      $.ajax({
+        url: '/delete',
+        type:"post",
+        data:data,
+        dataType:'json',
+        traditional:true,
+        async:false,
+        success:function(d){
+            $tr.remove();
+            alert('You have cancelled appointment: ID='+d);
+        },
+        error: function(e){
+            alert("error"+e);
+        }
+      });
+      
+      }
+    }else{
+      alert('You are not able cancel your appointment!');
+    }
+    
+    });
+    </script>
+{% endblock %}

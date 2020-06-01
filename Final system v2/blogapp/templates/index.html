@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card sidebar-menu mb-4">
+                <div class="card-header">
+                  <h3 class="h4 card-title">CATELOGUE</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column category-menu">
+                    <li><a href="category.html" class="nav-link">Standard</a>
+                      <ul class="list-unstyled">
+                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">Make an appointment</a></li>
+                        <li><a href="{{ url_for('status_a') }}" class="nav-link">Appointment Status</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="category.html" href="category.html"class="nav-link">Emergency</a>
+                  <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
+                      <ul class="list-unstyled">
+                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
+                        <li><a href="{{ url_for('status_e') }}" class="nav-link">Appointment Status</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="category.html" class="nav-link">Surgical Operation</a>
+                      <ul class="list-unstyled">
+                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">Surgery Status</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+             
+
+             </div>
+
+            <div class="col-lg-9">
+              <div class="box">
+                <h2>Please sign in first!</h2>
+                <p>{{language['c-index-click']}}</p>
+              </div>
+    
+              <div class="row products">
+                <div class="col-lg-4 col-md-6">
+                  <div class="product">
+                    <div class="flip-container">
+                      <div class="flipper">
+                        <div class="front"><a href="#"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="#"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a></div>
+                      </div>
+                    </div><a href="#" class="invisible"><img src="static/img/doctor1.jpg" alt="" class="img-fluid"></a>
+                    <div class="text">
+                      <h3><a href="#">{{language['c-index-StandardAppointment']}}</a></h3>
+                     
+            <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>
+            View more</a></p> -->
+                    </div>
+                    <!-- /.text-->
+                  </div>
+                  <!-- /.product            -->
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="product">
+                    <div class="flip-container">
+                      <div class="flipper">
+                        <div class="front"><a href="#"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="#"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a></div>
+                      </div>
+                    </div><a href="#" class="invisible"><img src="static/img/doctor2.jpg" alt="" class="img-fluid"></a>
+                    <div class="text">
+                      <h3><a href="#">{{language['c-index-EmergencyAppointment']}}</a></h3>
+                    
+                      <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>View more</a></p> -->
+                    </div>
+                    <!-- /.text-->
+                    <div class="ribbon sale">
+                      <div class="theribbon"> &nbsp; &nbsp;{{language['c-index-URGENT']}}</div>
+                      <div class="ribbon-background"></div>
+                    </div>
+                    <!-- /.ribbon-->
+                    <div class="ribbon new">
+                      <div class="theribbon"> &nbsp; &nbsp;{{language['c-index-fast']}}</div>
+                      <div class="ribbon-background"></div>
+                    </div>
+                   
+                  </div>
+                  <!-- /.product            -->
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <div class="product">
+                    <div class="flip-container">
+                      <div class="flipper">
+                        <div class="front"><a href="#"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="#"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a></div>
+                      </div>
+                    </div><a href="#" class="invisible"><img src="static/img/doctor3.jpg" alt="" class="img-fluid"></a>
+                    <div class="text">
+                      <h3><a href="#">{{language['r-a-SurgicalOperation']}}</a></h3>
+                     
+                      <!-- <p class="buttons"><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>View more</a></p> -->
+                    </div>
+                    <!-- /.text-->
+                  </div>
+                  <!-- /.product            -->
+                </div>
+                
+                <!-- /.products-->
+              </div>
+              
+        </div>
+        </div></div></div>
+
+
+		<!-- <div class="slider">
+        	<div class="slider-img">
+          		<div class="container" style="text-align: left; padding-top: 30px;">
+            		<div class="slider-info">
+              			<h5>{{language['index-healing']}}</h5>
+              			<div class="bottom-info">
+              				<p>{{language['index-dogsonly']}}</p>
+              			</div>
+              			<div class="outs_more-buttn">
+                			<a href="#">{{language['index-readmore']}}</a>
+              			</div>
+            		</div>
+          		</div>
+        	</div> -->
+        <!-- This is here just to demonstrate the callbacks -->
+        <!-- <ul class="events">
+          <li>Example 4 callback events</li>
+          </ul>-->
+       		<!-- <div class="clearfix"></div> -->
+    	<!-- </div> -->
+
+{% endblock %}

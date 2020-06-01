@@ -1,0 +1,78 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+
+              <div class="card sidebar-menu">
+                <div class="card-header">
+                  <h3 class="h4 card-title">{{language['c-account-ps']}}</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('customer_account') }}" class="nav-link active"><i class="fa fa-save"></i> {{language['c-account-myaccount']}}</a>
+                    
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['c-account-back']}}</a></ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+            </div>
+            <div class="col-lg-9">
+              <div class="box">
+                <h1>{{language['c-account-pd']}}</h1>
+                <p class="lead">{{language['c-account-change']}}</p>
+              
+
+                <form action="" method="post" novalidate>
+                 {{ form.hidden_tag() }}
+
+                </form>
+                <h3 class="mt-5">{{language['c-account-pd']}}</h3>
+
+                <form action="" method="post" novalidate>
+                 {{ form.hidden_tag() }}
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="firstname">{{language['c-account-fn']}}</label>
+                        {{ form.firstname(size=32) }}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="lastname">{{language['c-account-ln']}}</label>
+                        {{ form.lastname(size=32) }}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="company">{{language['c-account-email']}}</label>
+                        {{ form.email(size=32) }}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="street">{{language['c-account-telephone']}}</label>
+                        {{ form.telephone(size=32) }}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                
+                    <div class="col-md-12 text-center">
+                      <!-- <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button> -->
+                      {{ form.save() }}
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+{% endblock %}
