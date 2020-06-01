@@ -26,7 +26,7 @@ cn = {
 # from top to down
 # title is the same with base
     'c-base-open':"工作时间",
-    'c-base-everyday':"每日(9:00-21:00)",
+    'c-base-everyday':"每日(9-12AM 13-17PM 18-21PM)",
     'c-base-home':"主页",
     'c-base-logout':"登出",
     'c-base-language':"English",
@@ -75,17 +75,22 @@ cn = {
 
 # customer index
     'c-index-cat':"目录",
-    'c-index-Standard':"标准",
+    'c-index-Standard':"普通",
     'c-index-Emergency': "急诊",
 
     'c-index-Makeanappointment':"在线预约",
-    'c-index-AppointmentStatus':"预约状态",
-    'c-index-Appointmentrecord':"预约记录",
+    'c-index-CheckStatus':"查看状态",
+    'c-index-Operation':"手术",
+    'c-index-Status': " 状态",
+    'c-index-Record': " 记录",
 
-    'c-index-SurgicalOperation':"外科手术",
+    'c-index-OperationStatus': "手术状态",
+    'c-index-StandardStatus': "普通预约状态",
+    'c-index-EmergencyStatus': "紧急预约状态",
 
-    'c-index-OperationStatus':"手术状态",
-    'c-index-OperationRecord':"手术记录",
+    'c-index-OperationRecord': "手术记录",
+    'c-index-StandardRecord': "普通预约记录",
+    'c-index-EmergencyRecord': "紧急预约记录",
 
     'c-index-Clear':"清除",
     'c-index-Healing':"治愈之爪兽医院",

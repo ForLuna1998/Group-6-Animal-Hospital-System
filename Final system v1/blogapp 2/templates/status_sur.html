@@ -1,39 +1,19 @@
 {% extends "customer_base.html" %}
 
 {% block content %}
-              <div class="card sidebar-menu mb-4">
+              <div class="card sidebar-menu">
                 <div class="card-header">
-                  <h3 class="h4 card-title">{{language['r-a-CATELOGUE']}}</h3>
+                  <h3 class="h4 card-title">{{language['c-index-Operation']}}</h3>
                 </div>
                 <div class="card-body">
-                  <ul class="nav nav-pills flex-column category-menu">
-                    <li><a href="#" class="nav-link">{{language['r-a-Standard']}}</a>
-                      <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">{{language['r-a-Makeanappointment']}}</a></li>
-                        <li><a href="{{ url_for('status_a') }}" class="nav-link">{{language['r-a-AppointmentStatus']}}</a></li>
-                        <li><a href="{{ url_for('record_a') }}" class="nav-link">{{language['r-a-Appointmentrecord']}}</a></Sli>
-                      </ul>
-                    </li>
-                    <li><a href="#" class="nav-link">{{language['r-a-Emergency']}}</a>
-                  <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
-                      <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">{{language['r-a-Makeanappointment']}}</a></li>
-                        <li><a href="{{ url_for('status_e') }}" class="nav-link">{{language['r-a-AppointmentStatus']}}</a></li>
-                        <li><a href="{{ url_for('record_e') }}" class="nav-link">{{language['r-a-Appointmentrecord']}}</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#" class="nav-link">{{language['r-a-SurgicalOperation']}} </a>
-                      <ul class="list-unstyled">
-                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">{{language['r-a-OperationStatus']}}</a></li>
-                        <li><a href="{{ url_for('record_o') }}" class="nav-link">{{language['r-a-Operationrecord']}}</a></li>
-                      </ul>
-                    </li>
-                  </ul>
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('status_sur') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['c-index-OperationStatus']}}</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['res-e-back']}}</a></ul>
                 </div>
               </div>
-             
-              <!-- *** MENUS AND FILTERS END ***-->
-              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+<!--              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>-->
             </div>
             <div class="col-lg-9">
              

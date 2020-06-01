@@ -26,7 +26,7 @@ en = {
 # from top to down
 # title is the same with base
     'c-base-open':"OPEN HOURS",
-    'c-base-everyday':"Every Day(9:00-21:00)",
+    'c-base-everyday':"Every Day(9-12AM 13-17PM 18-21PM)",
     'c-base-home':"Home",
     'c-base-logout':"Logout",
     'c-base-language':"中文",
@@ -80,13 +80,18 @@ en = {
     'c-index-Emergency': "Emergency",
 
     'c-index-Makeanappointment':"Make an appointment",
-    'c-index-AppointmentStatus':"Appointment Status",
-    'c-index-Appointmentrecord':"Appointment record",
+    'c-index-CheckStatus':"Check Status",
+    'c-index-Operation':"Operation",
+    'c-index-Status': " Status",
+    'c-index-Record': " Record",
 
-    'c-index-SurgicalOperation':"Surgical Operation",
+    'c-index-OperationStatus': "Operation Status",
+    'c-index-StandardStatus': "Standard Status",
+    'c-index-EmergencyStatus': "Emergency Status",
 
-    'c-index-OperationStatus':"Operation Status",
-    'c-index-OperationRecord':"Operation Record",
+    'c-index-OperationRecord': "Operation Record",
+    'c-index-StandardRecord': "Standard Record",
+    'c-index-EmergencyRecord': "Emergency Record",
 
     'c-index-Clear':"Clear",
     'c-index-Healing':"Healing Paws Veterinary Hospital",

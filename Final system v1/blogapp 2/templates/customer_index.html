@@ -7,26 +7,13 @@
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column category-menu">
-                    <li><a href="#" class="nav-link">{{language['c-index-Standard']}}</a>
-                      <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">{{language['c-index-Makeanappointment']}}</a></li>
-                        <li><a href="{{ url_for('status_a') }}" class="nav-link">{{language['c-index-AppointmentStatus']}}</a></li>
-                        <li><a href="{{ url_for('record_a') }}" class="nav-link">{{language['c-index-Appointmentrecord']}}</a></Sli>
-                      </ul>
+                    <li><a href="{{ url_for('reservation_s') }}" class="nav-link">{{language['c-index-Makeanappointment']}}</a>
                     </li>
-                    <li><a href="#" class="nav-link">{{language['c-index-Emergency']}}</a>
-                  <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
-                      <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">{{language['c-index-Makeanappointment']}}</a></li>
-                        <li><a href="{{ url_for('status_e') }}" class="nav-link">{{language['c-index-AppointmentStatus']}}</a></li>
-                        <li><a href="{{ url_for('record_e') }}" class="nav-link">{{language['c-index-Appointmentrecord']}}</a></li>
-                      </ul>
+                    <hr>
+                    <li><a href="{{ url_for('status_a') }}" class="nav-link">{{language['c-index-CheckStatus']}}</a>
                     </li>
-                    <li><a href="#" class="nav-link">{{language['c-index-SurgicalOperation']}}</a>
-                      <ul class="list-unstyled">
-                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">{{language['c-index-OperationStatus']}}</a></li>
-                        <li><a href="{{ url_for('record_o') }}" class="nav-link">{{language['c-index-OperationRecord']}}</a></li>
-                      </ul>
+                    <hr>
+                    <li><a href="{{ url_for('status_sur') }}" class="nav-link">{{language['c-index-Operation']}}</a>
                     </li>
                   </ul>
                 </div>
@@ -65,7 +52,7 @@
               </div> -->
              
               <!-- *** MENUS AND FILTERS END ***-->
-              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>
+<!--              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>-->
             </div>
             <div class="col-lg-9">
               <div class="box">

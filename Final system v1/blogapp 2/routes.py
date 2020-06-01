@@ -51,11 +51,13 @@ def login():
 				return redirect(url_for('login'))
 	return render_template('login.html', title='Sign in', form=form, language=language[render_languages()])
 
-@app.route("/customer_base")
+
+@app.route('/customer_base', methods=['GET', 'POST'])
 def customer_base():
 	session['current_path'] = request.path
 	session['current_patth']=request.path
 	return render_template('customer_base.html', language=language[render_languages()])
+
 
 @app.route('/customer_register', methods=['GET', 'POST'])
 def customer_register():
@@ -130,10 +132,12 @@ def check_email():
 	else:
 		return jsonify({'text': 'Sorry! Email is already taken','returnvalue': 1})
 
+
 @app.route('/checkpassword', methods=['POST'])
 def check_password():
 	chosen_password=request.form['password']
 	return jsonify({'text': 'Password is available'})
+
 
 @app.route('/checkkey', methods=['POST'])
 def check_key():
@@ -149,16 +153,19 @@ def customer_index():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
 	if not session.get("USERNAME") is None:
-		return render_template('customer_index.html', title='Home', user=user, language=language[render_languages()])
+		username = session.get("USERNAME")
+		return render_template('customer_index.html', title='Home', user=user, username=username, language=language[render_languages()])
 	else:
 		flash("User needs to either login or sign up")
 		return redirect(url_for('index'))
+
 
 @app.route('/customer_account', methods=['GET','POST'])
 def customer_account():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
 	form = CustomerAccountForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
@@ -171,14 +178,14 @@ def customer_account():
 		else:
 			stored_account = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			if not stored_account:
-				return render_template('customer_account.html', title='Init your details', form=form, language=language[render_languages()])
+				return render_template('customer_account.html', title='customer', username=username, form=form, language=language[render_languages()])
 			else:
 				form.email.data = stored_account.email
 				form.firstname.data = stored_account.firstname
 				form.lastname.data = stored_account.lastname
 				form.telephone.data = stored_account.phone
-				return render_template('customer_account.html', title='Modify your details', form=form, language=language[render_languages()])
-		return render_template('customer_account.html', title='pet', user=user, form=form, language=language[render_languages()])
+				return render_template('customer_account.html', title='Modify your details', username=username, form=form, language=language[render_languages()])
+		return render_template('customer_account.html', title='customer', user=user, username=username, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -189,6 +196,7 @@ def customer_password():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
 	form = CustomerPasswordForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
@@ -202,7 +210,7 @@ def customer_password():
 				customer_in_db.password_hash = generate_password_hash(form.password2.data)
 				db.session.commit()
 				return redirect(url_for('customer_index'))
-		return render_template('customer_password.html', title='pet', user=user, form=form, language=language[render_languages()])
+		return render_template('customer_password.html', title='pet', user=user, username=username, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -213,6 +221,7 @@ def pet_change():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
 	form = PetChangeForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		petid = request.args.get("id")
 		if form.validate_on_submit():
@@ -229,35 +238,39 @@ def pet_change():
 			stored_account = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			stored_Paccount = Pet.query.filter(Pet.customer_id == stored_account.id, Pet.id == petid).first()
 			if not stored_account:
-				return render_template('pet_change.html', title='Init your details', form=form, language=language[render_languages()])
+				return render_template('pet_change.html', username=username, title='Init your details', form=form, language=language[render_languages()])
 			else:
 				form.pet_name.data = stored_Paccount.name
 				form.pet_age.data = stored_Paccount.old
 				form.pet_gender.data = stored_Paccount.gender
 				form.pet_type.data = stored_Paccount.type
-				return render_template('pet_change.html', title='Modify your details', form=form, language=language[render_languages()])
-		return render_template('pet_change.html', title='pet', user=user, form=form, language=language[render_languages()])
+				return render_template('pet_change.html', title='Modify your details', username=username, form=form, language=language[render_languages()])
+		return render_template('pet_change.html', title='pet', user=user, username=username, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/pet_account', methods=['GET','POST'])
 def pet_account():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
 		prev_posts = Pet.query.filter(Pet.customer_id == customer_in_db.id ).all()
-		return render_template('pet_account.html', title='pet', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
+		return render_template('pet_account.html', title='pet', user=user, username=username, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/pet_add', methods=['GET','POST'])
 def pet_add():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
 	form = PetAddForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
@@ -265,16 +278,18 @@ def pet_add():
 			db.session.add(pet)
 			db.session.commit()
 			return redirect(url_for('pet_account'))
-		return render_template('pet_add.html', title='reservation', user=user, form=form, language=language[render_languages()])
+		return render_template('pet_add.html', title='reservation', user=user, username=username, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/pet_delete', methods=['GET', 'POST'])
 def pet_delete():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
 	form = PetDeleteForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			pet_in_db = Pet.query.filter(Pet.id == form.pet_id.data).first()
@@ -282,16 +297,18 @@ def pet_delete():
 			db.session.delete(pet_in_db)
 			db.session.commit()
 			return redirect(url_for('pet_account'))
-		return render_template('pet_delete.html', title='pet', user=user, form=form, language=language[render_languages()])
+		return render_template('pet_delete.html', title='pet', user=user, username=username, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/reservation_e', methods=['GET','POST'])
 def reservation_e():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
 	form = REForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
@@ -301,7 +318,7 @@ def reservation_e():
 			db.session.add(emergency_appointment)
 			db.session.commit()
 			return redirect(url_for('status_e'))
-		return render_template('reservation_e.html', title='reservation', user=user, form=form, language=language[render_languages()])
+		return render_template('reservation_e.html', title='reservation', user=user, username=username, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -312,6 +329,7 @@ def reservation_s():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
 	form = RSForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
@@ -320,7 +338,7 @@ def reservation_s():
 			db.session.add(standard_appointment)
 			db.session.commit()
 			return redirect(url_for('status_a'))
-		return render_template('reservation_s.html', title='reservation', user=user, form=form, language=language[render_languages()])
+		return render_template('reservation_s.html', title='reservation', user=user, username=username, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -330,10 +348,11 @@ def reservation_s():
 def status_a():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
 		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
-		return render_template('status_a.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
+		return render_template('status_a.html', title='record', user=user, username=username, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -343,10 +362,11 @@ def status_a():
 def status_e():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
 		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
-		return render_template('status_e.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
+		return render_template('status_e.html', title='record', user=user, username=username, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -356,48 +376,55 @@ def status_e():
 def status_sur():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
 		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
 		# prev_posts = Appointment.query.filter(Appointment.type=='Surgery' ).all()
-		return render_template('status_sur.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
+		return render_template('status_sur.html', title='record', user=user, username=username, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/record_a', methods=['GET', 'POST'])
 def record_a():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
 		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
-		return render_template('record_a.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db,  language=language[render_languages()])
+		return render_template('record_a.html', title='record', user=user, username=username, prev_posts=prev_posts, customer_in_db=customer_in_db,  language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/record_e', methods=['GET', 'POST'])
 def record_e():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
 		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
-		return render_template('record_e.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db,  language=language[render_languages()])
+		return render_template('record_e.html', title='record', user=user, username=username, prev_posts=prev_posts, customer_in_db=customer_in_db,  language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/record_o', methods=['GET', 'POST'])
 def record_o():
 	session['current_path'] = request.path
 	user = {'username': 'User'}
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()		
 		prev_posts = db.session.query(Pet, Appointment).filter(Pet.id == Appointment.pet_id ).all()
 		# prev_posts = Appointment.query.filter(Appointment.status==4 ).all()
-		return render_template('record_o.html', title='record', user=user, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
+		return render_template('record_o.html', title='record', user=user, username=username, prev_posts=prev_posts, customer_in_db=customer_in_db, language=language[render_languages()] )
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
@@ -415,6 +442,7 @@ def employee_c():
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
 
+
 @app.route('/employee_t', methods=['GET', 'POST'])
 def employee_t():
 	session['current_path'] = request.path
@@ -430,6 +458,7 @@ def employee_t():
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/employee_f', methods=['GET', 'POST'])
 def employee_f():
@@ -450,6 +479,7 @@ def employee_f():
 def customer_chatting():
 	session['current_path'] = request.path
 	form = PostForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		if form.validate_on_submit():
 			body = form.postbody.data
@@ -462,10 +492,11 @@ def customer_chatting():
 			user_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			prev_posts = Post.query.filter(Post.user_id == user_in_db.id).all()
 			# print("Checking for user: {} with id: {}".format(user_in_db.username, user_in_db.id))
-			return render_template('customer_chatting.html', title='Message',user_in_db=user_in_db, prev_posts=prev_posts, form=form, language=language[render_languages()])
+			return render_template('customer_chatting.html', title='Message', username=username, user_in_db=user_in_db, prev_posts=prev_posts, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/employee_chatting', methods=['GET', 'POST'])
 def employee_chatting():
@@ -480,10 +511,12 @@ def employee_chatting():
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
 
+
 @app.route('/chatting_detail', methods=['GET', 'POST'])
 def chatting_detail():
 	session['current_path'] = request.path
 	form = PostForm()
+	username = session.get("USERNAME")
 	if not session.get("USERNAME") is None:
 		employee_in_db = Employee.query.filter(Employee.username == session.get("USERNAME")).first()
 		user = {'city': employee_in_db.key}
@@ -498,10 +531,11 @@ def chatting_detail():
 				db.session.commit()
 			return redirect(url_for('employee_chatting'))
 		else:
-			return render_template('chatting_detail.html',user=user, title='Message', customer=user_in_db, form=form, language=language[render_languages()])
+			return render_template('chatting_detail.html',user=user, username=username, title='Message', customer=user_in_db, form=form, language=language[render_languages()])
 	else:
 		flash("User needs to either login or signup first")
 		return redirect(url_for('login'))
+
 
 @app.route('/arrange',methods=['GET','POST'])
 def arrange():
@@ -517,10 +551,12 @@ def arrange():
 	s=list1[1]+','+list1[2]+','+list1[3]+','+list1[4]
 	return jsonify(s)
 
+
 @app.route('/logout')
 def logout():
 	session.pop("USERNAME", None)
 	return redirect(url_for('login'))
+
 
 @app.route('/detail')
 def detail():
@@ -528,6 +564,7 @@ def detail():
 	print(current_path)
 	user = {'username': 'User'}
 	return render_template('detail.html', title='detail', user=user, language=language[render_languages()] )
+
 
 @app.route('/change_language')
 def change_language():
@@ -543,11 +580,13 @@ def render_languages():
         session['lang'] = 'en'
     return session['lang']
 
+
 @app.route('/base')
 def base():
 	session['current_path'] = request.path
 	# print(current_path)
 	return render_template("base.html", language=language[render_languages()])
+
 
 @app.route('/events')
 def events():
