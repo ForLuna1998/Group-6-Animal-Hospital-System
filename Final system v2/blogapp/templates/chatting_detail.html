@@ -1,0 +1,50 @@
+{% extends "employee_base.html" %}
+{% block content %}
+
+            <div class="container" style="background-color: #FDF5E6;">
+              	<div style="text-align: right;">
+              		<span id="showid" style="background: orange;"><b>{{customer.username}}</b></span> &nbsp; <a href="{{ url_for('employee_chatting') }}" class="btn btn-primary">Back</a> <br>
+              		<script type="text/javascript">
+
+                          function getUrlParam(name){
+                            
+                            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                            var r = window.location.search.substr(1).match(reg);
+                            if (r != null) return unescape(r[2]);
+                            return null;
+
+                          }
+
+                          var name = getUrlParam('id')
+                          // $('#showid').html(name)
+                       </script>
+				<ul >
+					{% for post in customer.posts %}
+						
+							{% if post.name!=customer.username %}
+							<li style="list-style-type: none;text-align: right;"><b style="font-size: large;">{{ post.body }}</b>  {{ post }}  </li>
+							{% else %}
+							<li style="list-style-type: none;text-align: left;"> {{ post }}<b style="font-size: large;">{{ post.body }}</b></li>
+							{% endif %}
+						
+					{% endfor %}
+					</ul>
+					<hr>
+                
+		            <form action="" method="post">
+				        {{ form.hidden_tag() }}
+				        <p> 
+				            {{ form.postbody(size=120) }}
+							
+							{% for error in form.postbody.errors %}
+				            <span style="color: red;">[{{ error }}]</span>
+				            {% endfor %}
+						</p>
+						
+						
+						<p>{{ form.submit() }}</p>
+				    </form>
+                
+              	</div>
+            </div>
+{% endblock %}

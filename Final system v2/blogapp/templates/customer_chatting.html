@@ -1,0 +1,60 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+	<div class="card sidebar-menu">
+    	<div class="card-header">
+        	<h3 class="h4 card-title">{{language['c-chat-Onlinechatting']}}</h3>
+    	</div>
+   		<div class="card-body">
+            <ul class="nav nav-pills flex-column"><a href="{{ url_for('customer_chatting') }}" class="nav-link active">{{language['c-chat-Onlinechatting']}}</a><a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['c-account-back']}}</a></ul>
+        </div>
+    </div>
+    </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+        <div class="col-lg-9">
+            <div class="box">
+				{% if prev_posts %}
+						<div style="padding:0 35px;">
+						{% for post in prev_posts %}
+						
+							{% if post.name!=user_in_db.username %}
+							<li style="line-height: 15px;  list-style-type: none; text-align: left;"> {{ post }}  </li>
+							<li style="line-height: 35px;  list-style-type: none; text-align: left;"> <b style="padding: 6px; font-size: large;background: skyblue; border-radius: 10px; ">{{ post.body }}</b> </li>
+							<p style="line-height: 10px; "></p>
+							<p style="line-height: 10px;"></p>
+							{% else %}
+							<li style="line-height: 15px;  list-style-type: none; text-align: right;"> {{ post }}  </li>
+							<li style="line-height: 35px;  list-style-type: none; text-align: right;"> <b style="padding: 6px; font-size: large;background: pink; border-radius: 10px; ">{{ post.body }}</b> </li>
+							<p style="line-height: 10px; "></p>
+							{% endif %}
+							
+						{% endfor %}
+						</div>
+						<hr>
+				{% else %}
+						<p>No previous messages!</p>
+						<hr>
+				{% endif %}
+                
+                  <!-- /.row-->
+		        <form action="" method="post" style="text-align: right; padding:0 32px;">
+				    {{ form.hidden_tag() }}
+				    <p>
+				       <!--  {{ form.postbody.label }}<br> -->
+				        {{ form.postbody() }}
+						
+						<!-- {% for error in form.postbody.errors %}
+				        <span style="color: red;">[{{ error }}]</span>
+				       	{% endfor %} -->
+
+				  	</p>
+						
+					<p>{{ form.submit() }}</p>
+				</form>
+            </div>
+        </div>
+ </div>
+ </div>
+ </div>
+{% endblock %}
