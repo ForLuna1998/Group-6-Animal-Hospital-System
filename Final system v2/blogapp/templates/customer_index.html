@@ -3,26 +3,26 @@
 {% block content %}
               <div class="card sidebar-menu mb-4">
                 <div class="card-header">
-                  <h3 class="h4 card-title">CATELOGUE</h3>
+                  <h3 class="h4 card-title">{{language['c-index-cat']}}</h3>
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-pills flex-column category-menu">
-                    <li><a href="category.html" class="nav-link">Standard</a>
+                    <li><a href="category.html" class="nav-link">{{language['c-index-Standard']}}</a>
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">Make an appointment</a></li>
-                        <li><a href="{{ url_for('status_a') }}" class="nav-link">Appointment Status</a></li>
+                        <li><a href="{{ url_for('reservation_s') }}" class="nav-link">{{language['c-index-Makeanappointment']}}</a></li>
+                        <li><a href="{{ url_for('status_a') }}" class="nav-link">{{language['c-index-CheckStatus']}}</a></li>
                       </ul>
                     </li>
-                    <li><a href="category.html" href="category.html"class="nav-link">Emergency</a>
+                    <li><a href="category.html" href="category.html"class="nav-link">{{language['c-index-Emergency']}}</a>
                   <!--  <li><a href="category.html" class="nav-link active">Emergency  <span class="badge badge-light">1</span></a>-->
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">Make an appointment</a></li>
-                        <li><a href="{{ url_for('status_e') }}" class="nav-link">Appointment Status</a></li>
+                        <li><a href="{{ url_for('reservation_e') }}" class="nav-link">{{language['c-index-Makeanappointment']}}</a></li>
+                        <li><a href="{{ url_for('status_e') }}" class="nav-link">{{language['c-index-CheckStatus']}}</a></li>
                       </ul>
                     </li>
-                    <li><a href="category.html" class="nav-link">Surgical Operation</a>
+                    <li><a href="category.html" class="nav-link">{{language['c-index-Operation']}}</a>
                       <ul class="list-unstyled">
-                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">Surgery Status</a></li>
+                        <li><a href="{{ url_for('status_sur') }}" class="nav-link">{{language['c-index-OperationStatus']}}</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -35,7 +35,7 @@
 
             <div class="col-lg-9">
               <div class="box">
-                <h2>Welcome, {{ username }}!</h2>
+                <h2>{{language['c-index-wel']}} {{ username }}!</h2>
                 <p>{{language['c-index-click']}}</p>
               </div>
     

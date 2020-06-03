@@ -47,15 +47,25 @@
                       <td>{{post.Pet.name}}</td>
                       <td>{{post.Appointment.date}}</td>
                       <td>{{post.Appointment.time}}</td>
-                      <td>{{post.Appointment.city}}</td>
+                      <td>
+                                             <!-- 城市语言切换 -->
+                        {% if post.Appointment.city == "Beijing" %}
+                        <span >{{language['s-e-beijing']}}</span>
+                        {% elif post.Appointment.status == "Shanghai" %}
+                        <span >{{language['s-e-shanghai']}}</span>
+                        {% else %}
+                        <span >{{language['s-e-chengdu']}}</span>
+                        {% endif %}
+
+                      </td>
                       <td>
                                              <!-- 加上了不同状态的标签 -->
                         {% if post.Appointment.status == "Date Confirmed" %}
-                        <span class="badge badge-warning">{{post.Appointment.status}}</span>
+                        <span class="badge badge-warning">{{language['s-sur-DateConfirmed']}}</span>
                         {% elif post.Appointment.status == "In Operation" %}
-                        <span class="badge badge-info">{{post.Appointment.status}}</span>
+                        <span class="badge badge-info">{{language['s-sur-InOperation']}}</span>
                         {% else %}
-                        <span class="badge badge-success">{{post.Appointment.status}}</span>
+                        <span class="badge badge-success">{{language['s-sur-ReadyforRelease']}}</span>
                         {% endif %}
                       
                       </td>

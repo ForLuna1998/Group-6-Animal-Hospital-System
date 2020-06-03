@@ -36,7 +36,6 @@
                       <th>{{language['s-a-date']}}</th>
                       <th>{{language['r-a-time']}}</th>
                       <th>{{language['r-a-city']}}</th>
-                      <!-- <th>{{language['e-f-detials']}}</th> -->
                       <th>{{language['s-a-status']}}</th>
                       
                       <th>{{language['s-a-action']}}</th>
@@ -49,20 +48,40 @@
                       <th>{{post.Appointment.id}}</th>
                       <td>{{post.Pet.name}}</td>
                       <td>{{post.Appointment.date}}</td>
-                      <td>{{post.Appointment.time}}</td>
-                      <td>{{post.Appointment.city}}</td>
+                      <td>
+                                             <!-- 时间语言切换 -->
+                        {% if post.Appointment.city == "morning" %}
+                        <span >{{language['s-a-morning']}}</span>
+                        {% elif post.Appointment.status == "afternoon" %}
+                        <span >{{language['s-a-afternoon']}}</span>
+                        {% else %}
+                        <span >{{language['s-a-evening']}}</span>
+                        {% endif %}
+
+                      </td>
+                      <td>
+                                             <!-- 城市语言切换 -->
+                        {% if post.Appointment.city == "Beijing" %}
+                        <span >{{language['s-e-beijing']}}</span>
+                        {% elif post.Appointment.status == "Shanghai" %}
+                        <span >{{language['s-e-shanghai']}}</span>
+                        {% else %}
+                        <span >{{language['s-e-chengdu']}}</span>
+                        {% endif %}
+
+                      </td>
                       <!-- <td>{{post.Appointment.details}}</td> -->
                       <!-- 加上了不同状态的标签 -->
                       <td>
                         {% if post.Appointment.status == "Submitted" %}
-                        <span class="badge badge-info">{{post.Appointment.status}}</span>
+                        <span class="badge badge-info">{{language['s-a-submitted']}}</span>
                         {% elif post.Appointment.status == "Success" %}
-                        <span class="badge badge-success">{{post.Appointment.status}}</span>
+                        <span class="badge badge-success">{{language['s-a-success']}}</span>
                         {% else %}
-                        <span class="badge badge-warning">{{post.Appointment.status}}</span>
+                        <span class="badge badge-warning">{{language['s-a-fail']}}</span>
                         {% endif %}
                       </td>
-                      <td><button class="btn btn-primary btn-sm">Cancel</button></td>
+                      <td><button class="btn btn-primary btn-sm">{{language['s-a-cancel']}}</button></td>
                     </tr>
                     {% endif %}
                     {% endfor %}

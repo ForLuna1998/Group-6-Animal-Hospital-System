@@ -1,13 +1,17 @@
 en = {
     # base
-    'base-hospital':"Hospital",
+    'base-hospital':"Veterinary Hospital",
     'base-title':"Healing Paws System",
     'base-nolink':"No link",
-    'base-menu':"Menu",
+    'base-home':"Home",
     'base-aboutus':"ABOUT US",
+    'base-Register': "Register",
     'base-login':"Login",
     'base-foremployee':"For Employees",
     'base-language': "中文",
+    'base-Beijing': "Beijing",
+    'base-l1': "New Avenue",
+    'base-l2': "New Heaven",
 
 
     # costumer account
@@ -27,6 +31,7 @@ en = {
 # title is the same with base
     'c-base-open':"OPEN HOURS",
     'c-base-everyday':"Every Day(8:00-11:00am 1:00-4:00pm 6:00-9:00pm)",
+    'c-base-UN':"Username: ",
     'c-base-home':"Home",
     'c-base-logout':"Logout",
     'c-base-language':"中文",
@@ -79,8 +84,8 @@ en = {
     'c-index-Emergency': "Emergency",
 
     'c-index-Makeanappointment':"Make an appointment",
-    'c-index-CheckStatus':"Check Status",
-    'c-index-Operation':"Operation",
+    'c-index-CheckStatus':"Appointment Status",
+    'c-index-Operation':"Surgical Operation",
     'c-index-Status': " Status",
     'c-index-Record': " Record",
 
@@ -109,6 +114,7 @@ en = {
     'c-index-NEW':"NEW",
     'c-index-BathePets':"Bathe Pets",
     'c-index-GIFT':"GIFT",
+    'c-index-wel':"Welcome, ",
 
     'c-index-Loadmore':"Load more",
     'c-index-Previous':"Previous",
@@ -125,13 +131,14 @@ en = {
     'c-passowrd-retypeword':"Retype new password",
 
 # customer register
+    'c-register-Signup':"Sign up",
     'c-register-Signupnow':"Sign up now",
-    'c-register-fillinform':"Fill in the form to get an account:",
+    'c-register-SPE':"Sign up Entrance",
     'c-register-siterule':"SITE RULES",
-    'c-register-registerform':"Customer Registration Form",
+    'c-register-accept':"I accept the ",
     'c-register-ifyouwant':"If you want to make an appointment for your pet,",
     'c-register-pleasesignup':"please sign up first.",
-    'c-register-already':"Already have an account? Log in here",
+    'c-register-already':"Already have an account? ",
     'c-register-login':"Log in",
 
 # employee base
@@ -140,7 +147,10 @@ en = {
     'e-base-table':"Full Table",
     'e-base-chatting':"Chatting",
     'e-base-logout':"Logout",
+    'e-base-newEmployee': "New Employee",
     'e-base-language':"中文",
+    'e-base-submit': "Submit",
+    'e-base-edit': "Edit",
 
 # emoloyee c
     'e-c-draggable':"Appointments",
@@ -154,6 +164,7 @@ en = {
     'e-f-edit':"Edit",
     'e-f-detials':"Details",
     'e-f-status':"Status",
+    'e-f-send': "Send",
 
 
 
@@ -161,20 +172,24 @@ en = {
 #     title is the same with base
     'e-index-BacktoTimetable':"Back to Timetable",
     'e-index-id':"ID",
+    'e-index-username': "Username",
     'e-index-petname':"pet name",
     'e-index-phonenum':"phone number",
     'e-index-appointmentslot':"appointment slot",
     'e-index-appointmenttype':"appointment type",
     'e-index-submissiontime':"submission time",
     'e-index-Actions':"Actions",
+    'e-index-NA': "No Appointments!",
 
 # employee register
-    'e-register-Signupnow':"Sign up now",
+    'e-register-Signupnow':"Sign up",
     'e-register-fillin':"Fill in the form to get an account:",
     'e-register-siterule':"SITE RULES",
     'e-register-EmployeeRegistrationForm':"Employee Registration Form",
     'e-register-alreadyhave':"Already have an account? Log in here",
     'e-register-login':"Log in",
+    'e-register-RA': "Register an account for a new employee",
+
 
 # employee t
     'e-t-id':"ID",
@@ -186,17 +201,25 @@ en = {
     'e-t-action':"Actions",
     'e-t-dateconfirmed':"date confirmed",
     'e-t-change':"Change",
+    'e-t-standard': "Standard",
+    'e-t-Emergency': "Emergency",
+    'e-t-Surgery': "Surgery",
+
 
 # index
     'index-healing':"Healing your pets",
-    'index-dogsonly':"A veterinary hospital that treats dogs and cats only",
-    'index-readmore':"Read More",
+    'index-loginf':"Please sign in first!",
+    'index-BMA':"Before making an appointment.",
 
 # login
-    'login-logon':"Log on our website",
+    'login-login':"Login",
+    'login-RM': "Remember me",
+    'login-UE':"Sign in Entrance",
+    'login-UN': "Username...",
+    'login-Pw': "Password...",
     'login-fillinform':"Fill in the form below to sign in:",
     'login-noaccount':"No account?",
-    'login-register':"Register",
+    'login-register':" Sign up",
 
 # pet account
     'p-account-petaccount':"Pet Accounts",
@@ -214,6 +237,7 @@ en = {
     'p-account-if':"If you have a new pet, you can ",
     'p-account-addyour':"add your pet",
     'p-account-here':"here.",
+    'p-account-delet': "Delete your pet",
 
 # pet add
     'p-add-petaccount':"Pet Accounts",
@@ -323,9 +347,20 @@ en = {
     's-a-status': "Status",
     's-a-action': "Action",
     's-a-view':"View",
+    's-a-success': "Success",
+    's-a-submitted': "Submitted",
+    's-a-fail': "Fail",
+    's-a-cancel': "Cancel",
+    's-a-morning': "Morning",
+    's-a-afternoon': "Afternoon",
+    's-a-evening': "Evening",
 
 # status e
     's-e-emergencystatus':"Emergency Appiontment Status",
+    's-e-beijing': "Beijing",
+    's-e-shanghai': "Shanghai",
+    's-e-chengdu': "Chengdu",
+
     # the rest is same with status a
 
 # status en
@@ -337,7 +372,10 @@ en = {
 
 # status sur
     's-sur-surgerystatus':"Operation Status",
-    's-sur-surdate':"Operation Date"
+    's-sur-surdate':"Operation Date",
+    's-sur-DateConfirmed':"Date Confirmed",
+    's-sur-InOperation': "In Operation",
+    's-sur-ReadyforRelease': "Ready for Release"
     # the rest is same with status a
 
 

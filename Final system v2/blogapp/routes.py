@@ -624,3 +624,16 @@ def events():
 			l2.append(dic)
 			i=i+1
 	return jsonify(l2)
+
+
+@app.route('/message',methods=['GET','POST'])
+def message():
+
+	list1=request.form.get('s')
+	list1=list1.split(',')
+	customer = Customer.query.filter(Customer.username == list1[1]).first()
+	post = Post(body=list1[0], author = customer, name=session.get("USERNAME"))
+	db.session.add(post)
+	db.session.commit()
+	s=list1[1]
+	return jsonify(s)

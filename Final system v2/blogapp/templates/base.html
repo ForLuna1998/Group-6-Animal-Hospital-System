@@ -101,7 +101,7 @@
     </head>
     
     <body>
-        <header class="header mb-3" >
+        <header style="padding-bottom: 1em;" >
       <!--
       *** TOPBAR ***
       _________________________________________________________
@@ -118,9 +118,9 @@
 
               <ul class="menu list-inline mb-0">
                 
-                <li class="list-inline-item"><a href="{{ url_for('index') }}">Home</a></li>
-                <li class="list-inline-item"><a href="{{ url_for('login') }}">Login</a></li>
-                <li class="list-inline-item"><a href="{{ url_for('customer_register') }}">Register</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('index') }}">{{language['base-home']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('login') }}">{{language['base-login']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('customer_register') }}">{{language['base-Register']}}</a></li>
                 <li class="list-inline-item"><a href="{{ url_for('change_language') }}">{{language['e-base-language']}}</a></li>
               </ul>
             </div>
@@ -135,7 +135,7 @@
                 <img src="static/img/logo.png" alt="Obaju logo" class="d-none d-md-inline-block">
                 </a></div>
 <div class="navbar-buttons d-flex justify-content-end">
-    <h3>&copy;Healing Paws Veterinary Hospital</h3></div></div>
+    <h3>&copy;Healing Paws {{language['base-hospital']}}</h3></div></div>
         </nav>
     </header>
     <div id="content">
@@ -193,7 +193,7 @@
           <!-- /.col-lg-3-->
           <div class="col-lg-3 col-md-6">
             <h4 class="mb-3">{{language['c-base-wheretodind']}}</h4>
-            <p><strong>Healing Paws</strong><br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>Beijing<br></p><a href="{{url_for('customer_chatting')}}">{{language['c-base-gtcp']}}</a>
+            <p><strong>Healing Paws</strong><br>13/25 {{language['base-l1']}}<br>{{language['base-l2']}}<br>45Y 73J<br>{{language['base-Beijing']}}<br></p><a href="{{url_for('customer_chatting')}}">{{language['c-base-gtcp']}}</a>
             <hr class="d-block d-md-none">
           </div>
           <!-- /.col-lg-3-->

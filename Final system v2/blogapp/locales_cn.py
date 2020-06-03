@@ -1,13 +1,17 @@
 cn = {
     # base
-    'base-hospital':"医院",
+    'base-hospital':"宠物医院",
     'base-title':"治愈之爪",
     'base-nolink':"无链接",
-    'base-menu':"目录",
+    'base-home':"主页",
     'base-aboutus':"关于我们",
     'base-login':"登陆",
+    'base-Register': "注册",
     'base-foremployee':"员工",
     'base-language':"English",
+    'base-Beijing': "北京",
+    'base-l1': "平乐园",
+    'base-l2': "朝阳区",
 
 
     # costumer account
@@ -27,6 +31,7 @@ cn = {
 # title is the same with base
     'c-base-open':"工作时间",
     'c-base-everyday':"每日(9-12AM 13-17PM 18-21PM)",
+    'c-base-UN': "用户名: ",
     'c-base-home':"主页",
     'c-base-logout':"登出",
     'c-base-language':"English",
@@ -75,12 +80,12 @@ cn = {
 
 # customer index
     'c-index-cat':"目录",
-    'c-index-Standard':"普通",
+    'c-index-Standard':"普通门诊",
     'c-index-Emergency': "急诊",
 
     'c-index-Makeanappointment':"在线预约",
-    'c-index-CheckStatus':"查看状态",
-    'c-index-Operation':"手术",
+    'c-index-CheckStatus':"预约状态",
+    'c-index-Operation':"外科手术",
     'c-index-Status': " 状态",
     'c-index-Record': " 记录",
 
@@ -109,6 +114,7 @@ cn = {
     'c-index-NEW':"新",
     'c-index-BathePets':"宠物淋浴",
     'c-index-GIFT':"礼物",
+    'c-index-wel': "欢迎, ",
 
     'c-index-Loadmore':"加载更多",
     'c-index-Previous':"上一页",
@@ -127,13 +133,14 @@ cn = {
     'c-passowrd-retypeword':"确认新密码",
 
 # customer register
+    'c-register-Signup': "注册",
     'c-register-Signupnow':"现在注册",
-    'c-register-fillinform':"完成表格来注册账号",
+    'c-register-SPE':"注册通道",
     'c-register-siterule':"网站规则",
-    'c-register-registerform':"顾客注册表格",
+    'c-register-accept':"我接受 ",
     'c-register-ifyouwant':"如果您要预约",
     'c-register-pleasesignup':"请先注册",
-    'c-register-already':"已经有了账户？在这里登陆",
+    'c-register-already':"已经有了账户？ ",
     'c-register-login':"登陆",
 
 # employee base
@@ -142,7 +149,10 @@ cn = {
     'e-base-table':"表格",
     'e-base-chatting':"聊天",
     'e-base-logout':"登出",
+    'e-base-newEmployee': "新员工",
     'e-base-language':"English",
+    'e-base-submit': "提交",
+    'e-base-edit': "编辑",
 
 # emoloyee c
     'e-c-draggable':"预约",
@@ -155,26 +165,30 @@ cn = {
     'e-f-edit': "编辑",
     'e-f-detials':"详细信息",
     'e-f-status':"状态",
+    'e-f-send': "发送",
 
 
 # employee index
 #     title is the same with base
     'e-index-BacktoTimetable':"返回时间表",
     'e-index-id':"ID",
+    'e-index-username': "用户名",
     'e-index-petname':"宠物名",
     'e-index-phonenum':"电话号码",
     'e-index-appointmentslot':"预约格",
     'e-index-appointmenttype':"预约类型",
     'e-index-submissiontime':"提交时间",
     'e-index-Actions':"动作",
+    'e-index-NA': "没有预约!",
 
 # employee register
-    'e-register-Signupnow':"现在注册",
+    'e-register-Signupnow':"注册",
     'e-register-fillin':"完成表格来获得账号",
     'e-register-siterule':"网络规则",
     'e-register-EmployeeRegistrationForm':"员工注册表格",
     'e-register-alreadyhave':"已经有了账户？在这里登陆",
     'e-register-login':"登陆",
+    'e-register-RA': "为新员工注册一个新账号",
 
 # employee t
     'e-t-id':"ID",
@@ -186,14 +200,19 @@ cn = {
     'e-t-action':"动作",
     'e-t-dateconfirmed':"日期确认",
     'e-t-change':"更改",
+    'e-t-standard': "普通门诊",
+    'e-t-Emergency': "急诊",
+    'e-t-Surgery': "手术",
 
 # index
     'index-healing':"治疗你的宠物",
-    'index-dogsonly':"一座只治疗猫猫和狗狗的宠物医院",
-    'index-readmore':"了解更多",
+    'index-loginf':"请先登录！",
+    'index-BMA':"在预约前",
 
 # login
-    'login-logon':"登陆网站",
+    'login-login':"登录",
+    'login-RM': "记住密码",
+    'login-UE': "登录网站",
     'login-fillinform':"完成表格来获取账号",
     'login-noaccount':"没有账号？",
     'login-register':"注册",
@@ -228,6 +247,7 @@ cn = {
     'p-add-show-id': "你要更改信息的宠物id是",
 
     'p-add-addnew':"添加新宠物",
+    'p-account-delet': "删除你的宠物",
 # pet delete
     'p-delete-petaccount':"宠物账户",
 
@@ -256,6 +276,7 @@ cn = {
     'r-a-pet':"宠物",
     'r-a-old':"年龄",
     'r-a-date':"日期",
+    'r-a-city': "城市",
     'r-a-time':"时间",
     'r-a-account':"账户",
 
@@ -321,9 +342,19 @@ cn = {
     's-a-status': "状态",
     's-a-action': "动作",
     's-a-view':"查看",
+    's-a-success': "成功",
+    's-a-submitted': "已提交",
+    's-a-fail': "失败",
+    's-a-cancel': "取消",
+    's-a-morning': "早上",
+    's-a-afternoon': "中午",
+    's-a-evening': "晚上",
 
 # status e
     's-e-emergencystatus':"急诊预约状态",
+    's-e-beijing': "北京",
+    's-e-shanghai': "上海",
+    's-e-chengdu': "成都",
     # the rest is same with status a
 
 # status en
@@ -335,7 +366,10 @@ cn = {
 
 # status sur
     's-sur-surgerystatus':"手术状态",
-    's-sur-surdate':"手术日期"
+    's-sur-surdate':"手术日期",
+    's-sur-DateConfirmed':"日期确定",
+    's-sur-InOperation': "手术中",
+    's-sur-ReadyforRelease': "允许领回"
     # the rest is same with status a
 
 

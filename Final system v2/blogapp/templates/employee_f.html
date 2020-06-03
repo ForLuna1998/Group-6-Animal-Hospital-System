@@ -15,7 +15,7 @@
 
 {% block content %}
 
-<div class="wrapper">
+<!-- <div class="wrapper"> -->
     <div class="container" style="background-color: #FDF5E6;">
         <div style="text-align: right;">
                 <a href="{{url_for('employee_t')}}" class="btn btn-primary"> {{language['e-f-select']}}</a>
@@ -30,7 +30,7 @@
                     <table id="fresh" class="table table-hover" style="text-align: center;">
                         <thead style="font-size: large;">
                             <th data-field="id">{{language['e-index-id']}}</th>
-                            <th data-field="name">Username</th>
+                            <th data-field="name">{{language['e-index-username']}}</th>
                             <th data-field="phone" data-sortable="true">{{language['e-t-phonenumber']}}</th>
                             <th data-field="detail">{{language['e-t-details']}}</th>
                             <th data-field="date" data-sortable="true">{{language['e-t-date']}}</th>
@@ -59,24 +59,23 @@
                             {% endfor %}
                             {% else %}
                             <tr>
-                                <td colspan="9">No Appointments!</td>
+                                <td colspan="9">{{language['e-index-NA']}}</td>
                             </tr>
                             {% endif %}
                         </tbody>
                     </table>
                 <!-- </div> -->
                 
-                
+                 {% import 'pages.html' as pg %}
+               {{pg.my_paginate(pagination,'employee_f')}}
             </div>
 
         </div>
-                {% import 'pages.html' as pg %}
-               {{pg.my_paginate(pagination,'employee_f')}}
-            
+        
        
     </div>
 
-</div>
+<!-- </div> -->
 
 
 <script language="javascript">
@@ -92,21 +91,32 @@ $("table#fresh").on("click","button.edit",function(){
         $td4.html("");
         var $date=$("<input type='text' id=\"date\" class='form-control form-control-sm'>");
         $date.appendTo($td4).width(_w4).val(_t4);
+        $date.datetimepicker({
+        forceParse: 0,//设置为0，时间不会跳转1899，会显示当前时间。
+        // language: 'zh-CN',//显示中文
+        minView: "month",
+        format: 'yyyy-mm-dd',//显示格式
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+        });
+
 
         var $td5=$tr.find("td:nth-child(6)");
         var _t5=$td5.text();
         var _w5=$td5.width();
         var _h5=$td5.height();
         $td5.html("");
-        var $input=$("<input type='text' id=\"time\" class='form-control form-control-sm'>");
-        $input.appendTo($td5).width(_w5).val(_t5);
+        var $time=$("<input type='text' id=\"time\" class='form-control form-control-sm'>");
+        $time.appendTo($td5).width(_w5).val(_t5);
+
 
         var $td7=$tr.find("td:nth-child(8)");
         var _t7=$td7.text();
         var _w7=$td7.width();
         var _h7=$td7.height();
         $td7.html("");
-        var $status=$("<select id=\"status\"><option value=\"Success\">Success</option><option value=\"Fail\">Fail</option><option value=\"Date Confirmed\">Date Confirmed</option><option value=\"In Operation\">In Operation</option><option value=\"Surgery Completed\">Surgery Completed</option><option value=\"Ready for Release\">Ready for Release</option></select> ");
+        var $status=$("<select id=\"status\"><option value=\"Success\">{{language['s-a-success']}}</option><option value=\"Fail\">{{language['s-a-fail']}}</option><option value=\"Date Confirmed\">{{language['s-sur-DateConfirmed']}}</option><option value=\"In Operation\">{{language['s-sur-InOperation']}}</option><option value=\"Ready for Release\">{{language['s-sur-ReadyforRelease']}}</option></select> ");
         $status.appendTo($td7).width(_w7).val(_t7);
    
         var $td=$tr.find("td:nth-child(7)");
@@ -114,11 +124,13 @@ $("table#fresh").on("click","button.edit",function(){
         var _w=$td.width();
         var _h=$td.height();
         $td.html("");
-        var $type=$("<select id=\"type\"><option value=\"Standard\">Standard</option><option value=\"Emergency\">Emergency</option><option value=\"Surgery\">Surgery</option></select> ");
+        var $type=$("<select id=\"type\"><option value=\"Standard\">{{language['e-t-standard']}}</option><option value=\"Emergency\">{{language['e-t-Emergency']}}</option><option value=\"Surgery\">{{language['e-t-Surgery']}}</option></select> ");
         $type.appendTo($td).width(_w).val(_t);
     
-    $this.removeClass().addClass("btn btn-danger ajax").text("Submit");  
+    $this.removeClass().addClass("btn btn-danger ajax");
 });
+
+
 
 $("table#fresh").on("click","button.ajax",function(){
     var $this=$(this);
@@ -140,8 +152,10 @@ $("table#fresh").on("click","button.ajax",function(){
     var s6=$td6.val();
     var s7=$td7.val();
     
-    var s=s1+","+s4+","+s5+","+s6+","+s7;
-    var data={'s':s};
+    var t=/^[0-1][0-9]\:[0-5][0-9]$/;
+    if (t.test(s5)==true){
+        var s=s1+","+s4+","+s5+","+s6+","+s7;
+        var data={'s':s};
     $.ajax({
         url: '/arrange',
         type:"post",
@@ -156,23 +170,19 @@ $("table#fresh").on("click","button.ajax",function(){
              $d5.html(narray[1]);
             $d6.html(narray[2]);
              $d7.html(narray[3]);
-            $this.removeClass().addClass("btn btn-success edit").text("Edit"); 
+            $this.removeClass().addClass("btn btn-success edit");
         },
         error: function(e){
             alert("error"+e);
         }
     });
+    }else{
+        alert('Please enter the right time format---hh:mm');
+    }
+
+    
 
 });
 
-    $('tr#date').datetimepicker({
-        forceParse: 0,//设置为0，时间不会跳转1899，会显示当前时间。
-        // language: 'zh-CN',//显示中文
-        minView: "month",
-        format: 'yyyy-mm-dd',//显示格式
-        initialDate: new Date(),//初始化当前日期
-        autoclose: true,//选中自动关闭
-        todayBtn: true//显示今日按钮
-    });
 </script>
 {% endblock %}

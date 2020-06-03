@@ -98,23 +98,34 @@
     $("table#fresh").on("click","button.edit",function(){
     var $this=$(this);
     var $tr=$this.parents("tr");
-        var $td4=$tr.find("td:nth-child(4)");
+        var $td4=$tr.find("td:nth-child(5)");
         var _t4=$td4.text();
         var _w4=$td4.width();
         var _h4=$td4.height();
         $td4.html("");
         var $date=$("<input type='text' id=\"date\" class='form-control form-control-sm'>");
         $date.appendTo($td4).width(_w4).val(_t4);
+        $date.datetimepicker({
+        forceParse: 0,//设置为0，时间不会跳转1899，会显示当前时间。
+        // language: 'zh-CN',//显示中文
+        minView: "month",
+        format: 'yyyy-mm-dd',//显示格式
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+        });
 
-        var $td5=$tr.find("td:nth-child(5)");
+
+        var $td5=$tr.find("td:nth-child(6)");
         var _t5=$td5.text();
         var _w5=$td5.width();
         var _h5=$td5.height();
         $td5.html("");
-        var $input=$("<input type='text' id=\"time\" class='form-control form-control-sm'>");
-        $input.appendTo($td5).width(_w5).val(_t5);
+        var $time=$("<input type='text' id=\"time\" class='form-control form-control-sm'>");
+        $time.appendTo($td5).width(_w5).val(_t5);
 
-        var $td7=$tr.find("td:nth-child(7)");
+
+        var $td7=$tr.find("td:nth-child(8)");
         var _t7=$td7.text();
         var _w7=$td7.width();
         var _h7=$td7.height();
@@ -122,7 +133,7 @@
         var $status=$("<select id=\"status\"><option value=\"Success\">Success</option><option value=\"Fail\">Fail</option><option value=\"Date Confirmed\">Date Confirmed</option><option value=\"In Operation\">In Operation</option><option value=\"Surgery Completed\">Surgery Completed</option><option value=\"Ready for Release\">Ready for Release</option></select> ");
         $status.appendTo($td7).width(_w7).val(_t7);
    
-        var $td=$tr.find("td:nth-child(6)");
+        var $td=$tr.find("td:nth-child(7)");
         var _t=$td.text();
         var _w=$td.width();
         var _h=$td.height();
@@ -133,6 +144,8 @@
     $this.removeClass().addClass("btn btn-danger ajax").text("Submit");  
 });
 
+
+
 $("table#fresh").on("click","button.ajax",function(){
     var $this=$(this);
     var $tr=$this.parents("tr");
@@ -142,10 +155,10 @@ $("table#fresh").on("click","button.ajax",function(){
     var $td6=$tr.find("#type");
     var $td7=$tr.find("#status");
 
-    var $d4=$tr.find("td:nth-child(4)");
-    var $d5=$tr.find("td:nth-child(5)");
-    var $d6=$tr.find("td:nth-child(6)");
-    var $d7=$tr.find("td:nth-child(7)");
+    var $d4=$tr.find("td:nth-child(5)");
+    var $d5=$tr.find("td:nth-child(6)");
+    var $d6=$tr.find("td:nth-child(7)");
+    var $d7=$tr.find("td:nth-child(8)");
 
     var s1=$tr.find("th").html();
     var s4=$td4.val();
@@ -153,8 +166,10 @@ $("table#fresh").on("click","button.ajax",function(){
     var s6=$td6.val();
     var s7=$td7.val();
     
-    var s=s1+","+s4+","+s5+","+s6+","+s7;
-    var data={'s':s};
+    var t=/^[0-1][0-9]\:[0-5][0-9]$/;
+    if (t.test(s5)==true){
+        var s=s1+","+s4+","+s5+","+s6+","+s7;
+        var data={'s':s};
     $.ajax({
         url: '/arrange',
         type:"post",
@@ -175,9 +190,12 @@ $("table#fresh").on("click","button.ajax",function(){
             alert("error"+e);
         }
     });
+    }else{
+        alert('Please enter the right time format---hh:mm');
+    }
+
 
 });
-
 //         $("table#aijquery").on("click","button.edit",function(){
 //     var $this=$(this);    //获取被点击的按钮
 //     var $tr=$this.parents("tr");    //获取当前按钮所在的tr行

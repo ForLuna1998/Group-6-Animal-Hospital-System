@@ -3,7 +3,7 @@
 {% block content %}
 	<div class="card sidebar-menu">
     	<div class="card-header">
-        	<h3 class="h4 card-title">{{language['c-chat-Onlinechatting']}}</h3>
+        	<h3 class="h4 card-title">{{language['c-base-MESSAGE']}}</h3>
     	</div>
    		<div class="card-body">
             <ul class="nav nav-pills flex-column"><a href="{{ url_for('customer_chatting') }}" class="nav-link active">{{language['c-chat-Onlinechatting']}}</a><a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['c-account-back']}}</a></ul>
@@ -15,7 +15,7 @@
         <div class="col-lg-9">
             <div class="box">
 				{% if prev_posts %}
-						<div style="padding:0 35px;">
+						<div style="padding:0 35px; height: 300px; overflow: auto;">
 						{% for post in prev_posts %}
 						
 							{% if post.name!=user_in_db.username %}

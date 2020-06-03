@@ -3,32 +3,75 @@
 
             <div class="container" style="background-color: #FDF5E6;">
               	<div>
-              	{% for user in customers.items %}
+            {% for user in customers.items %}
               	<div style="text-align: right;">
-              		Username: <b style="background: orange;">{{user.username}}</b> &nbsp; 
-              		<button onclick="do_jump('{{ user.id}}')" class="btn btn-primary">Reply</button>
+              		ID = <span>{{user.id}}</span>: <b id='username' style="background: orange;">{{user.username}}</b> &nbsp; 
+              		<br>
               	</div>
               	<script type="text/javascript">
                       function do_jump(id){
                         window.location.href= ' {{ url_for('chatting_detail') }}?id=' + id
                       }
                  </script>
-
+          <div style="overflow: auto; height: 420px; padding: 0 40px 0 20px;">
 					{% for post in user.posts %}
 						<ul >
 							{% if post.name==user.username %}
-							<li style="text-align: left;">{{ post }} <b style="font-size: large;">{{ post.body }}</b>  </li>
-							
+              <li style="line-height: 15px;  list-style-type: none; text-align: left;"> {{ post }}  </li>
+              <li style="line-height: 35px;  list-style-type: none; text-align: left;"> <b style="padding: 6px; font-size: large;background: pink; border-radius: 10px; ">{{ post.body }}</b> </li>
+              <p style="line-height: 10px; "></p>
+              <p style="line-height: 10px;"></p>
+              {% else %}
+              <li style="line-height: 15px;  list-style-type: none; text-align: right;"> {{ post }}  </li>
+              <li style="line-height: 35px;  list-style-type: none; text-align: right;"> <b style="padding: 6px; font-size: large;background: skyblue; border-radius: 10px; ">{{ post.body }}</b> </li>
+              <p style="line-height: 10px; "></p>
 							{% endif %}
 						</ul>
 					{% endfor %}
+          </div> 
 					<hr>
-					
-				{% endfor %}
-                {% import 'pages.html' as pg %}
+
+          <div style="text-align: right;">
+					<input type="text">
+
+          <button class="btn btn-warning">{{language['e-f-send']}}</button>
+                                  {% import 'pages.html' as pg %}
                {{pg.my_paginate(pagination,'employee_chatting')}}
-		           
-                
+          </div>
+				{% endfor %}
+       
+         
+
+		          
               	</div>
+
             </div>
+
+  <script type="text/javascript">
+
+    $("button").click(function(){
+      var text=$('input:text').val();
+      if(text!=''){
+        var name=$('#username').html();
+      var s=text+','+name;
+      var data={'s':s};
+    $.ajax({
+        url: '/message',
+        type:"post",
+        data:data,
+        dataType:'json',
+        traditional:true,
+        async:false,
+        success:function(d){
+            window.location.href= '{{ url_for('employee_chatting') }}?page='+$('span').html(); 
+        },
+        error: function(e){
+            alert("error"+e);
+        }
+    });
+      }
+      
+        
+    });
+  </script>
 {% endblock %}
