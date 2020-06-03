@@ -1,0 +1,78 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - {{language['base-title']}}</title>
+        {% else %}
+        <title>{{language['base-nolink']}}</title>
+        {% endif %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="all,follow">
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="modern appointment form a Flat Responsive Widget,Login form widgets, Sign up Web     forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.default1.css') }}">
+
+        <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='scripts/logout.js') }}"></script> -->
+
+{% block head %}
+        
+{% endblock %}
+
+    </head>
+    
+    <body>
+
+     
+    <header style="padding-bottom: 1em;" >
+      <!--
+      *** TOPBAR ***
+      _________________________________________________________
+      -->
+      <div id="top">
+        <div class="container" >
+          <div class="row">
+            <div style="text-align: left;" class="col-lg-6 offer mb-3 mb-lg-0">
+                <a class="btn btn-success btn-sm">{{language['c-base-open']}}</a><a class="ml-1">{{language['c-base-everyday']}}
+                </a>
+                
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+
+              <ul class="menu list-inline mb-0">
+                <li class="list-inline-item"><img src="../static/img/location.png" width="14px" height="24px">&nbsp;
+                <b style="color: white; font-size: larger;">{{ user.city }}</b>&nbsp;&nbsp;</li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_f') }}">{{language['e-base-table']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_c') }}">{{language['e-base-fullcalender']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_chatting') }}">{{language['e-base-chatting']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('employee_register') }}">{{language['e-base-newEmployee']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('logout') }}">{{language['e-base-logout']}}</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('change_language') }}">{{language['e-base-language']}}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+{% block content %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,103 @@
+{% extends "employee_base.html" %}
+
+{% block head %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='packages/core/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='packages/daygrid/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='packages/list/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='packages/timegrid/main.css') }}">
+
+        <script src="{{ url_for('static', filename='packages/core/main.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='packages/interaction/main.js') }}"></script> -->
+        <script src="{{ url_for('static', filename='packages/daygrid/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='packages/timegrid/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='packages/list/main.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='scripts/e.js') }}"></script> -->
+
+{% endblock %}
+
+{% block content %}
+<div id='wrap'>
+
+    <div id='external-events'>
+      <h3>{{language['e-c-draggable']}}</h3>
+      <hr>
+      <div id='external-events-list'>
+        <div class='fc-event' style="background-color: green;">{{language['e-t-standard']}}</div>
+        <div class='fc-event' style="background-color: pink;">{{language['e-t-Emergency']}}</div>
+        <div class='fc-event' style="background-color: yellow;">{{language['e-t-Surgery']}}</div>
+      </div>
+    </div>
+
+    <div id='calendar'></div>
+
+
+  </div>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var Calendar = FullCalendar.Calendar;
+    // var Draggable = FullCalendarInteraction.Draggable;
+
+    /* initialize the external events
+    -----------------------------------------------------------------*/
+
+    // var containerEl = document.getElementById('external-events-list');
+    // new Draggable(containerEl, {
+    //   itemSelector: '.fc-event',
+    //   eventData: function(eventEl) {
+    //     return {
+    //       title: eventEl.innerText.trim()
+    //     }
+    //   }
+    // });
+
+    //// the individual way to do it
+    // var containerEl = document.getElementById('external-events-list');
+    // var eventEls = Array.prototype.slice.call(
+    //   containerEl.querySelectorAll('.fc-event')
+    // );
+    // // var eve=[];
+    // eventEls.forEach(function(eventEl) {
+    //   new Draggable(eventEl, {
+    //     eventData: {
+    //       title: eventEl.innerText.trim()
+    //     }
+    //   });
+    // });
+
+    /* initialize the calendar
+    -----------------------------------------------------------------*/
+
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new Calendar(calendarEl, {
+      plugins: [ 'dayGrid', 'timeGrid', 'list' ],
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      },
+      navLinks: true, // can click day/week names to navigate views
+      editable: false,
+      droppable: false, // this allows things to be dropped onto the calendar
+      eventLimit: true,
+      events: {
+        url:  'events'
+      },
+      drop: function(arg) {
+        // is the "remove after drop" checkbox checked?
+        // if (document.getElementById('drop-remove').checked) {
+          // if so, remove the element from the "Draggable Events" list
+          arg.draggedEl.parentNode.removeChild(arg.draggedEl);
+          alert(arg.dateStr);
+        // }
+        
+      }
+    });
+    calendar.render();
+
+  });
+</script>
+
+{% endblock %}
