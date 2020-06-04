@@ -46,8 +46,6 @@ class Pet(db.Model):
 class Appointment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	type = db.Column(db.String(64),index=True)
-	pet_name = db.Column(db.String(64), index=True)
-	pet_type = db.Column(db.String(64), index=True)
 	date = db.Column(db.String(64), index=True)
 	time = db.Column(db.String(64), index=True)
 	city = db.Column(db.String(64), index=True)
