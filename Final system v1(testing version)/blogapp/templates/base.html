@@ -1,0 +1,79 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - {{language['base-title']}}</title>
+        {% else %}
+        <title>{{language['base-nolink']}}</title>
+        {% endif %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="" />
+
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/css/form-elements.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets2/css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/form-elements.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+        <link href="http://fonts.googleapis.com/css?family=Oswald:300,400,500,600" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
+
+        <script src="{{ url_for('static', filename='assets/js/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.backstretch.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/retina-1.1.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/scripts.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/js/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/js/jquery.backstretch.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/js/retina-1.1.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets2/js/scripts.js') }}"></script>
+        <script src="{{ url_for('static', filename='scripts/myjs.js') }}"></script>
+    </head>
+    
+    <body>
+        <div class="header-outs" id="home">
+        <div class="header-w3layouts" style="padding-left: 1.5em;">
+        <nav>
+          <div id="logo">
+            <h1><a href="{{ url_for('index') }}">&copy;Healing Paws Veterinary {{language['base-hospital']}}</a></h1>
+          </div>
+
+          <label for="drop" class="toggle">{{language['base-menu']}}</label>
+          <input type="checkbox" id="drop">
+          <ul class="menu mt-2">
+            <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+                <a href="{{ url_for('index') }}">{{language['base-aboutus']}}</a>
+            </li>
+            <li>
+                <a href="{{ url_for('login') }}">{{language['base-login']}}</a>
+            </li>
+            <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+              
+              <a href="{{ url_for('employee_register') }}">{{language['base-foremployee']}}</a>
+            </li>
+            <li>
+                <a href="{{ url_for('change_language') }}">{{ language['base-language'] }}</a>
+            </li>
+          </ul>
+        </nav>
+        </div>
+    </div>
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

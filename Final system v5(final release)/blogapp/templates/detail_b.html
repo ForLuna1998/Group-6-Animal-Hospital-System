@@ -1,0 +1,56 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+
+
+      <div class="card sidebar-menu  mb-4">
+                <div class="card-header">
+                  <h3 class="h4 card-title">{{language['introduction-title']}}</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('status_sur') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['introduction-surgery']}}</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['res-e-back']}}</a></ul>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+
+                 <div id="contact" class="box">
+                        <h1>{{language['introduction-title']}}</h1>
+                      <p>{{language['introduction-detail']}}</p>
+                <div id="accordion">
+
+
+
+
+
+
+
+
+                  <div class="card border-primary">
+                    <div id="headingThree" class="card-header p-0 border-0">
+                      <h4 class="mb-0"><a href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="btn btn-primary d-block text-left rounded-0" name="c">{{language['introduction-partthree']}}</a></h4>
+                    </div>
+                    <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordion" class="collapse show">
+                      <div class="card-body">
+                          <p>{{language['introduction-partthree1']}}</p>
+                    <ul>
+                        <li>{{language['introduction-partthree2']}}</li>
+                          <li>{{language['introduction-partthree3']}}</li>
+
+
+                    </ul>
+
+                    </div>
+                  </div>
+                </div>
+
+                </div>
+
+        </div>
+
+</div>
+
+
+{% endblock %}

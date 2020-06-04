@@ -1,0 +1,206 @@
+{% extends "employee_base.html" %}
+
+{% block head %}
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <!-- <link href="{{ url_for('static', filename='assets4/css/bootstrap.css') }}" rel='stylesheet'> -->
+       <!--  <link href="{{ url_for('static', filename='assets4/css/fresh-bootstrap-table.css') }}" rel='stylesheet'>
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}"> -->
+ <!-- <script src="{{ url_for('static', filename='assets4/js/jquery-1.11.2.min.js') }}"></script> -->
+
+<!--     <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
+ -->    <!--     Fonts and icons     -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'> -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='jQ.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="wrapper">
+    <div class="container" style="background-color:#FDF5E6;">
+        <div style="text-align: right;">
+            <form method="post">
+                <a href="{{url_for('employee_f')}}" class="btn btn-primary submit">{{language['p-account-back']}}</a>
+                <!-- {{ form.date( id="datepicker", onfocus="this.value = '';", onblur="if (this.value == '') {this.value = 'MM/DD/YYYY';}") }} -->
+                {{ form.date(size=20) }}
+                {{ form.submit() }}
+            </form>
+        </div>
+        <div class="row">
+            <div class="table-responsive" >
+                                
+                    <table id="fresh" class="table table-hover" style="text-align: center;">
+                        <thead style="font-size: large;">
+                            <th data-field="id">{{language['e-t-id']}}</th>
+                            <th data-field="phone" data-sortable="true">{{language['e-t-phonenumber']}}</th>
+                            <th data-field="detail">{{language['e-t-details']}}</th>
+                        	<th data-field="date" data-sortable="true">{{language['e-t-date']}}</th>
+                            <th data-field="time" data-sortable="true">{{language['e-t-timeslot']}}</th>
+                            
+                            <th data-field="type" data-sortable="true">{{language['e-t-Type']}}</th>
+                            <th data-field="status" data-sortable="true">{{language['s-a-status']}}</th>
+                        	<th data-field="edit">{{language['e-t-action']}}</th>
+                        </thead>
+                        <tbody style="font-size: 18px;">
+                            {% for post in prev_posts %}
+                            {% if post.Appointment.city == employee_in_db.key and post.Appointment.date==d %}
+                                <tr>
+                                  <td>{{post.Appointment.id}}</td>  
+                                    <td>{{post.Customer.phone}}</td>
+                                    <td>{{post.Appointment.details}}</td> 
+                                  <td>{{post.Appointment.date}}</td>
+                                  <td>{{post.Appointment.time}}</td>
+                                  
+                                    <td>{{post.Appointment.type}}</td>
+                                  <td>{{post.Appointment.status}}</td>
+                                  <td><button class="btn btn-primary edit">{{language['e-f-edit']}}</button></td>
+                                </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- </div> -->
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- <script src="{{ url_for('static', filename='assets4/js/jquery-1.11.2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets4/js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='assets4/js/bootstrap-table.js') }}"></script> -->
+<!-- <script src="{{ url_for('static', filename='assets3/js-a/jquery-ui.js') }}"></script> -->
+
+<script language="javascript">
+
+    $("table#fresh").on("click","button.edit",function(){
+    var $this=$(this);
+    var $tr=$this.parents("tr");
+        var $td4=$tr.find("td:nth-child(4)");
+        var _t4=$td4.text();
+        var _w4=$td4.width();
+        var _h4=$td4.height();
+        $td4.html("");
+        var $date=$("<input type='text' id=\"date\" class='form-control form-control-sm'>");
+        $date.appendTo($td4).width(_w4).val(_t4);
+
+        var $td5=$tr.find("td:nth-child(5)");
+        var _t5=$td5.text();
+        var _w5=$td5.width();
+        var _h5=$td5.height();
+        $td5.html("");
+        var $input=$("<input type='text' id=\"time\" class='form-control form-control-sm'>");
+        $input.appendTo($td5).width(_w5).val(_t5);
+
+        var $td7=$tr.find("td:nth-child(7)");
+        var _t7=$td7.text();
+        var _w7=$td7.width();
+        var _h7=$td7.height();
+        $td7.html("");
+        var $status=$("<select id=\"status\"><option value=\"Success\">Success</option><option value=\"Fail\">Fail</option><option value=\"Date Confirmed\">Date Confirmed</option><option value=\"In Operation\">In Operation</option><option value=\"Surgery Completed\">Surgery Completed</option><option value=\"Ready for Release\">Ready for Release</option></select> ");
+        $status.appendTo($td7).width(_w7).val(_t7);
+   
+        var $td=$tr.find("td:nth-child(6)");
+        var _t=$td.text();
+        var _w=$td.width();
+        var _h=$td.height();
+        $td.html("");
+        var $type=$("<select id=\"type\"><option value=\"Standard\">Standard</option><option value=\"Emergency\">Emergency</option><option value=\"Surgery\">Surgery</option></select> ");
+        $type.appendTo($td).width(_w).val(_t);
+    
+    $this.removeClass().addClass("btn btn-danger ajax").text("Submit");  
+});
+
+$("table#fresh").on("click","button.ajax",function(){
+    var $this=$(this);
+    var $tr=$this.parents("tr");
+
+    var $td4=$tr.find("#date");
+    var $td5=$tr.find("#time");
+    var $td6=$tr.find("#type");
+    var $td7=$tr.find("#status");
+
+    var $d4=$tr.find("td:nth-child(4)");
+    var $d5=$tr.find("td:nth-child(5)");
+    var $d6=$tr.find("td:nth-child(6)");
+    var $d7=$tr.find("td:nth-child(7)");
+
+    var s1=$tr.find("td:nth-child(1)").html();
+    var s4=$td4.val();
+    var s5=$td5.val();
+    var s6=$td6.val();
+    var s7=$td7.val();
+    
+    var s=s1+","+s4+","+s5+","+s6+","+s7;
+    var data={'s':s};
+    $.ajax({
+        url: '/arrange',
+        type:"post",
+        data:data,
+        dataType:'json',
+        traditional:true,
+        async:false,
+        success:function(d){
+            // alert(d);
+            var narray=d.split(',');
+            $d4.html(narray[0]);
+             $d5.html(narray[1]);
+            $d6.html(narray[2]);
+             $d7.html(narray[3]);
+            $this.removeClass().addClass("btn btn-success edit").text("Edit"); 
+        },
+        error: function(e){
+            alert("error"+e);
+        }
+    });
+
+});
+
+//         $("table#aijquery").on("click","button.edit",function(){
+//     var $this=$(this);    //获取被点击的按钮
+//     var $tr=$this.parents("tr");    //获取当前按钮所在的tr行
+//     $tr.find("td").not($("td:has(button)")).each(function(){ //获取当前行所有除了含有button的td
+//         var $td=$(this);
+//         var _t=$td.text();
+//         var _w=$td.width();
+//         var _h=$td.height();
+//         $td.html("");
+//         var $input=$("<input type='text' class='border border-primary'>");
+//         $input.appendTo($td).width(_w).val(_t);
+//     });
+//     $this.removeClass().addClass("btn btn-danger btn-sm ajax").text("Submit");//更改按钮的样式
+// });
+// // http://www.aijquery.cn/Html/jqueryshili/108.html
+
+//     $("table#aijquery").on("click","button.ajax",function(){
+//     var $this=$(this);
+//     var $tr=$this.parents("tr");
+//      
+//     //获取编辑后的内容，并放入一个数组内
+//     var v=[];
+//     $tr.find("td input:text").each(function(){
+//         v.push($(this).val());
+//     });
+//      
+//     //用jquery里post方法，把数据提交到后台，经过后台处理后，在输出到前台
+// //     $.post("/Html/aijquery/ajax-post/",{"d":v},function(d){
+//         //获取到经过后台处理的数据，动态更新到前台
+//         var narray=d.split(",");
+//         var nhtml="<td>"+narray.join("</td><td>")+"</td>";
+//         nhtml=nhtml+"<td><button class=\"btn btn-primary btn-sm edit\">编辑</button></td>";
+//         $tr.html(nhtml);
+// //     });
+// });
+    $(function() {
+    $( "#datepicker" ).datepicker({dateFormat: "yy-mm-dd"});
+    });
+     </script>
+{% endblock %}
+
+
+

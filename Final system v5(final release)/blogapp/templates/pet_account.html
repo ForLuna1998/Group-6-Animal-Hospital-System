@@ -1,0 +1,81 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+              <div class="card sidebar-menu">
+                <div class="card-header">
+                  <h3 class="h4 card-title">{{language['p-account-petaccount']}}</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('pet_account') }}" class="nav-link active"><i class="fa fa-list"></i> {{language['p-account-mypet']}}</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['p-account-back']}}</a></ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+            </div>
+            <div class="col-lg-9">
+              <div class="box">
+                <h1 style="text-align: center;">{{language['p-account-petaccount']}}</h1>
+              <!-- <p class="lead">Status of your appointments</p> -->
+              <p class="text-muted"></p>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-hover" style="text-align: center;">
+                  <thead>
+                    <tr>
+                      <th>{{language['s-a-id']}}</th>
+                      <th>{{language['p-account-name']}}</th>
+                      <th>{{language['p-account-old']}}</th>
+                      <th>{{language['p-account-gender']}}</th>
+                      <th>{{language['p-account-type']}}</th>
+                      <th>{{language['e-index-Actions']}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for pet in prev_posts %}
+
+                    {% if pet.id %}
+                    <tr>
+                      <th>{{pet.id}}</th>
+                      <td>{{pet.name}}</td>
+                      <td>{{pet.old}}</td>
+                      <td>
+                                             <!-- 性别语言切换 -->
+                        {% if pet.gender == "Male" %}
+                        <span >{{language['p-add-male']}}</span>
+                        {% elif pet.gender == "Female" %}
+                        <span >{{language['p-add-female']}}</span>
+                        {% endif %}
+
+                      </td>
+                      <td>
+                                             <!-- 种类语言切换 -->
+                        {% if pet.type == "Dog" %}
+                        <span >{{language['p-add-dog']}}</span>
+                        {% elif pet.type == "Cat" %}
+                        <span >{{language['p-add-cat']}}</span>
+                        {% endif %}
+
+                      </td>
+                      <td><button onclick="do_jump('{{ pet.id}}')" class="btn btn-primary btn-sm"> {{language['p-account-change']}}</button></td>
+                    </tr>
+                    <script type="text/javascript">
+                      function do_jump(id){
+                        window.location.href= ' {{ url_for('pet_change') }}?id=' + id
+                      }
+                    </script>
+                    {% endif %}
+
+                    {% endfor %}
+                    
+                    </tbody>
+                </table>
+              </div>
+               <div class="row" style="padding-left: 28px;">
+               <p class="text-muted">{{language['p-account-if']}} <a href="{{ url_for('pet_add') }}">{{language['p-account-addyour']}}</a> {{language['p-account-here']}}</p>
+               </div>
+              </div>
+            </div>
+          
+{% endblock %}

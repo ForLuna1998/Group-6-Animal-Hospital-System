@@ -1,0 +1,79 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+              <div class="card sidebar-menu">
+                <div class="card-header">
+                  <h3 class="h4 card-title">{{language['c-index-Status']}}</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('status_sur') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['c-index-OperationStatus']}}</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['res-e-back']}}</a></ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+<!--              <div class="banner"><a href="#"><img src="static/img/banner.jpg"  class="img-fluid"></a></div>-->
+            </div>
+            <div class="col-lg-9">
+            <div class="box">
+              <h1>{{language['s-sur-surgerystatus']}}</h1>
+            
+              <p class="text-muted">{{language['s-a-ifproblem']}} <a href="{{url_for('customer_chatting')}}">{{language['r-a-contactus']}}</a>{{language['r-a-247']}}</p>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-hover" style="text-align: center;">
+                  <thead>
+                    <tr>
+                      
+                      <th>{{language['s-a-petname']}}</th>
+                      <th>{{language['s-a-date']}}</th>
+                      <th>{{language['r-a-time']}}</th>
+                      <th>{{language['r-a-city']}}</th>
+                      <th>{{language['s-a-status']}}</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for app in appointments %}
+                    {% if app.type == "Surgery" %}
+                    <tr>
+                      
+                      <td>{{app.pet_name}}</td>
+                      <td>{{app.date}}</td>
+                      <td>{{app.time}}</td>
+                      
+                      <td>
+                                             <!-- 城市语言切换 -->
+                        {% if app.city == "Beijing" %}
+                        <span >{{language['s-e-beijing']}}</span>
+                        {% elif app.city == "Shanghai" %}
+                        <span >{{language['s-e-shanghai']}}</span>
+                        {% else %}
+                        <span >{{language['s-e-chengdu']}}</span>
+                        {% endif %}
+
+                      </td>
+                      <td>
+                                             <!-- 加上了不同状态的标签 -->
+                        {% if app.status == "Date Confirmed" %}
+                        <span class="badge badge-warning">{{language['s-sur-DateConfirmed']}}</span>
+                        {% elif app.status == "In Operation" %}
+                        <span class="badge badge-info">{{language['s-sur-InOperation']}}</span>
+                        {% else %}
+                        <span class="badge badge-success">{{language['s-sur-ReadyforRelease']}}</span>
+                        {% endif %}
+                      
+                      </td>
+                      
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>            <!-- /.col-lg-9-->
+          </div>
+        
+{% endblock %}
