@@ -1,0 +1,109 @@
+{% extends "customer_base.html" %}
+
+     {% block head %}  
+         <script src="{{ url_for('static', filename='assets3/js-a/jquery-ui.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+
+              <div class="card sidebar-menu">
+                <div class="card-header">
+                  <h3 class="h4 card-title">{{language['res-e-Reservation']}}</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('reservation_s') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['res-s-standardreservation']}}</a>
+                   
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['res-e-back']}}</a></ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+            </div>
+            <div class="col-lg-9">
+              <div class="box">
+                <h1>{{language['res-s-standardreservation']}}</h1>
+                <p><a href="{{ url_for('reservation_e') }}"><i>{{language['res-e-ask']}}</i></a></p> <hr>
+                  <form action="" method="post">
+                    
+                   <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="firstname">{{language['res-e-selectpet']}}</label>
+                        <select name='pet_name' class="form-control" required="required">
+                            {% if pets_list %}
+                            {% for pet in pets_list %}
+                              <option value='{{ pet.name }}'>{{ pet.name }}</option>
+                            {% endfor %}
+                            {% endif %}
+                      </select>
+                        <a href="{{ url_for('pet_add_2') }}" ><i class="fa fa-list"></i> {{language['res-e-addnew']}}</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+              
+
+                 
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>{{language['res-e-arrivetime']}}</label>
+                        
+                        <input type="text" id="datepicker" name="sdate" class="form-control" required="required">
+                        
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="street">{{language['res-s-timeslot']}}</label>
+                         <select name='timeslot' class="form-control" required="required">
+                            <option value="Morning">{{language['res-e-morning']}}</option>
+                            <option value="Afternoon" >{{language['res-e-afternoon']}}</option>
+                            <option value="Evening" >{{language['res-e-evening']}}</option>
+                    </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="company">{{language['res-e-city']}}</label>
+                         <select name='city2' class="form-control" required="required">
+                            <option value="Beijing" >{{language['res-e-beijing']}}</option>
+                            <option value="Shanghai" >{{language['res-e-shanghai']}}</option>
+                            <option value="Chengdu" >{{language['res-e-chengdu']}}</option>
+                    </select> 
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="street">{{language['res-e-moredetail']}}</label>
+                        <input type="text" name="details2" class="form-control" required="required">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                
+                    <div class="col-md-12 text-center">
+                      <button type="submit" name="reservation_s" value="submit" class="btn btn-primary"><i class="fa fa-list"></i>{{language['res-e-submit']}}</button>
+                       
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    $(function() {
+    $( "#datepicker" ).datepicker({dateFormat: "yy-mm-dd"});
+    });
+  </script>
+{% endblock %}

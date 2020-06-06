@@ -1,0 +1,94 @@
+{% extends "employee_base.html" %}
+{% block content %}
+
+            <div class="container" style="background-color: #FDF5E6;">
+              	<div>
+                  {% if customers.items %}
+            {% for user in customers.items %}
+              	<div style="text-align: right;">
+              		ID = <span>{{user.id}}</span>: <b id='username' style="background: orange;">{{user.username}}</b> &nbsp; 
+              		<br>
+              	</div>
+              
+          <div style="overflow: auto; height: 420px; padding: 0 60px 0 20px;">
+
+					{% for post in user.posts %}
+						<ul >
+							{% if post.name==user.username %}
+              <li style="line-height: 15px;  list-style-type: none; text-align: left;"> {{ post }}  </li>
+              <li style="line-height: 35px;  list-style-type: none; text-align: left;"> <b style="padding: 6px; font-size: large;background: pink; border-radius: 10px; ">{{ post.body }}</b> </li>
+              <p style="line-height: 10px; "></p>
+              <p style="line-height: 10px;"></p>
+              {% else %}
+              <li style="line-height: 15px;  list-style-type: none; text-align: right;"> {{ post }}  </li>
+              <li style="line-height: 35px;  list-style-type: none; text-align: right;"> <b style="padding: 6px; font-size: large;background: skyblue; border-radius: 10px; ">{{ post.body }}</b> </li>
+              <p style="line-height: 10px; "></p>
+							{% endif %}
+						</ul>
+					{% endfor %}
+
+          </div> 
+					<hr>
+
+          <div style="text-align: right; padding: 0 60px 10px 60px;">
+					<input type="text" class="form-control">
+
+          <button class="btn btn-warning">{{language['e-f-send']}}</button>
+                                  
+          </div>
+				{% endfor %}
+
+        {% else %}
+         <div style="overflow: auto; height: 420px; padding: 0 60px 0 20px;">
+               <p>{{language['c-chat-nochat']}}</p>   
+                </div>
+       {% endif %}
+         
+
+		          
+              	</div>
+<div class="row">
+
+  {% import 'pages.html' as pg %}
+               {{pg.my_paginate(pagination,'employee_chatting')}}</div>
+            </div>
+
+  <script type="text/javascript">
+$(function(){
+  $("button").click(function(){
+      var text=$('input:text').val();
+      if(text!=''){
+        var name=$('#username').html();
+      var s=text+','+name;
+      var data={'s':s};
+    $.ajax({
+        url: '/message',
+        type:"post",
+        data:data,
+        dataType:'json',
+        traditional:true,
+        async:false,
+        success:function(d){
+            window.location.href= '{{ url_for('employee_chatting') }}?page='+$('span').html(); 
+        },
+        error: function(e){
+            alert("error"+e);
+        }
+    });
+      }
+      
+        
+    });
+
+  $(document).keydown(function(e){
+    if (!e) 
+      e = window.event; 
+    if ((e.keyCode || e.which) == 13) { 
+      $("button").click(); 
+    } 
+  });
+});
+
+    
+  </script>
+{% endblock %}

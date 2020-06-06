@@ -1,0 +1,254 @@
+{% extends "employee_base.html" %}
+
+{% block head %}
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap-grid.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='jQ.js') }}"></script>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-datetimepicker.min.css') }}">
+    <script src="{{ url_for('static', filename='bootstrap-datetimepicker.js') }}"></script>
+    <script src="{{ url_for('static', filename='locales/bootstrap-datetimepicker.fr.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="wrapper">
+    <div class="container" style="background-color: #FDF5E6;">
+        <div style="text-align: right;">
+                <a href="{{url_for('employee_t')}}" class="btn btn-primary"> {{language['e-f-select']}}</a>
+        </div>
+        <div>
+            <div class="table-responsive">
+                                
+                <!-- <div style="height: 600px;overflow: auto;" > -->
+                <!--    Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange                  
+                        Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
+                -->
+                    <table id="fresh" class="table table-hover" style="text-align: center;">
+                        <thead style="font-size: 16.4px;">
+                            <th data-field="id">{{language['e-index-id']}}</th>
+                            <th data-field="name">{{language['e-index-username']}}</th>
+                            <th data-field="phone" data-sortable="true">{{language['e-t-phonenumber']}}</th>
+                            <th data-field="pet_name">{{language['e-t-pn']}}</th>
+                            <th data-field="pet_type">{{language['e-t-pt']}}</th>
+                            <th data-field="detail">{{language['e-t-details']}}</th>
+                            <th data-field="date" data-sortable="true">{{language['e-t-date']}}</th>
+                            <th data-field="time" data-sortable="true">{{language['r-a-time']}}</th>
+                            
+                            <th data-field="type" data-sortable="true">{{language['e-t-Type']}}</th>
+                            <th data-field="status" data-sortable="true">{{language['e-f-status']}}</th>
+                            <th data-field="edit">{{language['e-index-Actions']}}</th>
+                        </thead>
+                        <tbody style="font-size: 18px;">
+                            {% if prev_posts.items %}
+                            {% for post in prev_posts.items %}
+                                <tr>
+                                  <th>{{post.Appointment.id}}</th>  
+                                  <td>{{post.Customer.username}}</td>
+                                    <td>{{post.Customer.phone}}</td>
+                                    <td>{{post.Pet.name}}</td>
+                                  {% if post.Pet.type == "Dog" %}
+                                        <td>{{language['e-t-dog']}}</td>
+                                       {% else %} 
+                                        <td>{{language['e-t-cat']}}</td>
+                                    {% endif %}
+                                    <td>{{post.Appointment.details}}</td> 
+                                  <td>{{post.Appointment.date}}</td>
+                                  <td>{{post.Appointment.time}}</td>
+
+                                    
+                                             <!-- 类型语言切换 -->
+                                        {% if post.Appointment.type == "Standard" %}
+                                        <td>{{language['e-t-standard']}}</td>
+                                        {% elif post.Appointment.type == "Emergency" %}
+                                        <td>{{language['e-t-Emergency']}}</td>
+                                        {% elif post.Appointment.type == "Surgery" %}
+                                        <td>{{language['e-t-Surgery']}}</td>
+                                        {% endif %}
+
+                                      
+
+                                  
+                                             <!-- 类型语言切换 -->
+                                        {% if post.Appointment.status == "Success" %}
+                                        <td>{{language['s-a-success']}}</td>
+                                        {% elif post.Appointment.status == "Fail" %}
+                                        <td>{{language['s-a-fail']}}</td>
+                                        {% elif post.Appointment.status == "Submitted" %}
+                                        <td>{{language['s-a-submitted']}}</td>
+                                        {% elif post.Appointment.status == "Date Confirmed" %}
+                                        <td>{{language['s-sur-DateConfirmed']}}</td>
+                                      {% elif post.Appointment.status == "In Operation" %}
+                                        <td>{{language['s-sur-InOperation']}}</td>
+                                      {% elif post.Appointment.status == "Ready for Release" %}
+                                        <td>{{language['s-sur-ReadyforRelease']}}</td>
+                                        {% endif %}
+
+                                     
+                                  
+                                  <td><button class="btn btn-primary edit">{{language['e-f-edit']}}</button></td>
+                                </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="11">{{language['e-index-NA']}}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                <!-- </div> -->
+                
+                 
+            </div>
+
+        </div>
+        <div class="row">
+
+            {% import 'pages.html' as pg %}
+            {{pg.my_paginate(pagination,'employee_f')}}
+            
+        </div>
+       
+    </div>
+
+</div>
+
+
+<script language="javascript">
+
+
+$("table#fresh").on("click","button.edit",function(){
+    var $this=$(this);
+    var $tr=$this.parents("tr");
+        var $td4=$tr.find("td:nth-child(7)");
+        var _t4=$td4.text();
+        var _w4=$td4.width();
+        var _h4=$td4.height();
+        $td4.html("");
+        var $date=$("<input type='text' id=\"date\" class='form-control form-control-sm'>");
+        $date.appendTo($td4).width(_w4).val(_t4);
+        $date.datetimepicker({
+        forceParse: 0,//设置为0，时间不会跳转1899，会显示当前时间。
+        // language: 'zh-CN',//显示中文
+        minView: "month",
+        format: 'yyyy-mm-dd',//显示格式
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+        });
+
+
+        var $td5=$tr.find("td:nth-child(8)");
+        var _t5=$td5.text();
+        var _w5=$td5.width();
+        var _h5=$td5.height();
+        $td5.html("");
+        var $time=$("<input type='text' id=\"time\" class='form-control form-control-sm'>");
+        $time.appendTo($td5).width(_w5).val(_t5);
+
+
+        var $td7=$tr.find("td:nth-child(10)");
+        var _t7=$td7.text();
+        var _w7=$td7.width();
+        var _h7=$td7.height();
+        $td7.html("");
+        var $status=$("<select id=\"status\"><option value=\"Success\">{{language['s-a-success']}}</option><option value=\"Fail\">{{language['s-a-fail']}}</option><option value=\"Date Confirmed\">{{language['s-sur-DateConfirmed']}}</option><option value=\"In Operation\">{{language['s-sur-InOperation']}}</option><option value=\"Ready for Release\">{{language['s-sur-ReadyforRelease']}}</option></select> ");
+        $status.appendTo($td7).width(_w7);
+
+   
+        var $td=$tr.find("td:nth-child(9)");
+        var _t=$td.text();
+        var _w=$td.width();
+        var _h=$td.height();
+        $td.html("");
+        var $type=$("<select id=\"type\"><option value=\"Standard\">{{language['e-t-standard']}}</option><option value=\"Emergency\">{{language['e-t-Emergency']}}</option><option value=\"Surgery\">{{language['e-t-Surgery']}}</option></select> ");
+        $type.appendTo($td).width(_w);
+        
+        if(_t=='Standard'||_t=='普通门诊'){
+            $('#type option').eq(0).prop("selected",true);
+        }else if(_t=='Emergency'||_t=='急诊'){
+            $('#type option').eq(1).prop("selected",true);
+        }else{
+            $('#type option').eq(2).prop("selected",true);
+        }
+    
+    $this.removeClass().addClass("btn btn-danger ajax").text('{{language['e-base-submit']}}');
+});
+
+
+
+$("table#fresh").on("click","button.ajax",function(){
+    var $this=$(this);
+    var $tr=$this.parents("tr");
+
+    var $td4=$tr.find("#date");
+    var $td5=$tr.find("#time");
+    var $td6=$tr.find("#type");
+    var $td7=$tr.find("#status");
+
+    var $d4=$tr.find("td:nth-child(7)");
+    var $d5=$tr.find("td:nth-child(8)");
+    var $d6=$tr.find("td:nth-child(9)");
+    var $d7=$tr.find("td:nth-child(10)");
+
+    var s1=$tr.find("th").html();
+    var s4=$td4.val();
+    var s5=$td5.val();
+    var s6=$td6.val();
+    var s7=$td7.val();
+    
+    var t=/^[0-2][0-9]\:[0-5][0-9]$/;
+    if (t.test(s5)==true){
+        var s=s1+","+s4+","+s5+","+s6+","+s7;
+        var data={'s':s};
+    $.ajax({
+        url: '/arrange',
+        type:"post",
+        data:data,
+        dataType:'json',
+        traditional:true,
+        async:false,
+        success:function(d){
+            // alert(d);
+            var narray=d.split(',');
+            $d4.html(narray[0]);
+             $d5.html(narray[1]);
+             if(narray[2]=='Standard'){
+                $d6.html('{{language['e-t-standard']}}');
+             }else if(narray[2]=='Emergency'){
+                $d6.html('{{language['e-t-Emergency']}}');
+            }else{
+                $d6.html('{{language['e-t-Surgery']}}');
+            }
+
+            if(narray[3]=='Success'){
+                $d7.html('{{language['s-a-success']}}');
+             }else if(narray[3]=='Fail'){
+                $d7.html('{{language['s-a-fail']}}');
+            }else if(narray[3]=='Date Confirmed'){
+                $d7.html('{{language['s-sur-DateConfirmed']}}');
+            }else if(narray[3]=='In Operation'){
+                $d7.html('{{language['s-sur-InOperation']}}');
+            }else{
+                $d7.html('{{language['s-sur-ReadyforRelease']}}');
+            }
+        
+            $this.removeClass().addClass("btn btn-success edit").text('{{language['e-f-edit']}}');
+        },
+        error: function(e){
+            alert("error"+e);
+        }
+    });
+    }else{
+        alert('Please enter the right time format---hh:mm');
+    }
+
+    
+
+});
+
+</script>
+{% endblock %}

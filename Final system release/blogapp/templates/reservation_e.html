@@ -1,0 +1,96 @@
+{% extends "customer_base.html" %}
+
+{% block content %}
+
+              <div class="card sidebar-menu">
+                <div class="card-header">
+                  <h3 class="h4 card-title">{{language['res-e-Reservation']}}</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills flex-column">
+                    <a href="{{ url_for('reservation_e') }}" class="nav-link active"><i class="fa fa-list"></i>{{language['res-e-EmergencyReservation']}}</a>
+                    <a href="{{ url_for('customer_index') }}" class="nav-link"><i class="fa fa-sign-out"></i> {{language['res-e-back']}}</a></ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** CUSTOMER MENU END ***-->
+            </div >
+            <div class="col-lg-9">
+              <div class="box">
+                <h1>{{language['res-e-EmergencyReservation']}}</h1><hr>
+              
+                <form action="" method="post">
+                  
+                <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="firstname">{{language['res-e-selectpet']}}</label>
+                        <select name='pet_name' class="form-control" required="required">
+                            {% if pets_list %}
+                            {% for pet in pets_list %}
+                              <option value='{{ pet.name }}'>{{ pet.name }}</option>
+                            {% endfor %}
+                            {% endif %}
+                      </select>
+                        <a href="{{ url_for('pet_add_2') }}" ><i class="fa fa-list"></i> {{language['res-e-addnew']}}</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                 
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <!-- <div class="col-sm-2 col-lg-offset-1"> -->
+                      <div class="form-group">
+                        <label for="city">{{language['res-e-arrivetime']}}</label>
+                        <input type="text" format='yyyy-mm-dd hh:ii' id="date" name="stime" class="form-control" required="required">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="time">{{language['res-e-city']}} </label>
+                         <select name='city' class="form-control" required="required">
+                            <option value="Beijing" selected="selected">{{language['res-e-beijing']}}</option>
+                            <option value="Shanghai" >{{language['res-e-shanghai']}}</option>
+                            <option value="Chengdu" >{{language['res-e-chengdu']}}</option>
+                    </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="street">{{language['res-e-moredetail']}}</label>
+                        <input type="text" name="details" class="form-control" required="required">
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.row-->
+                
+                    <div class="col-md-12 text-center">
+                      <button type="submit" name="reservation_e" value="submit" class="btn btn-primary"><i class="fa fa-list"></i>{{language['res-e-submit']}}</button>
+                      
+                    </div>
+                  </form>
+                  </div>
+                
+              </div>
+            
+          
+
+     <script type="text/javascript">
+        $('#date').datetimepicker({
+        forceParse: 0,//设置为0，时间不会跳转1899，会显示当前时间。
+        // language: 'zh-CN',//显示中文
+        format: 'yyyy-mm-dd hh:ii',//显示格式
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+    })
+   $("#date").datetimepicker("setDate", new Date() );  //设置显示默认当天的时间
+    </script>
+
+{% endblock %}
